@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二维码图片</title>
+</head>
+<style>
+    img{
+        display: contents!important;
+    }
+    .qrcode {
+        position: relative;
+        left: 41%;
+        top: 20px;
+    }
+</style>
+<body>
+<div style="" class="qrcode" id="qrcode"></div>
+<div style="text-align: center;margin-top: 20px"><span>邀请码：<span id="parentCode"></span></span></div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="../app/js/qrcode.js"></script>
+<!--<script src="https://cdn.bootcss.com/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>-->
+<script>
+    $(".qrcode").css("left",$(window).width()*0.5-110);
+    var uid = GetQueryString("parentCode");
+    shouErWeiMa();
+    $("#parentCode").html(uid);
+    function shouErWeiMa() {
+        $("#qrcode").html("");
+        var url = "http://www.jdhuhang.com/mobile/stock/register?parentCode="+uid;
+        var id = 'qrcode';
+        var qrcode = new QRCode(id, {
+            text: url,
+            width: 220,
+            height: 220,
+            colorDark : '#000000',
+            colorLight : '#ffffff',
+            correctLevel : QRCode.CorrectLevel.H
+        });
+    }
+
+    //获取url中的参数
+
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+</script>
+<script>
+    $(document).ready(function(){
+        $("img").css("display", "block");
+    });
+</script>
+</html>

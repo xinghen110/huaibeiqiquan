@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+<hibernate-reverse-engineering>
+    <!-- 这个文件就在生成实体类时候用 -->
+    <!--<schema-selection  match-table="t_card_fee"/>-->
+    <!--<schema-selection  match-table="t_user_member"/>-->
+    <!--<schema-selection match-table="t_user_account_order"/>-->
+    <!--<schema-selection  match-table="t_user_account_order"/>-->
+    <!--<schema-selection  match-table="t_stock"/>-->
+    <schema-selection  match-table="t_stock_info"/>
+    <!--<schema-selection  match-table="t_stock_plan"/>-->
+    <!--<schema-selection  match-table="t_user_stock"/>-->
+    <!--<schema-selection  match-table="t_user_account"/>-->
+    <!--<schema-selection  match-table="t_user_account_flow"/>-->
+</hibernate-reverse-engineering>
