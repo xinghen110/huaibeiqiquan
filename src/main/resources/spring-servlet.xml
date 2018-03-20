@@ -153,6 +153,10 @@
 	<context:component-scan base-package="com.ruanyun.web.controller">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
+	<!-- 扫描controller类 -->
+	<context:component-scan base-package="com.pay.yspay.controller">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
 	
 	<!-- 根据客户端的不同的请求决定不同的 view进行响应, 如 /blog/1.json /blog/1.xml -->
 	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">

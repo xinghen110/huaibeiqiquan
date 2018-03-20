@@ -1,5 +1,6 @@
 package com.ruanyun.web.controller.web;
 
+import com.pay.yspay.bean.PayOrder;
 import com.ruanyun.common.controller.BaseController;
 import com.ruanyun.common.model.Page;
 import com.ruanyun.common.utils.EmptyUtils;
@@ -973,11 +974,12 @@ public class WebController extends BaseController {
      * @return
      */
     @RequestMapping(value = "web/payment")
-    public String WebPaymentGet(HttpSession session, BigDecimal money, Model model) {
+    public String WebPaymentGet(HttpSession session, BigDecimal money, String bank, Model model) {
         TUser currentUser = HttpSessionUtils.getCurrentUser(session);
         if (currentUser == null) {
             return redirect("/web/index");
         }
+
 
         //先创建订单,再进行支付
         TBusinessOrder businessOrder = new TBusinessOrder(
@@ -992,7 +994,7 @@ public class WebController extends BaseController {
                 money,
                 null,
                 null,
-                "金点护航充值",
+                "银盛支付充值",
                 "充值" + money,
                 null,
                 null,
@@ -1017,59 +1019,17 @@ public class WebController extends BaseController {
         );
         businessOrder = businessOrderService.save(businessOrder);
 
-        List<String> list = new ArrayList<String>();
-        list.add("mchNo");
-        list.add("mchType");
-        list.add("payChannel");
-        list.add("payChannelTypeNo");
-        list.add("bankCode");
-        list.add("orderNo");
-        list.add("amount");
-        list.add("goodsName");
-        list.add("goodsDesc");
-        list.add("frontUrl");
-        list.add("notifyUrl");
-        list.add("timeStamp");
+        //创建wap手机直连对象
+        PayOrder bean = new PayOrder();
+        bean.setSubject(currentUser.getUserId() + " 银盛支付充值"+money.toString()+"元");
+        bean.setTotal_amount(money.doubleValue());
+        bean.setBank_type(bank);
+        bean.setBank_account_type("personal");
 
-        //排序key
-        Collections.sort(list);
+        model.addAttribute("payModel", bean);
 
-        String timeStamp = String.valueOf(new Date().getTime() / 1000);
-        Map map = new HashMap<String, String>();
-        map.put("mchNo", Constants.PAYMENT_MCHNO);
-        map.put("mchType", "1");//= "1"
-        map.put("payChannel", "1_shdn");//= "1"
-        map.put("payChannelTypeNo", "6");//= "6"
-        map.put("bankCode", "01020000");//= "01020000"
-        map.put("orderNo", businessOrder.getOrderSn());
-        map.put("amount", businessOrder.getMoney());//= {BigDecimal@9102} "0.01"
-        map.put("goodsName", businessOrder.getTitle());//= "银行网关测试"
-        map.put("goodsDesc", businessOrder.getContent());//= "商品描述"
-        map.put("frontUrl", Constants.PAYMENT_FRONT_URL);//= "商品描述"
-        map.put("notifyUrl", Constants.PAYMENT_NOTIFY_URL);//= "商品描述"
-        map.put("timeStamp", timeStamp);
-
-
-        //组装参数
-        StringBuilder sb = new StringBuilder();
-
-        for (String s : list) {
-            if (map.get(s).toString().isEmpty()) continue;
-            sb.append(s).append("=").append(map.get(s)).append("&");
-        }
-
-        //增加密钥
-        sb.append("key=").append(Constants.PAYMENT_KEY);
-
-        //MD5全部参数
-        String byMd5 = MD5Util.MD5Encode(sb.toString(), "utf-8");
-        System.out.println(byMd5);
-
-        map.put("sign", byMd5);
-
-        model.addAttribute("payModel", map);
-
-        return "pc/web/pay_new";
+        //return "pc/web/pay_new";
+        return "pay/webDirectPay";
     }
 
 }

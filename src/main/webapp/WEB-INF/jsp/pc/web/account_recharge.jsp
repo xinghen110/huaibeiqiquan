@@ -100,13 +100,29 @@
                 <td><input id="money" class="fl" type="number" placeholder="请输入充值金额" name="money" />元</td>
             </tr>
             <tr>
-                <th>选择充值方式</th>
+                <th>选择银行</th>
                 <td>
-                    <select id="payType" name="payType">
+                    <select id="bank" name="bank">
                         <option value="">请选择</option>
-                        <%--<option>微信</option>--%>
-                        <%--<option value="alipay">支付宝</option>--%>
-                        <option>银行卡</option>
+                        <option value="1021000">中国工商银行</option>
+                        <option value="1051000">中国建设银行</option>
+                        <option value="3012900">交通银行</option>
+                        <option value="3085840">招商银行</option>
+                        <option value="3051000">中国民生银行</option>
+                        <option value="3093910">兴业银行</option>
+                        <option value="3102900">上海浦东发展银行</option>
+                        <option value="3065810">广东发展银行</option>
+                        <option value="3021000">中信银行</option>
+                        <option value="3031000">光大银行</option>
+                        <option value="4031000">中国邮政储蓄银行</option>
+                        <option value="3071000">平安银行</option>
+                        <option value="3131000">北京银行</option>
+                        <option value="3133010">南京银行</option>
+                        <option value="3133320">宁波银行</option>
+                        <option value="3222900">上海农村商业银行</option>
+                        <option value="5021000">东亚银行</option>
+                        <option value="3132900">上海银行</option>
+                        <option value="3041000">华夏银行</option>
                     </select>
                 </td>
             </tr>
@@ -150,7 +166,7 @@
         }
         if(!$("#payType").val()){
             isOk = false;
-            alert("请选择充值方式");
+            alert("请选择充值银行");
             return false;
         }else {
             isOk = true;
