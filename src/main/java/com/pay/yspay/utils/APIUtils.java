@@ -179,14 +179,19 @@ public class APIUtils {
         ServletContext servletContext = request.getServletContext();
         InputStream publicCertFileInputStream = servletContext
                 .getResourceAsStream(constants.getPATH_YSEPAY_PUBLIC_CERT());
+
         String sign = "";
         if (params.get("sign") != null) {
             sign = params.get("sign");
         }
         boolean isSign = false;
         try {
+            System.out.println("获取公钥成功，公钥路径："
+                    + constants.getPATH_YSEPAY_PUBLIC_CERT()
+                    + ", 长度：" + publicCertFileInputStream.available());
             isSign = SignUtils.rsaCheckContent(publicCertFileInputStream, params, sign,"utf-8");
         } catch (Exception e) {
+            log.error(e.getMessage());
             throw new RuntimeException("验证签名失败，请检查银盛公钥证书文件是否存在");
         }
 

@@ -1,5 +1,6 @@
 package com.ruanyun.web.service.web;
 
+import com.pay.yspay.bean.PayResult;
 import com.ruanyun.common.model.Page;
 import com.ruanyun.web.model.*;
 import com.ruanyun.web.model.payeasy.OrderParmentResultReturnEntity;
@@ -7,10 +8,10 @@ import com.ruanyun.web.model.payeasy.StandardPaymentRequestEntity;
 import com.ruanyun.web.model.payeasy.StandardPaymentRetuenEntity;
 import com.ruanyun.web.model.sys.TDictionary;
 import com.ruanyun.web.model.sys.TUser;
-import com.ruanyun.web.model.web.OptionModel;
 import com.ruanyun.web.model.web.SearchPriceContentModel;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.util.List;
@@ -296,7 +297,7 @@ public interface WebInterface {
     StandardPaymentRequestEntity getStandardPaymentInfo(StandardPaymentRequestEntity RequestEntity,TUser currentUser);
 
     /**
-     * 接收返回参数
+     * 接收首信易返回参数
      * @param retuenEntity
      * @return
      */

@@ -3,6 +3,8 @@ package com.ruanyun.web.service.web.impl;
 import com.aliyuncs.exceptions.ClientException;
 import com.capinfo.crypt.Md5;
 import com.capinfo.crypt.RSA_MD5;
+import com.pay.yspay.bean.PayResult;
+import com.pay.yspay.utils.SignUtils;
 import com.ruanyun.common.model.Page;
 import com.ruanyun.common.service.impl.BaseServiceImpl;
 import com.ruanyun.common.utils.EmptyUtils;
@@ -18,7 +20,6 @@ import com.ruanyun.web.model.payeasy.StandardPaymentRetuenEntity;
 import com.ruanyun.web.model.sys.TDictionary;
 import com.ruanyun.web.model.sys.TRole;
 import com.ruanyun.web.model.sys.TUser;
-import com.ruanyun.web.model.web.OptionModel;
 import com.ruanyun.web.model.web.SearchPriceContentModel;
 import com.ruanyun.web.service.mall.OrderInfoService;
 import com.ruanyun.web.service.mall.SmsInfoService;
@@ -28,13 +29,14 @@ import com.ruanyun.web.service.sys.UserService;
 import com.ruanyun.web.service.web.*;
 import com.ruanyun.web.sms.SendMessage;
 import com.ruanyun.web.util.*;
-import net.sf.json.JSONObject;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.Transient;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.math.BigDecimal;
@@ -887,8 +889,7 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
                     return 0;
                 }
                 System.out.println("success");
-                orderInfo.setOrderStatus(1);//订单支付成功
-                orderInfoService.update(orderInfo);
+                orderInfoService.updateOrderInfo(orderInfo.getOrderNum());
                 TUser user = userService.get(TUser.class, "loginName", orderInfo.getOrderLoginName());
                 TUserAccountFlow flow = new TUserAccountFlow(
                         user.getUserId(),//userId

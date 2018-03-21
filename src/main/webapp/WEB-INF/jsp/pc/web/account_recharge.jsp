@@ -104,6 +104,8 @@
                 <td>
                     <select id="bank" name="bank">
                         <option value="">请选择</option>
+                        <option value="1041000">中国银行</option>
+                        <option value="1031000">中国农业银行</option>
                         <option value="1021000">中国工商银行</option>
                         <option value="1051000">中国建设银行</option>
                         <option value="3012900">交通银行</option>
@@ -164,7 +166,7 @@
         }else {
             isOk = true;
         }
-        if(!$("#payType").val()){
+        if(!$("#bank").val()){
             isOk = false;
             alert("请选择充值银行");
             return false;

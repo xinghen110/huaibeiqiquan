@@ -1,14 +1,15 @@
 package com.ruanyun.web.controller.web;
 
 import com.pay.yspay.bean.PayOrder;
+import com.pay.yspay.bean.PayResult;
+import com.pay.yspay.utils.SignUtils;
 import com.ruanyun.common.controller.BaseController;
 import com.ruanyun.common.model.Page;
 import com.ruanyun.common.utils.EmptyUtils;
 import com.ruanyun.common.utils.ImageUtil;
-import com.ruanyun.common.utils.MD5Util;
 import com.ruanyun.web.model.*;
-import com.ruanyun.web.model.bank.BankGatewayPaymentRequest;
 import com.ruanyun.web.model.mall.TAdverInfo;
+import com.ruanyun.web.model.mall.TOrderInfo;
 import com.ruanyun.web.model.payeasy.OrderParmentResultReturnEntity;
 import com.ruanyun.web.model.payeasy.StandardPaymentRequestEntity;
 import com.ruanyun.web.model.payeasy.StandardPaymentRetuenEntity;
@@ -16,6 +17,7 @@ import com.ruanyun.web.model.sys.TDictionary;
 import com.ruanyun.web.model.sys.TUser;
 import com.ruanyun.web.model.web.SearchPriceContentModel;
 import com.ruanyun.web.service.mall.AdverInfoService;
+import com.ruanyun.web.service.mall.OrderInfoService;
 import com.ruanyun.web.service.sys.DictionaryService;
 import com.ruanyun.web.service.sys.UserService;
 import com.ruanyun.web.service.web.BusinessOrderService;
@@ -41,6 +43,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
@@ -59,6 +62,8 @@ public class WebController extends BaseController {
     private UserService userService;
     @Autowired
     private BusinessOrderService businessOrderService;
+    @Autowired
+    private OrderInfoService orderInfoService;
 
 
     /**
@@ -946,6 +951,52 @@ public class WebController extends BaseController {
         model.addAttribute("result", webService.getStandardPaymentReturnData(retuenEntity));
         return "pc/web/payment_result";
     }
+    /**
+     * 接收银盛支付返回值（同步）
+     * @return
+     */
+    @RequestMapping("/yspay/returnPage")
+    public String getYspayReturnData(HttpServletRequest req, HttpServletResponse resp, Model model) {
+
+        int m = 0;
+
+        try {
+            if(!SignUtils.SyncReturnCheck(req, resp)){
+                m = 1;
+            }
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            e.printStackTrace();
+        }
+
+        model.addAttribute("result", m);
+        return "pc/web/payment_result";
+    }
+
+    /**
+     * 接收银盛发送订单回执（异步）
+     */
+    @RequestMapping("/yspay/receiveNotify")
+    public void getYspayNotify(HttpServletRequest req, HttpServletResponse resp,
+                               PayResult payResult) {
+
+        try {
+            if(!SignUtils.AsyncNotifyCheck(req, resp)){
+                throw new Exception("签名校验失败");
+            }
+            TOrderInfo orderInfo = orderInfoService.get(TOrderInfo.class, "orderNum", payResult.getOut_trade_no());
+            //要求对金额做比对
+            if (orderInfo.getActualPrice().compareTo(new BigDecimal(payResult.getTotal_amount())) != 0) {
+                throw new Exception("订单金额不符，订单号：" + payResult.getOut_trade_no()
+                        + "，订单金额：" + orderInfo.getActualPrice() + "，回执金额：" + payResult.getTotal_amount());
+            }
+
+            orderInfoService.updateOrderInfo(orderInfo.getOrderNum());
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            e.printStackTrace();
+        }
+    }
 
     /**
      * 接收首易信发送订单信息
@@ -1019,10 +1070,16 @@ public class WebController extends BaseController {
         );
         businessOrder = businessOrderService.save(businessOrder);
 
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        TOrderInfo orderInfo = orderInfoService.createOrderInfo(money, currentUser);
+        orderInfo.setTotalPrice(money);
         //创建wap手机直连对象
         PayOrder bean = new PayOrder();
-        bean.setSubject(currentUser.getUserId() + " 银盛支付充值"+money.toString()+"元");
-        bean.setTotal_amount(money.doubleValue());
+        bean.setOut_trade_no(orderInfo.getOrderNum());
+        bean.setTimestamp(sdf.format(orderInfo.getOrderCreateTime()));
+        bean.setSubject("银盛支付"+ currentUser +"充值" + money + "元");
+        bean.setTotal_amount(orderInfo.getActualPrice().doubleValue());
         bean.setBank_type(bank);
         bean.setBank_account_type("personal");
 

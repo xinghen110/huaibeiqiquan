@@ -3,7 +3,13 @@ package com.pay.yspay.utils;
 
 import com.google.common.io.BaseEncoding;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.security.KeyStore;
 import java.security.PrivateKey;
 import java.security.PublicKey;
@@ -132,8 +138,11 @@ public class SignUtils {
         boolean bFlag = false;
         try {
             java.security.Signature signetcheck = java.security.Signature.getInstance(constants.getRSA_ALGORITHM());
+            System.out.println("获取签名方法成功"+signetcheck);
             signetcheck.initVerify(getPublicKeyFromCert(publicCertFileInputStream));
+            System.out.println("获取证书公钥成功");
             signetcheck.update(content.getBytes(charset));
+            System.out.println("更新待签名数据成功");
             if (signetcheck.verify(baseEncoding.decode(new String(sign.getBytes(charset))))) {
                 // 跑不进条件语句里面
                 bFlag = true;
@@ -217,4 +226,114 @@ public class SignUtils {
         return priKey;
     }
 
+    //验证异步结果通知
+    public static boolean AsyncNotifyCheck(HttpServletRequest request, HttpServletResponse resp) throws IOException {
+
+        PrintWriter out = null;
+
+        request.setCharacterEncoding("utf-8");
+        resp.setCharacterEncoding("utf-8");
+        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String[]> requestParams = request.getParameterMap();
+        for (Map.Entry<String, String[]> entry : requestParams.entrySet()) {
+            String name = entry.getKey();
+            String[] values = entry.getValue();
+            String valueStr = "";
+
+            if (values != null) {
+                for (int i = 0; i < values.length; i++) {
+                    valueStr = (i == values.length - 1) ? valueStr + values[i]
+                            : valueStr + values[i] + ",";
+                }
+                params.put(name, valueStr);
+            }
+        }
+        System.out.println(params.toString());
+        try {
+            boolean verifyResult = APIUtils.verifySign(request, params);
+            System.out.println(verifyResult);
+            out = resp.getWriter();
+            //状态
+            String trade_status = params.get("trade_status");
+            if (verifyResult) {// 验证成功
+                //////////////////////////////////////////////////////////////////////////////////////////
+                System.out.println("异步通知验证签名成功");
+                // 如果状态为TRADE_FINISHED
+                if (trade_status.equals("TRADE_FINISHED")) {
+                    // 判断该笔订单是否在商户网站中已经做过处理
+                    // 如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
+                    // 请务必判断请求时的total_fee、seller_id与通知时获取的total_fee、seller_id为一致的
+                    // 如果有做过处理，不执行商户的业务程序
+                    out.println("success");// 请不要修改或删除
+                    // 注意：
+                    // 退款日期超过可退款期限后（如三个月可退款），支付宝系统发送该交易状态通知
+
+                    // 如果状态为TRADE_SUCCESS
+                } else if (trade_status.equals("TRADE_SUCCESS")) {
+                    // 判断该笔订单是否在商户网站中已经做过处理
+                    // 如果没有做过处理，根据订单号（out_trade_no）在商户网站的订单系统中查到该笔订单的详细，并执行商户的业务程序
+                    // 请务必判断请求时的total_fee、seller_id与通知时获取的total_fee、seller_id为一致的
+                    // 如果有做过处理，不执行商户的业务程序
+                    out.println("success");// 请不要修改或删除
+                    // 注意：
+                    // 付款完成后，支付宝系统发送该交易状态通知
+                } else {
+                    out.println("fail");// 请不要修改或删除
+                }
+                //////////////////////////////////////////////////////////////////////////////////////////
+            } else {// 验证失败
+                out.println("fail");
+                System.out.println("异步通知验证签名失败");
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if(out!=null){
+                out.flush();
+                out.close();
+            }
+        }
+        return true;
+    }
+    // 验证同步结果通知
+    public static boolean SyncReturnCheck(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        StringBuffer sb = new StringBuffer();
+        String line = null;
+        try {
+            BufferedReader reader = request.getReader();
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(sb.toString());
+        //把字符串转为json
+//		JSONObject jsonObj = JSONObject.fromObject(sb.toString());
+
+        //判断接口名称
+//		String method =  subMethod(jsonObj);
+
+//		String result = StringUtils.isEmpty(method)==true?"":jsonObj.get(method).toString();
+//		String result = jsonObj.get("ysepay_online_trade_query_response").toString();
+//		String sign = jsonObj.get("sign")==null?"":jsonObj.get("sign").toString();
+//		String content = "{\"code\":\"10000\",\"msg\":\"Success\",\"out_trade_no\":\"201708081716038084d5d1cd6\",\"trade_status\":\"TRADE_ACCEPT_SUCCESS\",\"trade_status_description\":\"受理成功，请耐心等待异步通知结果\",\"total_amount\":\"0.01\",\"trade_no\":\"102170808339690348\",\"fee\":\"2.00\"}";
+        String content = "{\"code\":\"10000\",\"msg\":\"Success\",\"out_trade_no\":\"2017092119261419261443474347\",\"trade_status\":\"TRADE_ACCEPT_SUCCESS\",\"trade_status_description\":\"受理成功，请耐心等待异步通知结果\",\"total_amount\":\"100.00\",\"trade_no\":\"102170921196514898\",\"fee\":\"0.01\"}";
+
+        String sign = "iXaTBzuX6Y8iVeK/JwGTGmOr6IPrQqJB/M0qCtoYQHjb0WvrI1jC+dO7eh5GzeVqcC9m/oxnw1LOBfoC9vq8rVts8xn82SjAt8tTKK0m/+H8/QQxQJ1VP+dc6bU+bH51h7QrHjUoMY0FjbbvM4hkmz3qk4LNyePr2+C+6wq6uRc=";
+
+        //验签
+        boolean verifyResult = APIUtils.verifyJsonSign(request,sign,content, "UTF-8");
+
+        if (verifyResult==true) {
+            System.out.println("验签成功");
+        } else {
+            System.out.println("验证失败");
+        }
+        return verifyResult;
+
+    }
 }

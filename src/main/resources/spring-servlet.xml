@@ -15,7 +15,7 @@
 
 	
 	<!-- 在使用spring validator时,有一点非常重要,BindingResult必需紧跟在@Valid的对象后面,否则会出400错! -->
-<!----> 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+ 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
 				<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
 				<property name="validationMessageSource" ref="messageSource" />
 			</bean> 
@@ -34,7 +34,7 @@
 	<!--<mvc:resources mapping="/bootstrap/***" location="/bootstrap/***" />-->
 	
     <mvc:resources mapping="/file/order/**" location="/file/order/" />
-     <mvc:resources mapping="/dwz/**" location="/dwz/" />
+	<mvc:resources mapping="/dwz/**" location="/dwz/" />
 	<mvc:resources mapping="/app/**" location="/app/*" />
 	<mvc:resources mapping="/file/**" location="/file/*" />
 	<mvc:resources mapping="/ueditor/**" location="/ueditor/*" />
@@ -75,6 +75,7 @@
 					/static/**
 					/transaction/**
 					/layer/**
+					/yspay/**
 				</value>
 			</property>
 			<!--  权限验证的黑名单 -->
@@ -101,6 +102,7 @@
 					/web/stock/register
 					/web/stock/password/forget
 					/mobile/**
+					/web/stock/update/authentication
 					/web/stock/update/authentication
 				</value>
 			</property>
