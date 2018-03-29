@@ -51,6 +51,8 @@ public class UserStockDao extends BaseDaoImpl<TUserStock> {
         if(EmptyUtils.isNotEmpty(stockInfo)){
 
             sql.append(" and code like '"+stockInfo.getCode()+"%'");
+            // 2018-2-29 by hexin 增加股票代码查询功能
+            sql.append(" or name like '%"+stockInfo.getCode()+"%'");
             sql.append(SQLUtils.popuHqlLike("name",stockInfo.getName()));
         }
 
