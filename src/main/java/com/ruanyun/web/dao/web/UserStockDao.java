@@ -24,16 +24,24 @@ public class UserStockDao extends BaseDaoImpl<TUserStock> {
     public List<TUserStock> getList(TUserStock userStock, TUser curUser){
         StringBuffer sql=new StringBuffer("select tus.* ,tsi.name as stockName,tsi.hv30 from t_user_stock tus " +
                 "left join t_stock_info tsi on tsi.code=tus.symbol where 1=1");
-
+        // 2018-2-29 by hexin 增加股票代码查询功能
         if(EmptyUtils.isNotEmpty(userStock)){
             sql.append(SQLUtils.popuHqlEq("tus.user_id",curUser.getUserId()));
 
-            sql.append(SQLUtils.popuHqlLike("tus.symbol",userStock.getSymbol()));
-
-
+            if(EmptyUtils.isNotEmpty(userStock.getSymbol())){
+                String temp = SQLUtils.popuHqlLike("tus.symbol",userStock.getSymbol());
+                temp = temp.replace("and", " and ( ");
+                sql.append(temp);
+                temp = SQLUtils.popuHqlLike("tsi.name",userStock.getSymbol());
+                temp = temp.replace("and", "or");  //【与】条件改为【或】条件
+                sql.append(temp + " ) ");
+            }
         }
 
         sql.append(" order by symbol asc limit 40");
+
+        System.out.println("************************************************************************");
+        System.out.println("sql:" + sql.toString());
 
         return sqlDao.getAll(TUserStock.class,sql.toString());
     }
@@ -50,7 +58,7 @@ public class UserStockDao extends BaseDaoImpl<TUserStock> {
         StringBuffer sql=new StringBuffer("select * from t_stock_info where 1=1");
         if(EmptyUtils.isNotEmpty(stockInfo)){
 
-            sql.append(" and code like '"+stockInfo.getCode()+"%'");
+            sql.append(" and code like '%"+stockInfo.getCode()+"%'");
             // 2018-2-29 by hexin 增加股票代码查询功能
             sql.append(" or name like '%"+stockInfo.getCode()+"%'");
             sql.append(SQLUtils.popuHqlLike("name",stockInfo.getName()));
