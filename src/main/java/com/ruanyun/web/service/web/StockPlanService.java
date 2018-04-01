@@ -211,6 +211,15 @@ public class StockPlanService extends BaseServiceImpl<TStockPlan> {
             plan.setBuyPrice(buyPrice);
             plan.setBuyEndDate(buyEndDate);
             plan.setOrderStatus("2");   //成交,持仓中
+            // by hexin 2018-04-01  添加短信功能
+            TUser userById = userService.getUserById(plan.getUserId());
+            try {
+                SendMessage.doApprovedSend(userById.getLoginName(),
+                        plan.getSymbolName(),
+                        DateUtils.doFormatDate(buyConfirmDate, "yyyy-MM-dd HH:mm:ss"));
+            } catch (ClientException e) {
+                throw new RuntimeException("短信发送失败：" + e.getMessage());
+            }
         } else {
             plan.setOrderStatus("-1");  //未成交
             //还需要退回当初买入的钱
@@ -231,6 +240,14 @@ public class StockPlanService extends BaseServiceImpl<TStockPlan> {
                     new Date()
             );
             userAccountFlowService.save(flow);
+            // by hexin 2018-04-01  添加短信功能
+            TUser userById = userService.getUserById(plan.getUserId());
+            try {
+                SendMessage.doRejectSend(userById.getLoginName(),
+                        plan.getSymbolName());
+            } catch (ClientException e) {
+                throw new RuntimeException("短信发送失败：" + e.getMessage());
+            }
         }
         update(plan);
     }

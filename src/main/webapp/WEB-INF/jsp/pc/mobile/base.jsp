@@ -18,16 +18,17 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
     <%--<title>金点</title>--%>
+    <%--by hexin 2018-04-01  使用cdn代替本地资源--%>
     <link rel="stylesheet" href="css/mobile/mystyle.css" />
-    <link rel="stylesheet" href="css/mobile/jquery.mobile-1.4.2.css" />
-    <script type="text/javascript" src="js/mobile/jquery.min.js" ></script>
-    <script type="text/javascript" src="js/mobile/jquery.mobile-1.4.2.js" ></script>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/jquery-mobile/1.4.2/jquery.mobile.css" />
+    <script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js" ></script>
+    <script type="text/javascript" src="http://cdn.bootcss.com/jquery-mobile/1.4.2/jquery.mobile.min.js" ></script>
     <script type="text/javascript" src="layer/mobile/layer.js" ></script>
     <script type="text/javascript" src="layer/layer.js" ></script>
-    <script type="text/javascript" src="js/jquery.validate.js"></script>
+    <script type="text/javascript" src="http://cdn.bootcss.com/jquery-validate/1.11.1/jquery.validate.js"></script>
     <%--<script type="text/javascript" src="js/web/mj.js"></script>--%>
     <script type="text/javascript" src="js/ajax2.js"></script>
-    <script type="text/javascript" src="js/echarts.min.js"></script>
+    <script type="text/javascript" src="http://cdn.bootcss.com/echarts/3.6.2/echarts.min.js"></script>
     <script type="text/javascript" src="js/localStorage-utils.js"></script>
     <script type="text/javascript" src="js/jquery.qrcode.js"></script>
     <script type="text/javascript" src="js/utf.js"></script>
