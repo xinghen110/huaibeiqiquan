@@ -90,6 +90,9 @@
     }else if(flag==="m"){
         $("#deadLine").html(moment().add(cycle,'month').format('YYYY-MM-DD'));
 
+    }else if(flag==="w"){
+        $("#deadLine").html(moment().add(cycle,'week').format('YYYY-MM-DD'));
+
     }
 </script>
 </html>

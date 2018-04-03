@@ -29,6 +29,8 @@
             <a id="loginBtn" data-ajax = "false" class="ui-btn login">登录</a>
             <%--<a href="mobile/stock/register?parentCode=${sessionScope.parentCode}" data-ajax = "false" class="ui-btn reg">注册</a>--%>
             <a href="mobile/stock/password/forget" data-ajax = "false" class="fl color-w size-9 forgot_password">忘记密码?</a>
+            <input type="checkbox" id="rememberName" checked>记住账号
+            <input type="checkbox" id="rememberPass" checked>记住密码
             <a href="mobile/stock/register?parentCode=${sessionScope.parentCode}" data-ajax = "false" class="fr color-red size-9 forgot_password">没有账号?去注册.</a>
         </div>
         </form>
@@ -37,11 +39,38 @@
 </body>
 <script>
     $("#loginBtn").click(function () {
+
+        var loginName = $('#loginName').val();
+        var password = $('#password').val();
+        if($('#rememberName').is(':checked')){
+            localStorage.setItem('loginName',loginName);
+        }else{
+            localStorage.removeItem('loginName');
+        }
+        if($('#rememberPass').is(':checked')){
+            localStorage.setItem('password',password);
+        }else{
+            localStorage.removeItem('password');
+        }
+
+
         if($("#loginName").val()==''||$("#password").val()==''){
             alert("请输入用户名和密码");
             return;
         }else {
             $("#form").submit();
+        }
+    });
+
+    $(document).ready(function(){
+
+        var loginName = localStorage.getItem('loginName');
+        var password = localStorage.getItem('password');
+        if(loginName){
+            $('#loginName').val(loginName);
+        }
+        if(password){
+            $('#password').val(password);
         }
     });
 

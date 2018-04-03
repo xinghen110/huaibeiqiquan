@@ -251,6 +251,7 @@
     var manageFeeIsDone = false;
     var preClosePriceIsDone = false;
 
+
     function kaishijisuan() {
         //开始计算盈亏收益
         var symbol = $("#Symbol").val();
@@ -303,7 +304,6 @@
             $("#yinkuibili-div").append(tr);
         })
     }
-
     function getEndDate(cycle) {
         var length = cycle.length;
         var number = cycle.substring(0, length - 1);

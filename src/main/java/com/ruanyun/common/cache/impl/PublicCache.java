@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 
+import com.qiniu.util.Json;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -28,8 +29,8 @@ public class PublicCache  implements SystemCacheService {
 	@Qualifier("jdbcTemplate")
 	private JdbcTemplate jdbcTemplate;
 	public String getCacheName() {
-	
-		return "加载T_Dictionary结束时间为:"+TimeUtil.getCurrentDay(SysCode.DATE_FORMAT_NUM_L);
+		String json = Json.encode(map);
+		return "加载T_Dictionary结束时间为:"+TimeUtil.getCurrentDay(SysCode.DATE_FORMAT_NUM_L) + "/n" + json;
 	}
 
 	public void run() {
@@ -185,7 +186,6 @@ public class PublicCache  implements SystemCacheService {
 	 * @author yangliu  2013-9-16 上午08:59:47
 	 * 
 	 * @param parentCode 父类型
-	 * @param itemCode 子类型
 	 * @return
 	 */
 	public static String getItemName(String parentCode){

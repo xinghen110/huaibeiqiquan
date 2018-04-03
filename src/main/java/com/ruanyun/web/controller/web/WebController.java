@@ -79,6 +79,15 @@ public class WebController extends BaseController {
         model.addAttribute("page", webService.queryArticleList(page, article));
         return "pc/web/web_index";
     }
+    /**
+     * 盈亏计算器
+     *
+     * @return
+     */
+    @RequestMapping(value = "/web/yingkui", method = RequestMethod.GET)
+    public String toYingkuiCalc() {
+        return "pc/web/yingkui_calc";
+    }
 
     /**
      * 跳转到投资保障界面
