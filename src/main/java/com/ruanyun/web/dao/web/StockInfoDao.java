@@ -25,7 +25,8 @@ public class StockInfoDao extends BaseDaoImpl<TStockInfo> {
         sql.append("  tsi.name, ");
         sql.append("  tsi.hv30, ");
         sql.append("  tsi.hv60, ");
-        sql.append("  tsi.hv14 ");
+        sql.append("  tsi.hv14, ");
+        sql.append("  tsi.hv7 ");
         sql.append(" from t_stock_info tsi ");
         sql.append(" where 1=1  ");
         if(EmptyUtils.isNotEmpty(stockInfo.getCode())) {

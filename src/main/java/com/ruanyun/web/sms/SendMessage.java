@@ -5,6 +5,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import com.ruanyun.web.util.PropertiesUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -139,6 +140,7 @@ public class SendMessage {
 		System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
 		System.setProperty("sun.net.client.defaultReadTimeout", "600000");
 		System.setProperty("user.timezone","GMT +08");
+		//PropertiesUtils.SMS_MESSAGE_CONFIG.getValue("");
 		//初始化ascClient需要的几个参数
 		final String product = "Dysmsapi";//短信API产品名称
 		final String domain = "dysmsapi.aliyuncs.com";//短信API产品域名

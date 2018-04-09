@@ -29,20 +29,20 @@
             <input id="loginName" name="userTel" type="number" data-role = "none" placeholder="请输入登录账号"/>
             <br><span id="loginNameAlertWord" style="display: none;" class="alertWord">请输入手机号！</span>
         </div>
-        <div class="input-div" style="margin-top: 1.5em;position: relative;">
+        <div class="input-div" style="margin-top: 1em;position: relative;">
             <input name="identityCode" type="number" data-role = "none" placeholder="请输入验证码" />
             <h4 onclick="sendMessage()" class="color-w size-9 yzm" style="margin: 0;text-decoration: underline;">获取验证码</h4>
             <br><span id="identityCodeAlertWord" style="display: none;" class="alertWord">请输入验证码！</span>
         </div>
-        <div class="input-div" style="margin-top: 1.5em;">
+        <div class="input-div" style="margin-top: 1em;">
             <input id="password" type="password" name="newPassword" data-role = "none" placeholder="请输入登录密码" />
             <br><span id="passwordAlertWord" style="display: none;" class="alertWord">请输入至少六位数密码！</span>
         </div>
-        <div class="input-div" style="margin-top: 1.5em;">
+        <div class="input-div" style="margin-top: 1em;">
             <input id="confirm_password" type="password" equalTo="#password" data-role = "none" placeholder="请输入确认密码" />
             <br><span id="confirm_passwordAlertWord" style="display: none;" class="alertWord">两次密码输入不同！</span>
         </div>
-        <div class="input-div" style="margin-top: 2em;">
+        <div class="input-div" style="margin-top: 1.5em;">
             <a id="findPasswordBtn" class="ui-btn register">确认找回</a>
         </div>
         </form>

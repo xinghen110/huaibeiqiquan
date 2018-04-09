@@ -134,6 +134,10 @@ public class StockPlanService extends BaseServiceImpl<TStockPlan> {
             offerPrice = stockInfo.getHv60().toString();
         }else if(Constants.fortityDay.equals(stockPlan.getCycle())){
             offerPrice = stockInfo.getHv14().toString();
+        }else if(Constants.twoWeek.equals(stockPlan.getCycle())){
+            offerPrice = stockInfo.getHv14().toString();
+        }else if(Constants.oneWeek.equals(stockPlan.getCycle())){
+            offerPrice = stockInfo.getHv7().toString();
         } else {
             throw new RuntimeException("请选择正确的周期");
         }
@@ -148,6 +152,7 @@ public class StockPlanService extends BaseServiceImpl<TStockPlan> {
         TStockPlan tStockPlan = new TStockPlan(
                 stockPlan.getUserId(),
                 stockPlan.getSymbol(),
+                stockPlan.getCurPrice(),
                 stockPlan.getSymbolName(),
                 stockPlan.getCycle(),
                 stockPlan.getBuyMarketPrice(),
@@ -321,6 +326,9 @@ public class StockPlanService extends BaseServiceImpl<TStockPlan> {
             unit = Calendar.DATE;
         } else if (unitString.equals("m")) {
             unit = Calendar.MONTH;
+        } else if (unitString.equals("w")) {
+            unit = Calendar.DATE;
+            number = number * 7;
         } else {
             throw new RuntimeException("未知的时间周期");
         }

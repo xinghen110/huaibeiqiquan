@@ -491,6 +491,8 @@ public class Constants {
     public static final String sixMonth = "6m";
     public static final String nineMonth = "9m";
     public static final String fortityDay = "14d";
+    public static final String twoWeek = "2w";
+    public static final String oneWeek = "1w";
 
 
     /**

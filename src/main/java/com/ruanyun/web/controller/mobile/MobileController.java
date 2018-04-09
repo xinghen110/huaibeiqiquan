@@ -1,6 +1,7 @@
 package com.ruanyun.web.controller.mobile;
 
 
+import com.qiniu.util.Json;
 import com.ruanyun.common.controller.BaseController;
 import com.ruanyun.common.model.Page;
 import com.ruanyun.common.utils.EmptyUtils;
@@ -21,8 +22,6 @@ import com.ruanyun.web.service.mall.AdverInfoService;
 import com.ruanyun.web.service.mall.OrderInfoService;
 import com.ruanyun.web.service.sys.DictionaryService;
 import com.ruanyun.web.service.sys.UserService;
-import com.ruanyun.web.service.web.UserAccountFlowService;
-import com.ruanyun.web.service.web.UserAccountService;
 import com.ruanyun.web.service.web.WebInterface;
 import com.ruanyun.web.util.*;
 import com.ruanyun.zf.HttpClientUtil;
@@ -709,7 +708,6 @@ public class MobileController extends BaseController {
     /**
      * 执行账户充值操作
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/recharge", method = RequestMethod.POST)
     public String doWebStockDeposit(Model model, HttpSession session, BigDecimal money, String payType) {
@@ -727,7 +725,6 @@ public class MobileController extends BaseController {
     /**
      * 跳转到账户提现界面
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/withdraw", method = RequestMethod.GET)
     public String toWebStockWithdraw(Model model, HttpSession session) {
@@ -739,8 +736,6 @@ public class MobileController extends BaseController {
 
     /**
      * 执行账户提现操作
-     *
-     * @return
      */
     @RequestMapping(value = "/mobile/withdraw", method = RequestMethod.POST)
     public String doWebStockWithdraw(Model model, HttpSession session, BigDecimal money) {
@@ -758,7 +753,6 @@ public class MobileController extends BaseController {
     /**
      * 推广链接
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/stock/promotion", method = RequestMethod.GET)
     public String toWebPromotion() {
@@ -767,8 +761,6 @@ public class MobileController extends BaseController {
 
     /**
      * 跳转到管理方案界面
-     *
-     * @return
      */
     @RequestMapping(value = "/mobile/stock/plan/list", method = RequestMethod.GET)
     public String toWebStockPlanList(Model model, HttpSession session, TStockPlan tStockPlan) {
@@ -791,6 +783,7 @@ public class MobileController extends BaseController {
 
         addModel(model, "stockPlanListMap", stockPlanListMap);
         addModel(model, "stockPlanListMapJson", JSONArray.fromObject(stockPlanListMap, config));
+
         if (Constants.STOCK_PLAN_ORDER_STATUS_APPLY.equals(tStockPlan.getOrderStatus())) {
             return "pc/mobile/my_scheme_apply";
         } else if (Constants.STOCK_PLAN_ORDER_STATUS_POSITION.equals(tStockPlan.getOrderStatus())) {
@@ -806,8 +799,6 @@ public class MobileController extends BaseController {
 
     /**
      * 跳转到方案详情界面
-     *
-     * @return
      */
     @RequestMapping(value = "/mobile/stock/plan/detail", method = RequestMethod.GET)
     public String toWebStockPlanDetail(HttpServletResponse response, TStockPlan stockPlan) {
@@ -818,8 +809,6 @@ public class MobileController extends BaseController {
 
     /**
      * 选择股票标的
-     *
-     * @return
      */
     @RequestMapping(value = "/mobile/stock/center", method = RequestMethod.GET)
     public String toWebStockCenter(Model model, HttpSession session, String[] symbols, TUserStock userStock) {
@@ -839,7 +828,6 @@ public class MobileController extends BaseController {
     /**
      * 跳转到申请方案界面
      *
-     * @return
      * @deprecated 并没使用上这个页面
      */
     @Deprecated
@@ -858,7 +846,6 @@ public class MobileController extends BaseController {
     /**
      * 执行确认申请的操作
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/stock/plan/create", method = RequestMethod.POST)
     public String doWebStockPlanCreate(TStockPlan stockPlan, HttpSession session, Model model) {
@@ -888,10 +875,7 @@ public class MobileController extends BaseController {
 
     /**
      * 行权
-     *
-     * @param model
-     * @param stockPlan
-     * @return
+
      */
     @RequestMapping("mobile/stock/exercise")
     public String doWebStockExercise(Model model, TStockPlan stockPlan) {
@@ -1108,10 +1092,11 @@ public class MobileController extends BaseController {
      * @return
      */
     @RequestMapping("mobile/application/scheme")
-    public String toApplicationScheme(Model model, String symbol, String symbolName, BigDecimal manageFee) {
+    public String toApplicationScheme(Model model, String symbol, String symbolName, BigDecimal manageFee, BigDecimal curPrice) {
         model.addAttribute("symbol", symbol);
         model.addAttribute("symbolName", symbolName);
         model.addAttribute("manageFee", manageFee);
+        model.addAttribute("curPrice", curPrice);
         return "pc/mobile/application_scheme";
     }
 
@@ -1134,9 +1119,12 @@ public class MobileController extends BaseController {
      * @return
      */
     @RequestMapping("mobile/validation/scheme")
-    public String toValidationScheme(Model model, String symbol, String symbolName, String manageFee, String hiddenMarketValue, String stockPlanCycleValue, String stockPriceType, String buyPrice, String payManageFee) {
+    public String toValidationScheme(Model model, String symbol, String symbolName, String manageFee,
+                                     String hiddenMarketValue, String stockPlanCycleValue,
+                                     String stockPriceType, String buyPrice, String payManageFee, String curPrice) {
         Map map = new HashMap();
         map.put("symbol", symbol);
+        map.put("curPrice", curPrice);
         map.put("symbolName", symbolName);
         map.put("manageFee", manageFee);
         map.put("hiddenMarketValue", hiddenMarketValue);

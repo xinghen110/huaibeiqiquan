@@ -30,7 +30,7 @@
 					<h4 class="color-w img-name">${userInfo.bankId}</h4>
 				</div>
 				
-				<a data-ajax = "false" href='mobile/update/bandingcard' class="ui-btn" style="background-color: #ff0000!important;">换绑银行卡</a>
+				<a data-ajax = "false" href='mobile/update/bandingcard' class="ui-btn" style="background-color: #c33f00!important;">换绑银行卡</a>
 			</div>
 		</div>
 	</body>

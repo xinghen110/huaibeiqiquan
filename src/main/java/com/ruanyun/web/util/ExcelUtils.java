@@ -70,7 +70,7 @@ public class ExcelUtils {
         try {
             Workbook workBook = new HSSFWorkbook(inputStream);
             String[] columns = {
-                    "planId", "buyRecommendDate", "symbol", "symbolName", "cycle", "buyMarketPrice", "qiquanleixing", "buyLimitPrice", "buyPrice", "direction", "kaicangzhiling", "shifouchengjiao"
+                    "planId", "buyRecommendDate", "symbol", "symbolName", "curPrice", "cycle", "buyMarketPrice", "qiquanleixing", "buyLimitPrice", "buyPrice", "direction", "kaicangzhiling", "shifouchengjiao"
             };
             list = createListMapByWorkBook(workBook, columns);
         } catch (Exception e) {
@@ -91,7 +91,7 @@ public class ExcelUtils {
         try {
             Workbook workBook = new HSSFWorkbook(inputStream);
             String[] columns = {
-                    "planId", "buyRecommendDate", "symbol", "symbolName", "cycle", "sellMarketPrice", "qiquanleixing", "sellLimitPrice", "sellPrice", "direction", "pingcangzhiling", "shifouchengjiao"
+                    "planId", "buyRecommendDate", "symbol", "symbolName", "curPrice", "cycle", "sellMarketPrice", "qiquanleixing", "sellLimitPrice", "sellPrice", "direction", "pingcangzhiling", "shifouchengjiao"
             };
             list = createListMapByWorkBook(workBook, columns);
         } catch (Exception e) {

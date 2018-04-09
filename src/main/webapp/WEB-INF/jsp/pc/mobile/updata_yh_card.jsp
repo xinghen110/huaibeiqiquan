@@ -41,7 +41,7 @@
 					<%--</select>--%>
 				</div>
 				<div id="back_card">
-					<h4 class="fl">银行卡照片：</h4>
+					<h4 class="fl">银行卡照片</h4>
 					<span class="fr" style="margin-right: 22px">
 						<img src="${constants.QINIU_USER_IMGURL}${userInfo.backCardPhoto}" class="headeait" width="200px" height="80px">
 					</span>

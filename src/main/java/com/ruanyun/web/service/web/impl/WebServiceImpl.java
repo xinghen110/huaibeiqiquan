@@ -3,8 +3,6 @@ package com.ruanyun.web.service.web.impl;
 import com.aliyuncs.exceptions.ClientException;
 import com.capinfo.crypt.Md5;
 import com.capinfo.crypt.RSA_MD5;
-import com.pay.yspay.bean.PayResult;
-import com.pay.yspay.utils.SignUtils;
 import com.ruanyun.common.model.Page;
 import com.ruanyun.common.service.impl.BaseServiceImpl;
 import com.ruanyun.common.utils.EmptyUtils;
@@ -34,9 +32,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Transient;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.math.BigDecimal;
@@ -140,15 +136,27 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
                 servcieFeeData = jsonObject.get("hv60").toString();
             }else if(Constants.fortityDay.equals(cycle)){
                 servcieFeeData= jsonObject.get("hv14").toString();
+            }else if(Constants.twoWeek.equals(cycle)){
+                servcieFeeData= jsonObject.get("hv14").toString();
+            }else if(Constants.oneWeek.equals(cycle)){
+                servcieFeeData= jsonObject.get("hv7").toString();
             }
             BigDecimal serviceFee = new BigDecimal(servcieFeeData);
-            //原来是原费率乘以(1+0.34). 现在改为原费率+(字典表中的值)
-            BigDecimal manageFee = new BigDecimal(dictionary.getItemCode()).add(serviceFee);
+            //原来是原费率乘以(1 * 0.3). 现在改为原费率 * (字典表中的值)
+            // by hexin 2018-4-5 如果后台费率为【0】或者没有维护（null），则比例为1
+            String rate = dictionary.getItemCode();
+            if(rate == null || rate.equals("0")){
+                rate = "1";
+            }
+
+            BigDecimal manageFee = new BigDecimal(rate).multiply(serviceFee);
+
             map.put("code", jsonObject.get("code"));
             map.put("name", jsonObject.get("name"));
             map.put("hv30", jsonObject.get("hv30"));
             map.put("hv60", jsonObject.get("hv60"));
             map.put("hv14", jsonObject.get("hv14"));
+            map.put("hv7", jsonObject.get("hv7"));
             map.put("manageFee", manageFee);
             returnList.add(map);
         }
@@ -163,7 +171,6 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
     /**
      * 从新浪中获取股票数据
      *
-     * @return
      */
     @Override
     public String[] queryDataFromSina(String data) {
@@ -181,8 +188,6 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
     /**
      * 查询文章列表
      *
-     * @param article 文章对象
-     * @return
      */
     @Override
     public Page queryArticleList(Page page, TArticle article) {
@@ -193,8 +198,6 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
     /**
      * 查询文章详情
      *
-     * @param articleId 文章id
-     * @return
      */
     @Override
     public TArticle queryArticle(Integer articleId) {
@@ -204,8 +207,6 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
     /**
      * 上下一篇
      *
-     * @param article
-     * @return
      */
     @Override
     public Map preAndNextArticle(TArticle article) {
@@ -215,11 +216,6 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
     /**
      * 登录的实现方法
      *
-     * @param request
-     * @param loginName
-     * @param password
-     * @param
-     * @return
      */
     @Override
     public TUser webLogin(HttpServletRequest request, HttpSession session, String loginName, String password) {
@@ -241,11 +237,6 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
     /**
      * 注册的实现方法
      *
-     * @param nickName
-     * @param loginName
-     * @param loginPass
-     * @param parentCode
-     * @return
      */
     @Override
     @Transactional
@@ -314,8 +305,6 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
     /**
      * 登出的实现方法
      *
-     * @param session
-     * @return
      */
     @Override
     public int webLoginout(HttpSession session) {
@@ -327,12 +316,6 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
 
     /**
      * 修改密码的实现方法
-     *
-     * @param
-     * @param loginName
-     * @param password
-     * @param identityCode
-     * @return
      */
     @Override
     @Transactional
@@ -361,11 +344,6 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
 
     /**
      * 找回密码的实现方法
-     *
-     * @param telephoneNumber
-     * @param identifyingCode
-     * @param newPassword
-     * @return
      */
     @Override
     @Transactional
@@ -393,7 +371,6 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
     /**
      * 实名认证及银行卡绑定
      *
-     * @param userInfo
      */
     @Transactional
     @Override
@@ -404,7 +381,6 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
     /**
      * 实名认证及银行卡绑定
      *
-     * @param userInfoCheck
      */
     @Transactional
     @Override
@@ -415,8 +391,6 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
     /**
      * 个人信息展示
      *
-     * @param session
-     * @return
      */
     @Override
     public TUser queryUserSelfInfo(HttpSession session) {
@@ -426,9 +400,6 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
     /**
      * 充值
      *
-     * @param session
-     * @param depositMoney
-     * @param depositType
      */
     @Deprecated
     @Override
@@ -442,8 +413,6 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
     /**
      * 提现
      *
-     * @param session
-     * @param withdrawMoney
      */
     @Deprecated
     @Override
@@ -453,8 +422,6 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
     /**
      * 创建推广链接
      *
-     * @param session
-     * @return
      */
     @Override
     public String queryPromotion(HttpSession session) {
@@ -588,9 +555,6 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
     /**
      * 查询是否有重复的审核请求
      *
-     * @param userId
-     * @param checkResult
-     * @return
      */
     @Override
     public TUserInfoCheck queryUserInfoCheck(int userId, String checkResult) {
@@ -699,10 +663,8 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
     /**
      * 获取n位随机数字
      *
-     * @param count
-     * @return
      */
-    public String getRandomString(int count) {
+    private String getRandomString(int count) {
         String finalStr = "";
         StringBuffer sb = new StringBuffer();
         String str = "0123456789";
@@ -723,7 +685,6 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
     /**
      * 准备提交订单的数据
      *
-     * @return
      */
     @Override
     @Transactional
@@ -786,8 +747,6 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
     /**
      * 首易信支付操作完成后返回url所带参数的处理
      *
-     * @param standardPaymentRetuenEntity
-     * @return
      */
     @Override
     @Transactional
@@ -807,16 +766,9 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
         //v_md5money指纹结果
         Md5 m = new Md5("");
         byte a[] = new byte[0];
-        String digestString = md5.stringify(b);
-        try {
-            md5.hmac_Md5(strSourceEncode, Constants.V_KEY);
-            b = md5.getDigest();
-            m.hmac_Md5(source2, Constants.V_KEY);
-            a = m.getDigest();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String digestString2 = m.stringify(a);
+        String digestString = Md5.stringify(b);
+        a = md5Digest(source2, md5, strSourceEncode, m, a);
+        String digestString2 = Md5.stringify(a);
         //RSA验证
         String publicKey = Constants.KEY_PATH;   //public1024.key的路径
         String SignString = standardPaymentRetuenEntity.getV_sign();
@@ -830,11 +782,22 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
         }
     }
 
+    private byte[] md5Digest(String source2, Md5 md5, String strSourceEncode, Md5 m, byte[] a) {
+        byte[] b;
+        try {
+            md5.hmac_Md5(strSourceEncode, Constants.V_KEY);
+            b = md5.getDigest();
+            m.hmac_Md5(source2, Constants.V_KEY);
+            a = m.getDigest();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return a;
+    }
+
     /**
      * 获取订单支付结果
      *
-     * @param orderParmentResult
-     * @return
      */
     @Override
     public int getOrderPaymentResult(OrderParmentResultReturnEntity orderParmentResult) {
@@ -844,7 +807,7 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
         Md5 md5 = new Md5("");
         String strSourceEncode = null;
         byte b[] = new byte[0];
-        String digestString = md5.stringify(b);
+        String digestString = Md5.stringify(b);
         //md5加密2
         Md5 m = new Md5("");
         byte a[] = new byte[0];
@@ -853,15 +816,8 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        try {
-            md5.hmac_Md5(strSourceEncode, Constants.V_KEY);
-            b = md5.getDigest();
-            m.hmac_Md5(source2, Constants.V_KEY);
-            a = m.getDigest();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        String digestString2 = m.stringify(a);
+        a = md5Digest(source2, md5, strSourceEncode, m, a);
+        String digestString2 = Md5.stringify(a);
         //RSA验证
         String publicKey = Constants.KEY_PATH;
         String SignString = orderParmentResult.getV_sign();
@@ -875,11 +831,11 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
             System.out.println("sent");
             //拆分参数
             String[] resultoid = orderParmentResult.getV_oid().split("[|][_][|]");
-            String[] resultpmode = orderParmentResult.getV_pmode().split("[|][_][|]");
-            String[] resultstatus = orderParmentResult.getV_pstatus().split("[|][_][|]");
-            String[] resultpstring = orderParmentResult.getV_pstring().split("[|][_][|]");
-            String[] resultamount = orderParmentResult.getV_amount().split("[|][_][|]");
-            String[] resultmoneytype = orderParmentResult.getV_moneytype().split("[|][_][|]");
+//            String[] resultpmode = orderParmentResult.getV_pmode().split("[|][_][|]");
+//            String[] resultstatus = orderParmentResult.getV_pstatus().split("[|][_][|]");
+//            String[] resultpstring = orderParmentResult.getV_pstring().split("[|][_][|]");
+//            String[] resultamount = orderParmentResult.getV_amount().split("[|][_][|]");
+//            String[] resultmoneytype = orderParmentResult.getV_moneytype().split("[|][_][|]");
             for (int i = 0; i < resultoid.length; i++) {
                 //将提交订单数据添加数据库中
                 //需要注意一点：返回的订单金额要与数据库中存放的订单原金额比对，只有数据一致才可更新支付状态（预防数据在传输过程中被拦截、篡改）
@@ -938,9 +894,6 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
      * 创建者: zhangwei
      * 创建时间: 2018/02/11 16:04
      *
-     * @param user
-     * @param orderInfo
-     * @return
      */
     public TOrderInfo createOrder(TUser user, TOrderInfo orderInfo) {
         if (EmptyUtils.isEmpty(user)) {
@@ -971,7 +924,7 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
         payArgs.put("sign_type","RSA-S");
         payArgs.put("return_url","http://15l0549c66.iask.in:45191/bankPay/page_notify.jsp");
         payArgs.put("order_no",orderInfo.getOrderNum());
-        payArgs.put("order_time",format.format(orderInfo.getOrderCreateTime()).toString());
+        //payArgs.put("order_time",format.format(orderInfo.getOrderCreateTime()).toString());
         payArgs.put("order_amount",String.valueOf(orderInfo.getTotalPrice()));
         payArgs.put("product_name","充值");
 

@@ -29,7 +29,7 @@
         overflow: hidden;
         text-align: center;
         color: rgba(255, 255, 255, .7);
-        border: 1px solid #FF0000 !important;
+        border: 1px solid #c33f00 !important;
         border-radius: 20px;
         width: 140px;
         height: 18px;
@@ -45,7 +45,7 @@
     }
 
     #k_details .h5_span {
-        background: #ff0000 !important;
+        background: #c33f00 !important;
         border-radius: 20px;
     }
 
@@ -73,7 +73,7 @@
     }
 
     #k_details .details-footer h6:nth-child(2) {
-        background: #ff0000 !important;
+        background: #c33f00 !important;
         color: white;
         width: 66.7% !important;
         line-height: 2.5em;
@@ -105,13 +105,15 @@
             <%@include file="/WEB-INF/jsp/pc/mobile/zs_details.jsp" %>
         </div>
         <div class="details-footer">
-            <h6 class="fl zx"><a data-ajax="false" class="color-w" href="mobile/stock/plan/list?orderStatus=1">持仓</a>
+            <h6 class="fl zx"><a data-ajax="false" class="color-w" href="mobile/stock/plan/list?orderStatus=1" style="display:inline-block;width:100%;height:100%;">持仓</a>
             </h6>
-            <h6 class="fl kd"><a data-ajax="false" class="color-w create_plan">申请方案</a></h6>
+            <h6 class="fl kd"><a data-ajax="false" class="color-w create_plan" style="display:inline-block;width:100%;height:100%;" href="http://baidu.com">申请方案</a></h6>
         </div>
         <input type="hidden" class="zx-state" value="0"/>
         <input type="hidden" id="manage_fee" value="${manageFee.itemCode}"/>
         <input type="hidden" id="symbol"/>
+		<%--by hexin 【申请方案】增加股票最新价格参数--%>
+        <input type="hidden" id="curPrice"/>
     </div>
 </div>
 <script>

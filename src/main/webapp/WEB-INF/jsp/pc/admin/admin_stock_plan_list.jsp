@@ -279,6 +279,7 @@
             <th align="center">申请人</th>
             <th  align="center">股票编码</th>
             <th  align="center">股票名称</th>
+            <th  align="center">股票现价</th>
             <th  align="center">周期</th>
             <th  align="center">市值</th>
             <th   align="center">买入价格类型</th>
@@ -314,6 +315,7 @@
             <td>${item.userName}</td>
             <td>${item.symbol}</td>
             <td>${item.symbolName}</td>
+            <td>${item.curPrice}</td>
             <td><c:forEach items="${cycleList}" var="d">
                 ${d.itemCode == item.cycle ? d.itemName : ""}
             </c:forEach>
@@ -349,9 +351,13 @@
                     ${d.itemCode == item.orderStatus ? d.itemName : ''}
                 </c:forEach>
             </td>
-                <c:if test="${param.orderStatus}">
+                <c:if test="${param.orderStatus.equals(\"2\")}">
             <td>
-                <a class="btnEdit" onclick="add('admin/manualSell?planId=${item.planId}','手动行权',950,500,'main_')"><span>手动行权</span></a>
+                <div class="buttonActive">
+                    <div class="buttonContent">
+                        <a onclick="add('admin/manualSell?planId=${item.planId}','手动行权',950,500,'main_')"><span>手动行权</span></a>
+                    </div>
+                </div>
             </td>
                 </c:if>
             </c:forEach>

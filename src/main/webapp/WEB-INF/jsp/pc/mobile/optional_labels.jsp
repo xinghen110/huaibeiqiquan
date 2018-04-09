@@ -4,6 +4,7 @@
 <head>
     <title>自选标的</title>
 </head>
+
 <%@include file="base.jsp" %>
 <style>
     @media screen and (max-width: 1280px) {
@@ -78,6 +79,9 @@
         height: 3em;
         line-height: 3em;
     }
+    #all_subject_matter ul{
+          overflow: scroll; 
+    }
 </style>
 <body>
 <div data-role="page" id="all_subject_matter">
@@ -85,7 +89,7 @@
         <!-- 头部搜索 -->
         <div class="header">
             <input id="Symbol" class="fl size-9" data-role="none" type="text" placeholder="输入股票代码或名称"/>
-            <a id="queryStock" class="ui-btn color-w fr" onclick="findUserStock(this)">查询</a>
+            <a id="queryStock" class="ui-btn color-w fr" onclick="findUserStock(this)" style="line-height:2.36em;height:2.36em;">查询</a>
         </div>
         <h4 class="title size-9">
             <span class="fl">代码名称</span>
@@ -107,7 +111,9 @@
                 margin-bottom: 1px;
                 padding: 0;
             }
-
+           #all_subject_matter{
+          overflow: scroll; padding-bottom:20px;
+    }
             #stockList a {
                 background: none;
                 border: none;
@@ -131,26 +137,27 @@
                 border-radius: 5px;
                 padding: 3px 10px;
                 position: absolute;
-                color: white;
+                color: #FF302F;
                 font-size: 0.8em;
                 right: 23px;
                 top: 8px;
             }
         </style>
+        
         <ul id="stockList" data-role="listview">
 
         </ul>
-        <h4 style="padding-top: 20px;" class="text-align">
-            <span onclick="add_tx()" style="background: #FF0000; padding: 10px 15px; border-radius: 3px;"
+        <h4  id="person" style="position: fixed;bottom: 60px;" class="text-align">
+            <span onclick="add_tx()" style="background: #c33f00; padding: 10px 15px; border-radius: 3px;font-size:0.9em;"
                   class="color-w">+ 添加自选股</span>
         </h4>
         <div class="add_zxg" style="display: none;">
-            <div class="add_zxg_div">
-                <h4 class="text-align size-11 h4_title">
-                    <span class="color-red">添加自选股</span>
-                    <span class="close color-hs">X</span>
+            <div class="add_zxg_div" style="border-radius:3px;">
+                <h4 class="text-align size-11 h4_title" style="background:#c33f00;height:40px;line-height:40px;margin-bottom:1.5em;border-top-left-radius: 3px;border-top-right-radius: 3px;">
+                    <span class="color-w" style="font-size:0.9em;">添加自选股</span>
+                    <span class="close color-w" style="font-size:0.9em;">X</span>
                 </h4>
-                <input type="text" data-role="none" oninput="getList()" id="user_stock_code" style="BACKGROUND: #A8A8A8; COLOR: #ccffcc;border:1 dashed #000000" placeholder="输入股票代码" />
+                <input type="text" data-role="none" oninput="getList()" id="user_stock_code" placeholder="输入股票代码" style="BACKGROUND: #ddd; COLOR: #ff302f;border:1 dashed #000000;border-radius:3px;font-size:0.9em;" />
                 <ul data-role="listview" class="add_list">
 
                 </ul>
@@ -263,7 +270,7 @@
                 '                <a   onclick="checkSymbol(\''+(result[i].symbol)+'\')">\n' +
                 '                    <h4 class="title size-9" style="background: none">\n' +
                 '                        <span class="fl">\n' +
-                '                            <span class="fl name color-orange">' + (result[i].stockName) + '</span>\n' +
+                '                            <span class="fl name color-w">' + (result[i].stockName) + '</span>\n' +
                 '                            <span class="fl number color-orange">' + (result[i].symbol) + '</span>\n' +
                 '                        </span>\n' +
                 '                        <span class="fl color-red currentPrice" onmouseover="getMarketForSina(\'' + (result[i].symbol) + '\',this)"></span>\n' +
@@ -351,8 +358,8 @@
         var position = $("#all_subject_matter .add_list");
 
         position.empty();
-
-        $.ajax({
+        if(symbol.length>=3){
+         $.ajax({
             url: "mobile/getList2",
             dataType: "json",
             type: "post",
@@ -362,7 +369,9 @@
                 createHtml2(result, position);
             }
 
-        });
+        });    
+        }
+       
     }
 
     //创建查找自选股html
@@ -414,7 +423,7 @@
             '                <a onclick="checkSymbol(\''+(result.symbol)+'\')">\n' +
             '                    <h4 class="title size-9" style="background: none">\n' +
             '                        <span class="fl">\n' +
-            '                            <span class="fl name color-orange">' + (result.stockName) + '</span>\n' +
+            '                            <span class="fl name color-w">' + (result.stockName) + '</span>\n' +
             '                            <span class="fl number color-orange">' + (result.symbol) + '</span>\n' +
             '                        </span>\n' +
             '                        <span class="fl color-red currentPrice" onmouseover="getMarketForSina(\'' + (result.symbol) + '\',this)"></span>\n' +
@@ -458,8 +467,9 @@
                     //详情页，刷股票
                     $("#k_details .curPrice").attr("onclick", "getMarketForDetails('" + (symbol) + "')");
 
-
                     $("#k_details .create_plan").attr("href","mobile/application/scheme?symbol="+(result.code)+"&symbolName="+(result.name)+"&manageFee="+manageFee);
+
+                   //  $("#k_details .create_plan").attr("href","http://baidu.com");
 
                     $("#k_details #symbol").val(result.code);
                 } else {
@@ -499,33 +509,35 @@
 
                     //涨跌比例
                     var priceRate = calaMarket(currentPrice, yesterdayClosingPrice);
+                    var priceRate_details = $("#k_details .priceRate_details");
+                    var curPrice = $("#k_details .curPrice");
+
+                    <%--by hexin 【申请方案】增加股票最新价格参数--%>
+                    curPrice.html(Number(currentPrice).toFixed(2));
 
                     if (priceRate >= 0) {
 
-                        $("#k_details .curPrice").html(Number(currentPrice).toFixed(2));
-                        $("#k_details .priceRate_details").html(priceRate + "%");
+                        curPrice.removeClass("color-green")
+                            .addClass("color-red");
 
-                        $("#k_details .curPrice").removeClass("color-green");
-                        $("#k_details .priceRate_details").removeClass("color-green");
-
-                        $("#k_details .curPrice").addClass("color-red");
-                        $("#k_details .priceRate_details").addClass("color-red");
+                        priceRate_details.html(priceRate + "%")
+                            .removeClass("color-green")
+                            .addClass("color-red");
 
                     } else {
-                        $("#k_details .curPrice").html(Number(currentPrice).toFixed(2));
-                        $("#k_details .priceRate_details").html(priceRate + "%");
+                        curPrice.removeClass("color-red")
+                            .addClass("color-green");
 
-
-                        $("#k_details .curPrice").addClass("color-green");
-                        $("#k_details .priceRate_details").addClass("color-green");
-
-                        $("#k_details .curPrice").removeClass("color-red");
-                        $("#k_details .priceRate_details").removeClass("color-red");
-
-
+                        priceRate_details.removeClass("color-red")
+                            .addClass("color-green");
 
                     }
 
+                    <%--by hexin 【申请方案】增加股票最新价格参数--%>
+                    var apply_url = $("#k_details .create_plan").attr("href")
+                        .replace(/&curPrice=...../,'')
+                        .replace(/&curPrice=/,'');
+                    $("#k_details .create_plan").attr("href",apply_url+"&curPrice="+Number(currentPrice).toFixed(2));
                 }
             }
         });
@@ -541,6 +553,10 @@
     }
 
 </script>
+<script>
+            var winW = $(window).width()/2-57;
+            $('#person').css('left',winW);
+        </script>
 </body>
 </html>
 

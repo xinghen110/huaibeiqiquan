@@ -144,6 +144,7 @@ public class AdminServiceImpl extends BaseServiceImpl implements AdminService {
         sql.append("  stp.user_id                 AS userId, ");
         sql.append("  stp.symbol                  AS symbol, ");
         sql.append("  stp.symbol_name             AS symbolName, ");
+        sql.append("  stp.cur_price               AS curPrice, ");
         sql.append("  stp.cycle                   AS cycle, ");
         sql.append("  stp.buy_recommend_date      AS buyRecommendDate, ");
         sql.append("  stp.buy_confirm_date        AS buyConfirmDate, ");
@@ -384,10 +385,10 @@ public class AdminServiceImpl extends BaseServiceImpl implements AdminService {
         String fileName = "申请方案" + date;
 //        客户经理	客户名称	股票名称	股票代码	期限（月）	方向	报价	期权类型	行权价	名义本金	开仓指令	平仓指令
         String[] headers = {
-                "订单号", "建议日期", "股票编码", "股票名称", "周期", "期初市值", "期权类型", "买入限价", "买入价格", "方向", "开仓指令", "是否成交"
+                "订单号", "建议日期", "股票编码", "股票名称", "股票价格", "周期", "期初市值", "期权类型", "买入限价", "买入价格", "方向", "开仓指令", "是否成交"
         };
         String[] columns = {
-                "planId", "buyRecommendDate", "symbol", "symbolName", "cycle", "buyMarketPrice", "qiquanleixing", "buyLimitPrice", "buyPrice", "direction", "kaicangzhiling", "shifouchengjiao"
+                "planId", "buyRecommendDate", "symbol", "curPrice", "symbolName", "cycle", "buyMarketPrice", "qiquanleixing", "buyLimitPrice", "buyPrice", "direction", "kaicangzhiling", "shifouchengjiao"
         };
         try {
             ExcelUtils.exportExcel(response, fileName, planMapList, columns, headers, SysCode.DATE_FORMAT_STR_S);
@@ -451,10 +452,10 @@ public class AdminServiceImpl extends BaseServiceImpl implements AdminService {
         String fileName = "行权方案" + date;
 //        客户经理	客户名称	股票名称	股票代码	期限（月）	方向	报价	期权类型	行权价	名义本金	开仓指令	平仓指令
         String[] headers = {
-                "订单号", "建议日期", "股票编码", "股票名称", "周期", "期初市值", "期权类型", "卖出限价", "卖出价格", "方向", "平仓指令", "是否成交"
+                "订单号", "建议日期", "股票编码", "股票名称", "股票价格", "周期", "期初市值", "期权类型", "卖出限价", "卖出价格", "方向", "平仓指令", "是否成交"
         };
         String[] columns = {
-                "planId", "sellCreateTime", "symbol", "symbolName", "cycle", "sellMarketPrice", "qiquanleixing", "sellLimitPrice", "sellPrice", "direction", "pingcangzhiling", "shifouchengjiao"
+                "planId", "sellCreateTime", "symbol", "symbolName", "curPrice", "cycle", "sellMarketPrice", "qiquanleixing", "sellLimitPrice", "sellPrice", "direction", "pingcangzhiling", "shifouchengjiao"
         };
         try {
             ExcelUtils.exportExcel(response, fileName, planMapList, columns, headers, SysCode.DATE_FORMAT_STR_S);
@@ -678,6 +679,7 @@ public class AdminServiceImpl extends BaseServiceImpl implements AdminService {
         sql.append("  stp.user_id                 AS userId, ");
         sql.append("  stp.symbol                  AS symbol, ");
         sql.append("  stp.symbol_name             AS symbolName, ");
+        sql.append("  stp.cur_price               AS curPrice, ");
         sql.append("  stp.cycle                   AS cycle, ");
         sql.append("  stp.buy_recommend_date      AS buyRecommendDate, ");
         sql.append("  stp.buy_confirm_date        AS buyConfirmDate, ");
@@ -1040,7 +1042,8 @@ public class AdminServiceImpl extends BaseServiceImpl implements AdminService {
                     "name",
                     "hv30",
                     "hv60",
-                    "hv14"
+                    "hv14",
+                    "hv7"
             };
             List<Map> list = ExcelUtils.readWorkbook(stockPlanFile.getInputStream(), columns);
 
@@ -1064,13 +1067,15 @@ public class AdminServiceImpl extends BaseServiceImpl implements AdminService {
                 BigDecimal hv30 = new BigDecimal(map.get("hv30").toString()).multiply(new BigDecimal(100)).add(number);
                 BigDecimal hv60 = new BigDecimal(map.get("hv60").toString()).multiply(new BigDecimal(100)).add(number);
                 BigDecimal hv14 = new BigDecimal(map.get("hv14").toString()).multiply(new BigDecimal(100)).add(number);
+                BigDecimal hv7 = new BigDecimal(map.get("hv7").toString()).multiply(new BigDecimal(100)).add(number);
 
                 TStockInfo stockInfo = new TStockInfo(
                         map.get("code").toString(),
                         map.get("name").toString(),
                         hv30,
                         hv60,
-                        hv14
+                        hv14,
+                        hv7
                 );
                 stockInfoService.save(stockInfo);
             }

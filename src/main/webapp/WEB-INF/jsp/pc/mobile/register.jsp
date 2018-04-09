@@ -57,7 +57,7 @@
             </div>
         <div class="input-div" style="margin-top: 2em;">
             <a id="registeBtn" class="ui-btn register">注册</a>
-            <a href="mobile/stock/register?parentCode=${sessionScope.parentCode}" data-ajax = "false" class="fr color-red size-9 forgot_password">已有账号?去登录.</a>
+            <a href="mobile/stock/login}" data-ajax = "false" class="fr color-red size-9 forgot_password">已有账号?去登录.</a>
         </div>
         </form>
     </div>

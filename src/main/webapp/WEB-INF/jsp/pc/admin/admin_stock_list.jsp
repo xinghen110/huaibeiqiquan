@@ -128,6 +128,7 @@
             <th width="40"  align="center">id</th>
             <th width="120" align="center">编码</th>
             <th width="80" align="center">名称</th>
+            <th width="80" align="center">hv7</th>
             <th width="80" align="center">hv14</th>
             <th width="80" align="center">hv30</th>
             <th width="50" align="center">hv60</th>
@@ -139,6 +140,7 @@
                 <td>${(pageList.pageNum-1)*pageList.numPerPage+row.count}</td>
                 <td>${item.code}</td>
                 <td>${item.name}</td>
+                <td>${item.hv7}</td>
                 <td>${item.hv14}</td>
                 <td>${item.hv30}</td>
                 <td>${item.hv60}</td>

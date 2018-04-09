@@ -1,0 +1,1 @@
+ALTER TABLE `t_stock_plan` ADD cur_price decimal(18,2) NOT NULL;

@@ -42,29 +42,29 @@
 
             </li>
 
-            <li data-icon="false" style="margin-top: .5em;">
-                <a data-ajax="false" href="mobile/toPay">
+            <li data-icon="false" style="margin-top: .13em;">
+                <a data-ajax="false" onclick="javascript:alert('手机端目前不支持入金，入金请登录pc端:www.jdhuhang.com');" href="javascript:void();">
                     <img src="img/mobile/icon_user_rules.png" class="ui-li-icon"><h4 class="color-w">扫码支付<img class="fr" width="18px" src="img/mobile/icon_arrow_right.png" /></h4>
                 </a>
             </li>
 
-            <li data-icon="false" style="margin-top: .5em;">
+            <li data-icon="false" style="margin-top: .13em;">
                 <a data-ajax="false" href="mobile/rule/center">
                     <img src="img/mobile/icon_user_rules.png" class="ui-li-icon"><h4 class="color-w">资金明细<img class="fr" width="18px" src="img/mobile/icon_arrow_right.png" /></h4>
                 </a>
             </li>
 
-            <li data-icon="false" style="margin-top: .5em;">
+            <li data-icon="false" style="margin-top: .12em;">
                 <a data-ajax="false" href="mobile/realname/bindingcard">
                     <img src="img/mobile/icon_user_realname.png" class="ui-li-icon"><h4 class="color-w">实名绑卡<img class="fr" width="18px" src="img/mobile/icon_arrow_right.png" /></h4>
                 </a>
             </li>
-            <li data-icon="false">
+            <li data-icon="false" style="margin-top: .13em;">
                 <a data-ajax="false" href="mobile/stock/password/update">
                     <img src="img/mobile/icon_user_edit.png" class="ui-li-icon"><h4 class="color-w">修改密码<img class="fr" width="18px" src="img/mobile/icon_arrow_right.png" /></h4>
                 </a>
             </li>
-            <li data-icon="false" style="margin-top: .5em;">
+            <li data-icon="false" style="margin-top: .13em;">
                 <a data-ajax="false" href="mobile/stock/logout">
                     <img src="img/mobile/icon_user_logout.png" class="ui-li-icon"><h4 class="color-w">退出登录<img class="fr" width="18px" src="img/mobile/icon_arrow_right.png" /></h4>
                 </a>

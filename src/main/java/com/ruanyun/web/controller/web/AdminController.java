@@ -101,7 +101,12 @@ public class AdminController extends BaseController {
     }
 
     @RequestMapping("/admin/stock/plan/list")
-    public String toAdminStockPlanList(HttpSession session,Model model, Page page, TStockPlan stockPlan, String loginName,String startTime,String endTime,Integer yunYingUserId,Integer huiYuanUserId,Integer daiLiUserId,String userName,String belongValue,String buyConfirmDatetartTime,String buyConfirmDateEndTime,String sellConfirmTimeDatetartTime,String sellConfirmTimeDateEndTime,Integer isProfit,TUser user) {
+    public String toAdminStockPlanList(HttpSession session,Model model, Page page, TStockPlan stockPlan,
+                                       String loginName,String startTime,String endTime,Integer yunYingUserId,
+                                       Integer huiYuanUserId,Integer daiLiUserId,String userName,String belongValue,
+                                       String buyConfirmDatetartTime,String buyConfirmDateEndTime,
+                                       String sellConfirmTimeDatetartTime,String sellConfirmTimeDateEndTime,
+                                       Integer isProfit,TUser user) {
         TUser currentUser = HttpSessionUtils.getCurrentUser(session);
         String[] belongInfo = new String[]{};
         Integer belongUserId=-1;
@@ -111,9 +116,16 @@ public class AdminController extends BaseController {
             belongUserId = Integer.parseInt(belongInfo[0].toString());
             parentCodeIndex = Integer.parseInt(belongInfo[1].toString());
         }
-        List<HashMap> allFeeList = adminService.groupQueryStockPlanListServerFee(stockPlan, loginName,startTime,endTime,yunYingUserId,huiYuanUserId,daiLiUserId,userName,belongUserId,parentCodeIndex,buyConfirmDatetartTime,buyConfirmDateEndTime,sellConfirmTimeDatetartTime,sellConfirmTimeDateEndTime,isProfit);
+        List<HashMap> allFeeList = adminService.groupQueryStockPlanListServerFee(stockPlan, loginName,startTime,
+                endTime,yunYingUserId,huiYuanUserId,daiLiUserId,userName,belongUserId,parentCodeIndex,
+                buyConfirmDatetartTime,buyConfirmDateEndTime,sellConfirmTimeDatetartTime,sellConfirmTimeDateEndTime,isProfit);
+
         model.addAttribute("allFee",EmptyUtils.isEmpty(allFeeList.get(0).get("manageFee"))?"":allFeeList.get(0));
-        List<HashMap> list = adminService.queryStockPlanList(page, stockPlan, loginName,startTime,endTime,yunYingUserId,huiYuanUserId,daiLiUserId,userName,belongUserId,parentCodeIndex,buyConfirmDatetartTime,buyConfirmDateEndTime,sellConfirmTimeDatetartTime,sellConfirmTimeDateEndTime,isProfit);
+
+        List<HashMap> list = adminService.queryStockPlanList(page, stockPlan, loginName,startTime,endTime,yunYingUserId,
+                huiYuanUserId,daiLiUserId,userName,belongUserId,parentCodeIndex,buyConfirmDatetartTime,
+                buyConfirmDateEndTime,sellConfirmTimeDatetartTime,sellConfirmTimeDateEndTime,isProfit);
+
         if(EmptyUtils.isNotEmpty(startTime)) {
             model.addAttribute("startTime", DateUtils.doFormatDate(startTime, "yyyy-MM-dd HH:mm:ss"));
         }

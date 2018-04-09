@@ -12,10 +12,10 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
-	<link rel="stylesheet" href="css/mobile/mystyle.css" />
-	<link rel="stylesheet" href="css/mobile/jquery.mobile-1.4.2.css" />
-	<script type="text/javascript" src="js/mobile/jquery.min.js" ></script>
-	<script type="text/javascript" src="js/mobile/jquery.mobile-1.4.2.js" ></script>
+	<link rel="stylesheet" href="http://cdn.busod.cn/css/mobile/mystyle.css" />
+	<link rel="stylesheet" href="http://cdn.busod.cn/css/mobile/jquery.mobile-1.4.2.css" />
+	<script type="text/javascript" src="http://cdn.busod.cn/js/mobile/jquery.min.js" ></script>
+	<script type="text/javascript" src="http://cdn.busod.cn/js/mobile/jquery.mobile-1.4.2.js" ></script>
 	<title></title>
 </head>
 	<body>
@@ -38,10 +38,11 @@
 							<th class="color-w size-9 two">建议日期</th>
 							<th class="color-w size-9">股票</th>
 							<th class="color-w size-9">股票代码</th>
-							<th class="color-w size-9">生效日期</th>
-							<th class="color-w size-9">结束日期</th>
+							<th class="color-w size-9">股票价格</th>
+							<th class="color-w size-9 three">生效日期</th>
+							<th class="color-w size-9 four">结束日期</th>
 							<th class="color-w size-9">卖出限价</th>
-							<th class="color-w size-9">卖申时间</th>
+							<th class="color-w size-9 five">卖申时间</th>
 							<th class="color-w size-9">状态</th>
 							<th class="color-w size-9">下单日期</th>
 						</tr>
@@ -51,10 +52,11 @@
 								<td class="color-w size-9 two"><fmt:formatDate value="${item.buyRecommendDate}" pattern="yyyy/MM/dd" /></td><!--建议日期-->
 								<td class="color-w size-9">${item.symbolName}</td><!--股票-->
 								<td class="color-w size-9">${item.symbol}</td><!--股票代码-->
-								<td class="color-w size-9">${item.buyConfirmDate}</td>
-								<td class="color-w size-9">${item.buyEndDate}</td>
+								<td class="color-w size-9">${item.curPrice}</td><!--股票价格-->
+								<td class="color-w size-9 three">${item.buyConfirmDate}</td>
+								<td class="color-w size-9 four">${item.buyEndDate}</td>
 								<td class="color-w size-9">${item.sellLimitPrice}</td>
-								<td class="color-w size-9">${item.sellCreateTime}</td>
+								<td class="color-w size-9 five">${item.sellCreateTime}</td>
 								<td class="color-w size-9">${item.orderStatusName}</td>
 								<td class="color-w size-9"><fmt:formatDate value="${item.createTime}" pattern="yyyy/MM/dd" /></td><!--卖出申请时间-->
 							</tr>
@@ -95,7 +97,10 @@
 			    var thW = windowW*0.25;//每个th的宽度
 			    $('#my_scheme_exercise table th').css('width',windowW*0.25);//th宽度赋值
 			     $('#my_scheme_exercise table td').css('width',windowW*0.25);//th宽度赋值
-			    //$('#my_scheme_exercise .two').css('margin-left',windowW*0.25)//设置第二个th的margin-left
+			    //$('#my_scheme_exercise .two').css('width',windowW*0.25)//设置第二个th的margin-left
+			    $('#my_scheme_exercise .three').css('width',150)//设置第二个th的margin-left
+			    $('#my_scheme_exercise .four').css('width',150)//设置第二个th的margin-left
+			    $('#my_scheme_exercise .five').css('width',150)//设置第二个th的margin-left
 				//计算总的table宽度
 				var tableW = 0;
 				if(i>4){
@@ -104,6 +109,7 @@
 					tableW = thW * i;
 				}
 				$('#my_scheme_exercise table').width(tableW);//table宽度赋值
+				$('#my_scheme_exercise table').width(1080);//table宽度赋值
 			})
 		</script>
 	</body>

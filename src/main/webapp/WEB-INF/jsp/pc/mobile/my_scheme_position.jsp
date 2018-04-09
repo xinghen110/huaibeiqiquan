@@ -12,15 +12,15 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
-	<link rel="stylesheet" href="css/mobile/mystyle.css" />
-	<link rel="stylesheet" href="css/mobile/jquery.mobile-1.4.2.css" />
-	<script type="text/javascript" src="js/mobile/jquery.min.js" ></script>
-	<script type="text/javascript" src="js/mobile/jquery.mobile-1.4.2.js" ></script>
+	<link rel="stylesheet" href="http://cdn.busod.cn/css/mobile/mystyle.css" />
+	<link rel="stylesheet" href="http://cdn.busod.cn/css/mobile/jquery.mobile-1.4.2.css" />
+	<script type="text/javascript" src="http://cdn.busod.cn/js/mobile/jquery.min.js" ></script>
+	<script type="text/javascript" src="http://cdn.busod.cn/js/mobile/jquery.mobile-1.4.2.js" ></script>
 	<title></title>
 	<style>
 		#my_scheme_position table tr td .ui-btn {
 			margin: .5em;
-			background: red;
+			background: #c33f00;
 			color: white;
 			border: none;
 			text-shadow: none;
@@ -53,6 +53,7 @@
 							<th class="color-w size-9 two">建议日期</th>
 							<th class="color-w size-9">股票</th>
 							<th class="color-w size-9">股票代码</th>
+							<th class="color-w size-9">股票价格</th>
 							<th class="color-w size-9">生效日期</th>
 							<th class="color-w size-9">结束日期</th>
 							<th class="color-w size-9">买入限价</th>
@@ -66,6 +67,7 @@
 								<td class="color-w size-9 two"><fmt:formatDate value="${item.buyRecommendDate}" pattern="yyyy/MM/dd" /></td><!--建议日期-->
 								<td class="color-w size-9">${item.symbolName}</td><!--股票-->
 								<td class="color-w size-9">${item.symbol}</td><!--股票代码-->
+								<td class="color-w size-9">${item.curPrice}</td><!--股票价格-->
 								<td class="color-w size-9"><fmt:formatDate value="${item.buyConfirmDate}" pattern="yyyy/MM/dd" /></td><!--生效日期-->
 								<td class="color-w size-9"><fmt:formatDate value="${item.buyEndDate}" pattern="yyyy/MM/dd" /></td><!--结束日期-->
 								<td class="color-w size-9">${item.buyLimitPrice}</td><!--买入限价-->
@@ -99,12 +101,15 @@
 				</div>
 			</div>
 		</div>
-		<div class="xq_tc" style="display: none;position: absolute;z-index: 99999;top: 50%; left: 50%;    margin-top: -130px; background: white; width: 200px; margin-left: -130px;padding:10px 30px;">
-			<h4 style="position: relative;margin: 0; text-align: center; height: 30px; line-height: 30px;">行权<span style="position: absolute;right: 0;z-index: 99999999;" class="fr size-8 close">关闭</span></h4>
+		<div class="xq_tc" style="display: none;position: absolute;z-index: 99999;top: 50%; left: 50%; margin-top: -130px; background: white; width: 65%; margin-left: -130px;border-radius:3px;">
+			<h4 style="background:#c33f00;font-size:0.9em;position: relative;margin: 0; text-align: center; height: 30px; line-height: 30px;color:white;border-top-left-radius:3px;
+border-top-right-radius:3px;">行权<span style="position: absolute;right: 0;z-index: 99999999;color:white;margin-right:0.5em;" class="fr size-8 close">关闭</span></h4>
+			
 			<form action="mobile/stock/exercise" method="post" data-ajax="false" >
+			<div style="width:80%;margin:0 auto;">
 			<div>
-				<h5 style="margin: 0;margin-bottom: 10px;">价格类型</h5>
-				<select id="sellPriceType" name="sellPriceType" class="size-9" style="width: 100%;" data-role = "none">
+				<h5 style="margin: 0;margin-bottom: 10px;margin-top: 10px;">价格类型</h5>
+				<select id="sellPriceType" name="sellPriceType" class="size-9" style="width: 100%;border-radius:3px;border:1px #a7a7a7 solid;height:30px; " data-role = "none">
 					<option value="">请选择</option>
 					<option value="0">市价</option>
 					<option value="1">限价</option>
@@ -125,7 +130,8 @@
 				<input  style="width: 100%;" name="sellLimitPrice" class="size-9" data-role = "none" type="number" placeholder="请输入行权限价" />
 			</div>
 				<input type="hidden" id="hiddenPlanId" class="planId" name="planId" value="">
-				<button type="submit" style="margin-top: 25px; background: #E0B080; color: white; font-weight: normal!important; text-shadow: none;" class="ui-btn size-9">确认行权</button>
+				<button type="submit" style="margin-top: 25px; background: #c33f00; color: white; font-weight: normal!important; text-shadow: none;border-radius:3px;" class="ui-btn size-9">确认行权</button>
+				</div>
 			</form>
 		</div>
 

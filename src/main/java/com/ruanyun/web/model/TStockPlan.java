@@ -24,6 +24,7 @@ public class TStockPlan  implements java.io.Serializable {
      private Integer planId;
      private Integer userId;
      private String symbol;
+     private BigDecimal curPrice;
      private String symbolName;
      private String cycle;
      private BigDecimal buyMarketPrice;
@@ -49,9 +50,16 @@ public class TStockPlan  implements java.io.Serializable {
     public TStockPlan() {
     }
 
-    public TStockPlan(Integer userId, String symbol, String symbolName, String cycle, BigDecimal buyMarketPrice, String buyPriceType, BigDecimal buyLimitPrice, Date buyRecommendDate, BigDecimal buyPrice, Date buyConfirmDate, Date buyEndDate, BigDecimal sellMarketPrice, String sellPriceType, BigDecimal sellLimitPrice, Date sellCreateTime, BigDecimal sellPrice, Date sellConfirmTime, BigDecimal serviceFee, BigDecimal manageFee, String orderStatus, Date createTime, BigDecimal profit, BigDecimal netProfit) {
+    public TStockPlan(Integer userId, String symbol, BigDecimal curPrice, String symbolName, String cycle,
+                      BigDecimal buyMarketPrice, String buyPriceType, BigDecimal buyLimitPrice,
+                      Date buyRecommendDate, BigDecimal buyPrice, Date buyConfirmDate,
+                      Date buyEndDate, BigDecimal sellMarketPrice, String sellPriceType,
+                      BigDecimal sellLimitPrice, Date sellCreateTime, BigDecimal sellPrice,
+                      Date sellConfirmTime, BigDecimal serviceFee, BigDecimal manageFee,
+                      String orderStatus, Date createTime, BigDecimal profit, BigDecimal netProfit) {
        this.userId = userId;
        this.symbol = symbol;
+       this.curPrice = curPrice;
        this.symbolName = symbolName;
        this.cycle = cycle;
        this.buyMarketPrice = buyMarketPrice;
@@ -102,6 +110,15 @@ public class TStockPlan  implements java.io.Serializable {
     
     public void setSymbol(String symbol) {
         this.symbol = symbol;
+    }
+
+    @Column(name="cur_price", precision=18)
+    public BigDecimal getCurPrice() {
+        return this.curPrice;
+    }
+
+    public void setCurPrice(BigDecimal curPrice) {
+        this.curPrice = curPrice;
     }
     
     @Column(name="symbol_name", length=32)
@@ -292,9 +309,6 @@ public class TStockPlan  implements java.io.Serializable {
     public void setNetProfit(BigDecimal netProfit) {
         this.netProfit = netProfit;
     }
-
-
-
 
 }
 

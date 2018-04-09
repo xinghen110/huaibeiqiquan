@@ -94,6 +94,7 @@ public class StockPlanDao extends BaseDaoImpl<TStockPlan> {
         sql.append("  tsp.plan_id                      AS planId, ");
         sql.append("  tsp.user_id                      AS userId, ");
         sql.append("  tsp.symbol                       AS symbol, ");
+        sql.append("  tsp.cur_price                    AS curPrice, ");
         sql.append("  tsp.symbol_name                  AS symbolName, ");
         sql.append("  tsp.cycle                        AS cycle, ");
         sql.append("  tsp.buy_market_price             AS buyMarketPrice, ");
@@ -154,6 +155,7 @@ public class StockPlanDao extends BaseDaoImpl<TStockPlan> {
         sql.append("  tsp.user_id                              AS userId,");
         sql.append("  tsp.symbol                               AS symbol,");
         sql.append("  tsp.symbol_name                          AS symbolName,");
+        sql.append("  tsp.cur_price                            AS curPrice, ");
         sql.append("  tsp.cycle                                AS cycle,");
         sql.append("  tsp.buy_market_price                     AS buyMarketPrice,");
         sql.append("  tsp.buy_price_type                       AS buyPriceType,");

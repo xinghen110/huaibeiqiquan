@@ -19,7 +19,7 @@
             <dl style="width: 750px;" >
                 <dt>价格类型：</dt>
                 <dd>
-                    <select name="sellPriceType">
+                    <select name="sellPriceType" id="sellPriceType" onchange="change()">
                         <c:forEach items="${STOCK_PRICE_TYPE}" var="d">
                             <option value="${d.itemCode}">${d.itemName}</option>
                         </c:forEach>
@@ -27,7 +27,7 @@
                     <%--<textarea style="width: 600px;height: 100px;resize: none;" name="fileUrl">${article.fileUrl}</textarea>--%>
                 </dd>
             </dl>
-            <dl style="width: 750px;">
+            <dl style="width: 750px;" id="xianjia">
                 <dt>限价(元)：</dt>
                     <input type="text" name="sellLimitPrice">
                 </dd>
@@ -52,6 +52,16 @@
                 $('#forms').submit();
         }
 
+    }
+    $("#xianjia").hide();
+    function change(){
+        var sellPriceType = $("#sellPriceType").val();
+
+        if(sellPriceType == "0"){
+            $("#xianjia").hide();
+        }else if(sellPriceType == "1"){
+            $("#xianjia").show();
+        }
     }
 
     function validateCallback(form, callback, confirmMsg) {

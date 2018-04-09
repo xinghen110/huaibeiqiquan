@@ -21,16 +21,18 @@ public class TStockInfo  implements java.io.Serializable {
      private BigDecimal hv30;
      private BigDecimal hv60;
      private BigDecimal hv14;
+     private BigDecimal hv7;
 
     public TStockInfo() {
     }
 
-    public TStockInfo(String code, String name, BigDecimal hv30, BigDecimal hv60,BigDecimal hv14) {
+    public TStockInfo(String code, String name, BigDecimal hv30, BigDecimal hv60,BigDecimal hv14,BigDecimal hv7) {
        this.code = code;
        this.name = name;
        this.hv30 = hv30;
        this.hv60 = hv60;
-       this.hv14=hv14;
+       this.hv14 = hv14;
+       this.hv7 = hv7;
     }
    
      @Id 
@@ -78,6 +80,16 @@ public class TStockInfo  implements java.io.Serializable {
 
     public void setHv14(BigDecimal hv14) {
         this.hv14 = hv14;
+    }
+
+
+    @Column(name="hv7", nullable=false, precision=10)
+    public BigDecimal getHv7() {
+        return this.hv7;
+    }
+
+    public void setHv7(BigDecimal hv7) {
+        this.hv7 = hv7;
     }
 
 

@@ -75,7 +75,7 @@
 
             <div style="margin-top: 1.5em;">
                 <h4 class="fl">银行卡卡号</h4>
-                <input style="margin-left: 1em;" data-role="none" class="fl color-w size-9" type="number"
+                <input style="margin-left: 1.2em;" data-role="none" class="fl color-w size-9" type="number"
                        oninput="if(value.length >19)value=value.slice(0,19)" placeholder="请输入您的银行卡号"
                        name="bankCardNumber" value="${userInfo.bankCardNumber}" required>
                 <%--<input style="margin-left: 1em;" data-role = "none" class="fl color-w size-9" type="number" placeholder="输入提现金额" />--%>
@@ -93,7 +93,7 @@
             </div>
 
             <div id="back_card" style="margin-bottom: 50px;">
-                <h4 class="fl">银行卡照片：</h4>
+                <h4 class="fl">银行卡照片</h4>
                 <span class="fr" style="margin-right: 22px">
 						<img src="${constants.QINIU_USER_IMGURL}${userInfo.backCardPhoto}" class="headeait"
                              width="200px" height="80px">
@@ -103,7 +103,7 @@
                 <input type="hidden" style="display: none;" name="backCardPhoto" id="backCardPhoto"
                        value="${userInfo.backCardPhoto}"/>
             </div>
-            <a onclick="subAuthencation(this)" data-ajax="false" class="ui-btn login" style="background-color: #ff0000!important;">确定</a>
+            <a onclick="subAuthencation(this)" data-ajax="false" class="ui-btn login" style="background-color: #c33f00!important;">确定</a>
             <input id="idCardFontDefaultImgPath" type="hidden" name="path" value="img/id_card_font_default.png">
             <input id="idCardBackDefaultImgPath" type="hidden" name="path" value="img/id_card_back_default.png">
             <input id="bankCardDefaultImgPath" type="hidden" name="path" value="img/bank_card_default.png">
