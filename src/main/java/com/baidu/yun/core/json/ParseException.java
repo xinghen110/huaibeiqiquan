@@ -74,7 +74,7 @@ public class ParseException extends Exception {
   /**
    * This is a reference to the "tokenImage" array of the generated
    * parser within which the parse error occurred.  This array is
-   * defined in the generated ...Constants interface.
+   * defined in the generated ...IPSConstants interface.
    */
   public String[] tokenImage;
 

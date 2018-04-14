@@ -144,9 +144,9 @@ public class AdminController extends BaseController {
         if (EmptyUtils.isNotEmpty(sellConfirmTimeDateEndTime)) {
             model.addAttribute("sellConfirmTimeDateEndTime", DateUtils.doFormatDate(sellConfirmTimeDateEndTime, "yyyy-MM-dd HH:mm:ss"));
         }
-//        model.addAttribute("yunYingUserList",userService.getAllByCondition(TUser.class,"userType",Constants.USER_TYPE_CHILD_02));
-//        model.addAttribute("huiYuanUserList",userService.getAllByCondition(TUser.class,"userType",Constants.USER_TYPE_THIRD_03));
-//        model.addAttribute("daiLiUserList",userService.getAllByCondition(TUser.class,"userType",Constants.USER_TYPE_SPREAD_04));
+//        model.addAttribute("yunYingUserList",userService.getAllByCondition(TUser.class,"userType",IPSConstants.USER_TYPE_CHILD_02));
+//        model.addAttribute("huiYuanUserList",userService.getAllByCondition(TUser.class,"userType",IPSConstants.USER_TYPE_THIRD_03));
+//        model.addAttribute("daiLiUserList",userService.getAllByCondition(TUser.class,"userType",IPSConstants.USER_TYPE_SPREAD_04));
         model.addAttribute("userList", JSONArray.fromObject(userService.list(currentUser)));
         addModel(model, "pageList", page);
         addModel(model, "stockPlan", stockPlan);
@@ -174,7 +174,7 @@ public class AdminController extends BaseController {
         try {
             adminService.exportBuyStockPlanList(response, stockPlan, loginName,startTime,endTime,yunYingUserId,huiYuanUserId,daiLiUserId,userName,belongUserId,parentCodeIndex,buyConfirmDatetartTime,buyConfirmDateEndTime,sellConfirmTimeDatetartTime,sellConfirmTimeDateEndTime,isProfit);
         } catch (Exception e) {
-//            super.writeJsonData(response, CallbackAjaxDone.AjaxDone(Constants.STATUS_FAILD_CODE, e.getMessage(), "", "", ""));
+//            super.writeJsonData(response, CallbackAjaxDone.AjaxDone(IPSConstants.STATUS_FAILD_CODE, e.getMessage(), "", "", ""));
             super.writeText(response, "导出失败.原因：" + e.getMessage());
         }
     }
@@ -200,7 +200,7 @@ public class AdminController extends BaseController {
         try {
             adminService.exportSellStockPlanList(response, stockPlan, loginName,startTime,endTime,yunYingUserId,huiYuanUserId,daiLiUserId,userName,belongUserId,parentCodeIndex,buyConfirmDatetartTime,buyConfirmDateEndTime,sellConfirmTimeDatetartTime,sellConfirmTimeDateEndTime,isProfit);
         } catch (Exception e) {
-//            super.writeJsonData(response, CallbackAjaxDone.AjaxDone(Constants.STATUS_FAILD_CODE, e.getMessage(), "", "", ""));
+//            super.writeJsonData(response, CallbackAjaxDone.AjaxDone(IPSConstants.STATUS_FAILD_CODE, e.getMessage(), "", "", ""));
             super.writeText(response, "导出失败.原因：" + e.getMessage());
         }
     }
@@ -456,7 +456,7 @@ public class AdminController extends BaseController {
         }else {
             super.writeJsonData(response, CallbackAjaxDone.AjaxDone(Constants.STATUS_SUCCESS_CODE, Constants.MESSAGE_SUCCESS, "main_", "admin/user/list?userType=" + user.getUserType(), "forward"));
         }
-//        super.writeJsonData(response, CallbackAjaxDone.AjaxDone(Constants.STATUS_SUCCESS_CODE,Constants.MESSAGE_SUCCESS, "main_", "admin/user/list?userType="+user.getUserType(), "forward"));
+//        super.writeJsonData(response, CallbackAjaxDone.AjaxDone(IPSConstants.STATUS_SUCCESS_CODE,IPSConstants.MESSAGE_SUCCESS, "main_", "admin/user/list?userType="+user.getUserType(), "forward"));
     }
 
     /**
@@ -535,9 +535,9 @@ public class AdminController extends BaseController {
         List<HashMap> list = adminService.queryStockPlanListBySth(session,page, stockPlan, loginName,belong,startTime,endTime,yunYingUserId,huiYuanUserId,daiLiUserId,userName,belongUserId,parentCodeIndex,buyConfirmDatetartTime,buyConfirmDateEndTime,sellConfirmTimeDatetartTime,sellConfirmTimeDateEndTime);
         addModel(model, "pageList", page);
         model.addAttribute("url","admin/stock/plan/list/bysth");
-//        model.addAttribute("yunYingUserList",userService.getAllByCondition(TUser.class,"userType",Constants.USER_TYPE_CHILD_02));
-//        model.addAttribute("huiYuanUserList",userService.getAllByCondition(TUser.class,"userType",Constants.USER_TYPE_THIRD_03));
-//        model.addAttribute("daiLiUserList",userService.getAllByCondition(TUser.class,"userType",Constants.USER_TYPE_SPREAD_04));
+//        model.addAttribute("yunYingUserList",userService.getAllByCondition(TUser.class,"userType",IPSConstants.USER_TYPE_CHILD_02));
+//        model.addAttribute("huiYuanUserList",userService.getAllByCondition(TUser.class,"userType",IPSConstants.USER_TYPE_THIRD_03));
+//        model.addAttribute("daiLiUserList",userService.getAllByCondition(TUser.class,"userType",IPSConstants.USER_TYPE_SPREAD_04));
         model.addAttribute("yunYingUserId",EmptyUtils.isEmpty(yunYingUserId)?"":yunYingUserId);
         model.addAttribute("huiYuanUserId",EmptyUtils.isEmpty(huiYuanUserId)?"":huiYuanUserId);
         model.addAttribute("daiLiUserId",EmptyUtils.isEmpty(daiLiUserId)?"":daiLiUserId);

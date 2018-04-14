@@ -1,5 +1,7 @@
 package com.ruanyun.web.controller.web;
 
+import com.pay.ipspay.utils.IPSConstants;
+import com.pay.ipspay.utils.Verify;
 import com.pay.yspay.bean.PayOrder;
 import com.pay.yspay.bean.PayResult;
 import com.pay.yspay.utils.SignUtils;
@@ -28,6 +30,7 @@ import com.ruanyun.web.util.DateJsonValueProcessor;
 import com.ruanyun.web.util.HttpSessionUtils;
 import net.sf.json.JSONArray;
 import net.sf.json.JsonConfig;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -1031,7 +1034,6 @@ public class WebController extends BaseController {
     /**
      * 支付
      *
-     * @return
      */
     @RequestMapping(value = "web/payment")
     public String WebPaymentGet(HttpSession session, BigDecimal money, String bank, Model model) {
@@ -1054,8 +1056,8 @@ public class WebController extends BaseController {
                 money,
                 null,
                 null,
-                "银盛支付充值",
-                "充值" + money,
+                "支付充值",
+                "充值:" + money,
                 null,
                 null,
                 null,
@@ -1079,23 +1081,92 @@ public class WebController extends BaseController {
         );
         businessOrder = businessOrderService.save(businessOrder);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
 
         TOrderInfo orderInfo = orderInfoService.createOrderInfo(money, currentUser);
         orderInfo.setTotalPrice(money);
-        //创建wap手机直连对象
-        PayOrder bean = new PayOrder();
-        bean.setOut_trade_no(orderInfo.getOrderNum());
-        bean.setTimestamp(sdf.format(orderInfo.getOrderCreateTime()));
-        bean.setSubject("银盛支付"+ currentUser +"充值" + money + "元");
-        bean.setTotal_amount(orderInfo.getActualPrice().doubleValue());
-        bean.setBank_type(bank);
-        bean.setBank_account_type("personal");
 
-        model.addAttribute("payModel", bean);
+        String channel = paymentChannel();
 
-        //return "pc/web/pay_new";
-        return "pay/webDirectPay";
+        //银盛支付
+        if(channel.equals("yspay")){
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            //创建wap手机直连对象
+            PayOrder bean = new PayOrder();
+            bean.setOut_trade_no(orderInfo.getOrderNum());
+            bean.setTimestamp(sdf.format(orderInfo.getOrderCreateTime()));
+            bean.setSubject("银盛支付"+ currentUser +"充值" + money + "元");
+            bean.setTotal_amount(orderInfo.getActualPrice().doubleValue());
+            bean.setBank_type(bank);
+            bean.setBank_account_type("personal");
+
+            model.addAttribute("payModel", bean);
+
+            //return "pc/web/pay_new";
+            return "pay/webDirectPay";
+        }
+
+        //环迅支付
+        if(channel.equals("ips")){
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+            IPSConstants ipsConstants = new IPSConstants();
+            // 组装请求
+            // body部分
+            String bodyXml = "<body>" +
+                    "<MerBillNo>" + orderInfo.getOrderNum() + "</MerBillNo>" +
+                    "<Lang>GB</Lang>" +
+                    "<Amount>" + orderInfo.getActualPrice().doubleValue() + "</Amount>" +
+                    "<Date>" + sdf.format(orderInfo.getOrderCreateTime()) + "</Date>" +
+                    "<CurrencyType>156</CurrencyType>" +
+                    "<GatewayType>01</GatewayType>" +
+                    "<Merchanturl><![CDATA[" + ipsConstants.getMerchanturl() + "]]></Merchanturl>" +
+                    "<FailUrl><![CDATA[" + ipsConstants.getFailUrl() + "]]></FailUrl>" +
+                    "<Attach><![CDATA[]]></Attach>" +
+                    "<OrderEncodeType>5</OrderEncodeType>" +
+                    "<RetEncodeType>17</RetEncodeType>" +
+                    "<RetType>1</RetType>" +
+                    "<ServerUrl><![CDATA[" + ipsConstants.getServerUrl() + "]]></ServerUrl>" +
+                    "<BillEXP>2</BillEXP>" +
+                    "<GoodsName>充值</GoodsName>" +
+                    "<IsCredit></IsCredit>" +
+                    "<BankCode></BankCode>" +
+                    "<ProductType></ProductType>" +
+                    "</body>";
+            String sign = DigestUtils
+                    .md5Hex(Verify.getBytes(bodyXml + ipsConstants.getMERCODE() + ipsConstants.getDIRECT_STR(),
+                            "UTF-8"));
+            logger.info("签名信息：body-"+bodyXml+"， mercode-"+ipsConstants.getMERCODE()+"，md5-"+ipsConstants.getDIRECT_STR()+" ，sign-"+sign);
+            // xml
+            String date = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+            String xml = "<Ips>" +
+                    "<GateWayReq>" +
+                    "<head>" +
+                    "<Version>v1.0.0</Version>" +
+                    "<MerCode>" + ipsConstants.getMERCODE() + "</MerCode>" +
+                    "<MerName></MerName>" +
+                    "<Account>" + ipsConstants.getACCOUNT() + "</Account>" +
+                    "<MsgId>" + "msg" + date + "</MsgId >" +
+                    "<ReqDate>" + date + "</ReqDate >" +
+                    "<Signature>" + sign + "</Signature>" +
+                    "</head>" +
+                    bodyXml +
+                    "</GateWayReq>" +
+                    "</Ips>";
+            logger.info(">>>>> 【环迅】订单支付 请求信息: " + xml);
+            model.addAttribute("xml", xml);
+            model.addAttribute("action", ipsConstants.getGATEWAY_URL());
+
+            //return "pc/web/pay_new";
+            return "pay/ipspayForm";
+        }
+
+
+        return redirect("/web/index");
+    }
+
+    private String paymentChannel(){
+
+        return "ips";
     }
 
 }

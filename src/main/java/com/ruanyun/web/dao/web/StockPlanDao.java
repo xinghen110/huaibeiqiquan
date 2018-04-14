@@ -49,7 +49,7 @@ public class StockPlanDao extends BaseDaoImpl<TStockPlan> {
             if(currentUser.getUserType()!=Constants.USER_TYPE_MOTHER_01){
                 sql.append(" and FIND_IN_SET("+currentUser.getUserId()+", u.parent_code) > 0");
             }
-//			sql.append(" and u.user_type >"+Constants.USER_TYPE_MOTHER_01);
+//			sql.append(" and u.user_type >"+IPSConstants.USER_TYPE_MOTHER_01);
         }
         sql.append("  GROUP BY tsp.user_id ");
         sql.append("   ) t  ");
@@ -78,7 +78,7 @@ public class StockPlanDao extends BaseDaoImpl<TStockPlan> {
             if(currentUser.getUserType()!=Constants.USER_TYPE_MOTHER_01){
                 sql.append(" and FIND_IN_SET("+currentUser.getUserId()+", u.parent_code) > 0");
             }
-//			sql.append(" and u.user_type >"+Constants.USER_TYPE_MOTHER_01);
+//			sql.append(" and u.user_type >"+IPSConstants.USER_TYPE_MOTHER_01);
         }
 //        sql.append("  GROUP BY tsp.user_id ");
         sql.append("   ) t  ");
@@ -180,10 +180,10 @@ public class StockPlanDao extends BaseDaoImpl<TStockPlan> {
         sql.append("  LEFT JOIN t_user_info tui ON tui.user_id = tsp.user_id ");
         sql.append("  where 1=1 ");
 //        if(EmptyUtils.isNotEmpty(currentUser) &&  EmptyUtils.isNotEmpty(currentUser.getUserId())){
-//            if(currentUser.getUserType()!=Constants.USER_TYPE_MOTHER_01){
+//            if(currentUser.getUserType()!=IPSConstants.USER_TYPE_MOTHER_01){
 //                sql.append(" and FIND_IN_SET("+currentUser.getUserId()+", u.parent_code) > 0");
 //            }
-////			sql.append(" and u.user_type >"+Constants.USER_TYPE_MOTHER_01);
+////			sql.append(" and u.user_type >"+IPSConstants.USER_TYPE_MOTHER_01);
 //        }
         if (stockPlan.getPlanId() != null) {
             sql.append("      AND tsp.plan_id = :id ");
@@ -265,10 +265,10 @@ public class StockPlanDao extends BaseDaoImpl<TStockPlan> {
         sql.append("  LEFT JOIN t_user_info tui ON tui.user_id = tsp.user_id ");
         sql.append("  where 1=1 ");
 //        if(EmptyUtils.isNotEmpty(currentUser) &&  EmptyUtils.isNotEmpty(currentUser.getUserId())){
-//            if(currentUser.getUserType()!=Constants.USER_TYPE_MOTHER_01){
+//            if(currentUser.getUserType()!=IPSConstants.USER_TYPE_MOTHER_01){
 //                sql.append(" and FIND_IN_SET("+currentUser.getUserId()+", u.parent_code) > 0");
 //            }
-////			sql.append(" and u.user_type >"+Constants.USER_TYPE_MOTHER_01);
+////			sql.append(" and u.user_type >"+IPSConstants.USER_TYPE_MOTHER_01);
 //        }
         if (stockPlan.getPlanId() != null) {
             sql.append("      AND tsp.plan_id = "+stockPlan.getPlanId());

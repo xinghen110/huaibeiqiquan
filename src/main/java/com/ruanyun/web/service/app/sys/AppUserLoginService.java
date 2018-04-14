@@ -250,7 +250,7 @@ public class AppUserLoginService {
 //				String smsCountNum=NumUtils.getCommondNum(NumUtils.PIX_SMS_COUNT, smsCount.getSmsCountId());
 //				smsCount.setSmsCountNum(smsCountNum);
 //			}else{
-//				if(bean.getSendCount()>Constants.SEND_COUNT){//短信次数
+//				if(bean.getSendCount()>IPSConstants.SEND_COUNT){//短信次数
 //					model.setMsg("今日短信次数已超过五次,请改日再进行操作！！");
 //					return model;
 //				}

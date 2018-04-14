@@ -64,9 +64,9 @@ public class UserRecordController extends BaseController{
 //	public void delete(HttpServletResponse response,Integer adverInfoId){
 //		int result = adverInfoService.delete(TUserRecord.class, adverInfoId);
 //		if(result == 1){
-//			super.writeJsonData(response, CallbackAjaxDone.AjaxDone(Constants.STATUS_SUCCESS_CODE,Constants.MESSAGE_SUCCESS, "main_","adverinfo/list", "redirect"));
+//			super.writeJsonData(response, CallbackAjaxDone.AjaxDone(IPSConstants.STATUS_SUCCESS_CODE,IPSConstants.MESSAGE_SUCCESS, "main_","adverinfo/list", "redirect"));
 //		}else{
-//			super.writeJsonData(response, CallbackAjaxDone.AjaxDone(Constants.STATUS_FAILD_CODE, Constants.MESSAGE_FAILED, "","", ""));
+//			super.writeJsonData(response, CallbackAjaxDone.AjaxDone(IPSConstants.STATUS_FAILD_CODE, IPSConstants.MESSAGE_FAILED, "","", ""));
 //		}
 //	}
 	

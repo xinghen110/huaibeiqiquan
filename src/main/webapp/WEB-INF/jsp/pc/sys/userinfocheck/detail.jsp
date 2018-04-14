@@ -78,6 +78,10 @@
                     <span class="fl color-white" style="font-size: 16px; ">银行卡号：</span>
                     <div><span style="font-size: 16px; ">${userInfoCheck.bankCardNumber}</span></div>
                 </div>
+                <div class="fl" style="width: 250px; height: 50px; margin-left: 20px; ">
+                    <span class="fl color-white" style="font-size: 16px; ">开户行：</span>
+                    <div><span style="font-size: 16px; ">${userInfoCheck.depositBank}</span></div>
+                </div>
                 <div id="id_card_front" class="fl" style="width: 504px; height: 150px; margin-left: 140px">
                     <span class="fl color-white" style="font-size: 16px; ">身份证正面照片：</span>
                     <span class="fr">

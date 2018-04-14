@@ -34,7 +34,7 @@ public class RoleAuthorityService extends BaseServiceImpl<TRoleAuthority> {
 	 * @return
 	 */
 	public Integer deleteByRoleId(Integer roleId,TUser user){
-//		operationLogService.addOperationLogThead(user,"角色管理","删除角色权限",Constants.OPERA_TYPE_ROLE);
+//		operationLogService.addOperationLogThead(user,"角色管理","删除角色权限",IPSConstants.OPERA_TYPE_ROLE);
 		return roleAuthorityDao.deleteByRoleId(roleId);
 	}
 
@@ -61,7 +61,7 @@ public class RoleAuthorityService extends BaseServiceImpl<TRoleAuthority> {
 					set.add(roleAuth);
 				}
 			}
-//			operationLogService.addOperationLogThead(user,"角色管理","保存用户角色权限",Constants.OPERA_TYPE_USER);
+//			operationLogService.addOperationLogThead(user,"角色管理","保存用户角色权限",IPSConstants.OPERA_TYPE_USER);
 			return baseDao.save(set);
 		}else if(EmptyUtils.isEmpty(authCodeStr)){
 			String[] roleids=StringUtils.split(roleidsStr, SysCode.COMMA);

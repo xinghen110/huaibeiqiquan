@@ -58,7 +58,7 @@ public class RoleService extends BaseServiceImpl<TRole>{
 //				}else{
 //					content = "修改角色操作："+role.getRoleName();
 //				}
-//				operationLogService.addOperationLogThead(user,"角色管理",content,Constants.OPERA_TYPE_ROLE);
+//				operationLogService.addOperationLogThead(user,"角色管理",content,IPSConstants.OPERA_TYPE_ROLE);
 				return 1;
 		}
 		return -1;
@@ -74,7 +74,7 @@ public class RoleService extends BaseServiceImpl<TRole>{
 	@Transactional(rollbackFor=Exception.class)
 	public void deleteRole(TRole role,TUser user){
 		TRole olsRole = roleDao.get(TRole.class, role.getRoleId());
-//		operationLogService.addOperationLogThead(user,"角色管理","删除角色："+olsRole.getRoleName(),Constants.OPERA_TYPE_ROLE);
+//		operationLogService.addOperationLogThead(user,"角色管理","删除角色："+olsRole.getRoleName(),IPSConstants.OPERA_TYPE_ROLE);
 		roleDao.delete(olsRole);
 		roleAuthorityService.deleteByRoleId(role.getRoleId(),user);
 		

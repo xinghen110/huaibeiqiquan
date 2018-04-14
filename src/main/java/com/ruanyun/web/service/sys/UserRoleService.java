@@ -64,7 +64,7 @@ public class UserRoleService extends BaseServiceImpl<TUserRole> {
 					set.add(userRole);
 				}
 			}
-//			operationLogService.addOperationLogThead(user,"用户管理","修改用户角色",Constants.OPERA_TYPE_USER);
+//			operationLogService.addOperationLogThead(user,"用户管理","修改用户角色",IPSConstants.OPERA_TYPE_USER);
 			return baseDao.save(set);
 		}
 		return -1;

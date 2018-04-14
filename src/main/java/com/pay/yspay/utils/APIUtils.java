@@ -81,7 +81,7 @@ public class APIUtils {
         System.out.println("--打印所有参数--"+sPara.toString());
         StringBuilder sbHtml = new StringBuilder();
         sbHtml.append("正在跳转。。。<br/>" + "<form id=\"ysepaysubmit\" name=\"ysepaysubmit\" action=\"")
-                .append(Constants.YSEPAY_GATEWAY_URL_DF).append("\" method = \"").append("post").append("\">");
+                .append(IPSConstants.YSEPAY_GATEWAY_URL_DF).append("\" method = \"").append("post").append("\">");
 
         for (String key : keys) {
             String name = (String) key;
@@ -109,7 +109,7 @@ public class APIUtils {
         System.out.println("--打印所有参数--"+sPara.toString());
         StringBuilder sbHtml = new StringBuilder();
 
-        sbHtml.append("正在跳转。。。<br/>" + "<form id=\"ysepaysubmit\" name=\"ysepaysubmit\" action=\"").append(Constants.YSEPAY_GATEWAY_URL_DS).append("\" method = \"").append("post").append("\">");
+        sbHtml.append("正在跳转。。。<br/>" + "<form id=\"ysepaysubmit\" name=\"ysepaysubmit\" action=\"").append(IPSConstants.YSEPAY_GATEWAY_URL_DS).append("\" method = \"").append("post").append("\">");
 
         for (String key : keys) {
             String name = (String) key;

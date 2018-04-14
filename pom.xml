@@ -352,6 +352,12 @@
 		  <artifactId>guava</artifactId>
 		  <version>24.1-jre</version>
 	  </dependency>
+	  <!-- 加解密工具（支付通道使用） -->
+	  <dependency>
+		  <groupId>org.bouncycastle</groupId>
+		  <artifactId>bcprov-jdk16</artifactId>
+		  <version>1.46</version>
+	  </dependency>
   </dependencies>
   <build>
     <finalName>huaibeiqiquan</finalName>

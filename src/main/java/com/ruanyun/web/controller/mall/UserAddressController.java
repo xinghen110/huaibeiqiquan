@@ -83,9 +83,9 @@ public class UserAddressController extends BaseController{
 //		TUser user = HttpSessionUtils.getCurrentUser(session);
 //		int result = userAddressService.saveOrUpdate(userAddress,user);
 //		if(result == 1){
-//			super.writeJsonData(response, CallbackAjaxDone.AjaxDone(Constants.STATUS_SUCCESS_CODE,Constants.MESSAGE_SUCCESS, "main_","useraddress/list", "forward"));
+//			super.writeJsonData(response, CallbackAjaxDone.AjaxDone(IPSConstants.STATUS_SUCCESS_CODE,IPSConstants.MESSAGE_SUCCESS, "main_","useraddress/list", "forward"));
 //		}else{
-//			super.writeJsonData(response, CallbackAjaxDone.AjaxDone(Constants.STATUS_FAILD_CODE, Constants.MESSAGE_FAILED, "","", ""));
+//			super.writeJsonData(response, CallbackAjaxDone.AjaxDone(IPSConstants.STATUS_FAILD_CODE, IPSConstants.MESSAGE_FAILED, "","", ""));
 //		}
 //	}
 	
@@ -99,9 +99,9 @@ public class UserAddressController extends BaseController{
 //	public void delete(HttpServletResponse response,String userAddressNum){
 //		int result = userAddressService.delete(TUserAddress.class,"userAddressNum", userAddressNum);
 //		if(result == 1){
-//			super.writeJsonData(response, CallbackAjaxDone.AjaxDone(Constants.STATUS_SUCCESS_CODE,Constants.MESSAGE_SUCCESS, "main_","useraddress/list", "redirect"));
+//			super.writeJsonData(response, CallbackAjaxDone.AjaxDone(IPSConstants.STATUS_SUCCESS_CODE,IPSConstants.MESSAGE_SUCCESS, "main_","useraddress/list", "redirect"));
 //		}else{
-//			super.writeJsonData(response, CallbackAjaxDone.AjaxDone(Constants.STATUS_FAILD_CODE, Constants.MESSAGE_FAILED, "","", ""));
+//			super.writeJsonData(response, CallbackAjaxDone.AjaxDone(IPSConstants.STATUS_FAILD_CODE, IPSConstants.MESSAGE_FAILED, "","", ""));
 //		}
 //	}
 	

@@ -4,7 +4,6 @@ import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Properties;
@@ -65,7 +64,7 @@ public class Constants {
         InputStream in ;
         // 使用properties对象加载输入流
         try {
-            //in = Constants.class.getClassLoader().getResourceAsStream("../../../../../../WEB-INF/classes/yspay.properties");
+            //in = IPSConstants.class.getClassLoader().getResourceAsStream("../../../../../../WEB-INF/classes/yspay.properties");
             URL resource = Constants.class.getClassLoader().getResource("/");
             System.out.println(resource.toString());
             //properties.load(in);

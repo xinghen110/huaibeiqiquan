@@ -116,7 +116,7 @@ public class UserApplicationService extends BaseServiceImpl<TUserApplication>{
 		 	userCenterService.updateAccountBalance(user.getUserNum(), actualPrice.multiply(new BigDecimal(-1)), Constants.CONSUM_TYPE_4, Constants.PAY_TYPE_1, userApplicationNum, user.getUserType(), Constants.CONSUM_TYPE4_title,0);
 		 	
 //			//提现费率流水
-//			userCenterService.updateAccountBalance(user.getUserNum(),rateMoney.multiply(new BigDecimal(-1)),Constants.CONSUM_TYPE_4, Constants.PAY_TYPE_1,userApplicationNum,user.getUserType(),Constants.CONSUM_TYPE9_title,0);
+//			userCenterService.updateAccountBalance(user.getUserNum(),rateMoney.multiply(new BigDecimal(-1)),IPSConstants.CONSUM_TYPE_4, IPSConstants.PAY_TYPE_1,userApplicationNum,user.getUserType(),IPSConstants.CONSUM_TYPE9_title,0);
 
 		}
 		return userApplication; 
@@ -154,7 +154,7 @@ public class UserApplicationService extends BaseServiceImpl<TUserApplication>{
             BigDecimal totalPrice = userApplication.getMoney(); //提现总金额
             //更新账户余额
             userCenterService.updateAccountBalance(shopUser.getUserNum(),totalPrice, Constants.CONSUM_TYPE_4, Constants.PAY_TYPE_1, userApplication.getUserApplicationNum(),Constants.USER_TYPE_2,Constants.CONSUM_TYPE4_1_title,0);
-            //smsInfoService.saveSms("提现失败", bean.getHandleRemark(),userApplication.getUserApplicationNum() , shopUser.getUserNum(), "ZJLZ", Constants.SYSTEM_CODE, Constants.USER_TYPE_2, userApplication.getUserNum(), Constants.SYS_TYPE_2, "");
+            //smsInfoService.saveSms("提现失败", bean.getHandleRemark(),userApplication.getUserApplicationNum() , shopUser.getUserNum(), "ZJLZ", IPSConstants.SYSTEM_CODE, IPSConstants.USER_TYPE_2, userApplication.getUserNum(), IPSConstants.SYS_TYPE_2, "");
         }
         return 1;
     }

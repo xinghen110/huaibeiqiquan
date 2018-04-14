@@ -92,7 +92,7 @@ public class UserService extends BaseServiceImpl<TUser> {
 		if (EmptyUtils.isEmpty(loginName.trim()))
 			return -3;// 登录名为空
 		 
-//		TUser user = userDao.getUserInfo(loginName, type);// this.get(TUser.class, new String[] { "loginName","userStatus","userType" }, new Object[] { loginName.trim(),Constants.GLOBAL_STATUS,type });
+//		TUser user = userDao.getUserInfo(loginName, type);// this.get(TUser.class, new String[] { "loginName","userStatus","userType" }, new Object[] { loginName.trim(),IPSConstants.GLOBAL_STATUS,type });
 		TUser user = userDao.getUserInfomation(loginName, type);
 		if (EmptyUtils.isNotEmpty(user)) {
 /*			if("2".equals(type)){
@@ -512,7 +512,7 @@ public class UserService extends BaseServiceImpl<TUser> {
 			update(users);
 			//操作日志
 //			operationLogService.addOperationLogThead(currentUser, "用户管理", "重置用户："
-//					+ users.getLoginName() + " 的密码", Constants.OPERA_TYPE_USER);
+//					+ users.getLoginName() + " 的密码", IPSConstants.OPERA_TYPE_USER);
 			return 1;
 		}
 		return 0;
@@ -859,7 +859,7 @@ public class UserService extends BaseServiceImpl<TUser> {
 		if(user.getUserType()==1) {
 			//TODO 这里需要添加添加时候自选的用户角色
 			roleId = role.getRoleId();
-//			roleId = Constants.USER_TYPE_MOTHER_01;
+//			roleId = IPSConstants.USER_TYPE_MOTHER_01;
 		}
 		if(user.getUserType()==2)
 			roleId=Constants.USER_TYPE_CHILD_02;

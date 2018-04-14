@@ -260,7 +260,7 @@ public class UserController extends BaseController {
 		int result=userService.updatePass(user, currentUser);
 		if (result==1) {
 			return REDIRECT +"/loginout";
-//			super.writeJsonData(response, CallbackAjaxDone.AjaxDone(Constants.STATUS_SUCCESS_CODE,"密码修改成功！请重新登录...", "", "loginout", "forward"));
+//			super.writeJsonData(response, CallbackAjaxDone.AjaxDone(IPSConstants.STATUS_SUCCESS_CODE,"密码修改成功！请重新登录...", "", "loginout", "forward"));
 		}else{
 			super.writeJsonData(response, CallbackAjaxDone.AjaxDone(Constants.STATUS_FAILD_CODE, Constants.MESSAGE_FAILED, "", "", ""));
 			return null;

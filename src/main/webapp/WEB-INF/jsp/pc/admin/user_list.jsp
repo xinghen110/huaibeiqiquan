@@ -185,6 +185,7 @@
             <th width="80" align="center">是否实名认证</th>
             <th width="80" align="center">姓名</th>
             <th width="50" align="center">银行卡号</th>
+            <th width="50" align="center">开户行</th>
             </c:if>
             <th width="50" align="center">性别</th>
             <th width="60" align="center" >电话号码</th>
@@ -207,6 +208,7 @@
                 <td>${item.status == 1?"是":"否"}</td>
                 <td>${item.userName}</td>
                 <td>${item.bankCardNumber}</td>
+                <td>${item.depositBank}</td>
                 </c:if>
                 <td><ry:show parentCode="USERSEX" itemCode="${item.userSex}"></ry:show></td>
                 <td>${item.userPhone}</td>

@@ -43,7 +43,7 @@ public class AuthorityService extends BaseServiceImpl<TAuthority>{
 	public TAuthority update(TAuthority auth,TUser user) {
 		TAuthority oldAuth=get(TAuthority.class, auth.getAuthId());
 		BeanUtils.copyProperties(auth,oldAuth,new String[]{"authId","authCode","createdate"});
-//		operationLogService.addOperationLogThead(user,"权限管理","修改权限操作",Constants.OPERA_TYPE_AUTH);
+//		operationLogService.addOperationLogThead(user,"权限管理","修改权限操作",IPSConstants.OPERA_TYPE_AUTH);
 		return super.save(oldAuth);
 	}
 	
@@ -133,12 +133,12 @@ public class AuthorityService extends BaseServiceImpl<TAuthority>{
 				auth.setCreatedate(new Date());
 				save(auth);
 				//String opLogCon=EmptyUtils.isEmpty(auth.getAuthId())?"新增权限":"";
-//				operationLogService.addOperationLogThead(user,"权限管理","新增权限为："+auth.getAuthName(),Constants.OPERA_TYPE_AUTH);
+//				operationLogService.addOperationLogThead(user,"权限管理","新增权限为："+auth.getAuthName(),IPSConstants.OPERA_TYPE_AUTH);
 				auth.setAuthCode(getAuthCode(auth.getAuthId()));
 				return 1;
 			}else{
 				update(auth);
-//				operationLogService.addOperationLogThead(user,"权限管理","修改权限为:"+auth.getAuthName(),Constants.OPERA_TYPE_AUTH);
+//				operationLogService.addOperationLogThead(user,"权限管理","修改权限为:"+auth.getAuthName(),IPSConstants.OPERA_TYPE_AUTH);
 				return 1;
 			}
 		}
@@ -183,7 +183,7 @@ public class AuthorityService extends BaseServiceImpl<TAuthority>{
 //				authName=auth.getAuthName();//被删除的  权限名称
 				
 			}
-//			operationLogService.addOperationLogThead(user,"权限管理","删除权限:"+authName,Constants.OPERA_TYPE_AUTH);
+//			operationLogService.addOperationLogThead(user,"权限管理","删除权限:"+authName,IPSConstants.OPERA_TYPE_AUTH);
 			return 1;
 		}
 		return -1;

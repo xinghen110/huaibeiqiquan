@@ -328,7 +328,7 @@ public class UserDao extends BaseDaoImpl<TUser>{
 			if(currentUser.getUserType()!=Constants.USER_TYPE_MOTHER_01){
 				sql.append(" and FIND_IN_SET("+currentUser.getUserId()+", u.parent_code) > 0");
 			}
-//			sql.append(" and u.user_type >"+Constants.USER_TYPE_MOTHER_01);
+//			sql.append(" and u.user_type >"+IPSConstants.USER_TYPE_MOTHER_01);
 		}
 		if(EmptyUtils.isNotEmpty(selectInviteUser)&& EmptyUtils.isNotEmpty(selectInviteUser.getNickName())){
 			sql.append("      AND u.nick_name like :nickName ");
@@ -552,7 +552,7 @@ public class UserDao extends BaseDaoImpl<TUser>{
 			if(currentUser.getUserType()!=Constants.USER_TYPE_MOTHER_01 && String.valueOf(Constants.USER_TYPE_SPREAD_04).equals(currentUser.getFlag3())){
 				sql.append(" and FIND_IN_SET("+currentUser.getUserId()+", u.parent_code) > 0");
 			}
-//			sql.append(" and u.user_type >"+Constants.USER_TYPE_MOTHER_01);
+//			sql.append(" and u.user_type >"+IPSConstants.USER_TYPE_MOTHER_01);
 		}
 		if(EmptyUtils.isNotEmpty(selectInviteUser)&& EmptyUtils.isNotEmpty(selectInviteUser.getNickName())){
 			sql.append("      AND u.nick_name like :nickName ");

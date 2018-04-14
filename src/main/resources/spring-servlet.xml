@@ -76,6 +76,7 @@
 					/transaction/**
 					/layer/**
 					/yspay/**
+					/ipspay/**
 				</value>
 			</property>
 			<!--  权限验证的黑名单 -->
@@ -113,7 +114,8 @@
 				</value>
 			</property>
 			<!--  权限验证 无权限时跳转路径 -->
-			<property name="noSession" value="mobile/stock/login" />
+			<!--<property name="noSession" value="/mobile/stock/login" />-->
+			<property name="noSession" value="/web/stock/login" />
 		</bean>
 	</mvc:interceptors>
 
@@ -157,6 +159,10 @@
 	</context:component-scan>
 	<!-- 扫描controller类 -->
 	<context:component-scan base-package="com.pay.yspay.controller">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	<!-- 扫描controller类 -->
+	<context:component-scan base-package="com.pay.ipspay.controller">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	

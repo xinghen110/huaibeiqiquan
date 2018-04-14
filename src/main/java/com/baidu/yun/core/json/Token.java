@@ -18,7 +18,7 @@ public class Token implements java.io.Serializable {
   /**
    * An integer that describes the kind of this token.  This numbering
    * system is determined by JavaCCParser, and a table of these numbers is
-   * stored in the file ...Constants.java.
+   * stored in the file ...IPSConstants.java.
    */
   public int kind;
 

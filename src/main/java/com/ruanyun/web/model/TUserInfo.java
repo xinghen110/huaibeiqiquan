@@ -23,6 +23,7 @@ public class TUserInfo  implements java.io.Serializable {
      private String idCardBackView;
      private String bankId;
      private String bankCardNumber;
+     private String depositBank;
      private String backCardPhoto;
      private Integer status;
 
@@ -33,7 +34,9 @@ public class TUserInfo  implements java.io.Serializable {
     public TUserInfo(Integer userId) {
         this.userId = userId;
     }
-    public TUserInfo(Integer userId, String userName, String idNumber, String idCardFrontView, String idCardBackView, String bankId, String bankCardNumber, String backCardPhoto,Integer status) {
+    public TUserInfo(Integer userId, String userName, String idNumber, String idCardFrontView,
+                     String idCardBackView, String bankId, String bankCardNumber,
+                     String backCardPhoto,Integer status,String depositBank) {
        this.userId = userId;
        this.userName = userName;
        this.idNumber = idNumber;
@@ -41,6 +44,7 @@ public class TUserInfo  implements java.io.Serializable {
        this.idCardBackView = idCardBackView;
        this.bankId = bankId;
        this.bankCardNumber = bankCardNumber;
+       this.depositBank = depositBank;
        this.backCardPhoto = backCardPhoto;
        this.status=status;
     }
@@ -109,7 +113,16 @@ public class TUserInfo  implements java.io.Serializable {
     public void setBankCardNumber(String bankCardNumber) {
         this.bankCardNumber = bankCardNumber;
     }
-    
+
+    @Column(name="deposit_bank")
+    public String getDepositBank() {
+        return depositBank;
+    }
+
+    public void setDepositBank(String depositBank) {
+        this.depositBank = depositBank;
+    }
+
     @Column(name="back_card_photo", length=65535)
     public String getBackCardPhoto() {
         return this.backCardPhoto;

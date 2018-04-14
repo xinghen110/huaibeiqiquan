@@ -13,6 +13,7 @@ import com.ruanyun.web.util.HttpRequestUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,6 +75,11 @@ public class UserStockService extends BaseServiceImpl<TUserStock> {
             return null;
         }
         String[] strs = result.split("\"");
+        try {
+            strs[1] = new String(strs[1].getBytes("iso-8859-1"), "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         String[] dataArray = strs[1].split(",");
 
         return dataArray;

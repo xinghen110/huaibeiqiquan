@@ -93,11 +93,11 @@ public class FileUtils {
 	 */
 //	public int lessenImage(MultipartFile file, String name,HttpServletRequest request){
 //		//缩小的图片路劲
-//		String lessen_path=CommonMethod.getProjectPath(request)+Constants.FILE_NARROW_PATH +name;
+//		String lessen_path=CommonMethod.getProjectPath(request)+IPSConstants.FILE_NARROW_PATH +name;
 //		
 //		try {
 //			//生成小图文件文件
-//			File lessen_files = ImageUtil.getLessen_Image(file.getInputStream(),lessen_path,Constants.PIC_COMPRESS_RATIO);
+//			File lessen_files = ImageUtil.getLessen_Image(file.getInputStream(),lessen_path,IPSConstants.PIC_COMPRESS_RATIO);
 //			if (EmptyUtils.isEmpty(lessen_files)) {
 //				lessen_files=new File(lessen_path);
 //				//判断是否存在，不存在则创建

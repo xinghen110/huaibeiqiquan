@@ -171,6 +171,7 @@
 			<th width="center" align="center">上级归属</th>
 			<th width="center" align="center">银行卡所属银行</th>
 			<th width="center" align="center">银行卡号码</th>
+			<th width="center" align="center">开户行</th>
 			<%--<th width="center" align="center">银行卡照片</th>--%>
 			<th width="center" align="center">银行卡审核状态</th>
 			<th width="center" align="center">操作</th></tr>
@@ -195,6 +196,7 @@
 					<%--<td>${item.userName}</td>--%>
 				<td>${item.bankId}</td>
 				<td>${item.bankCardNumber}</td>
+				<td>${item.depositBank}</td>
 					<%--<td>${item.userName}</td>--%>
 				<td>
 					<c:choose>

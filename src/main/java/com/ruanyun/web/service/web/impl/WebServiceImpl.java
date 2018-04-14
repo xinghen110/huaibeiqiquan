@@ -114,7 +114,7 @@ public class WebServiceImpl extends BaseServiceImpl implements WebInterface {
 //        for (TStockInfo jsonObject : list) {
 //            Map map = new HashMap();
 //            String servcieFeeData = jsonObject.getHv30().toString();
-//           if(Constants.twoMonth.equals(cycle)){
+//           if(IPSConstants.twoMonth.equals(cycle)){
 //               servcieFeeData = jsonObject.getHv60().toString();
 //            }
 //            BigDecimal serviceFee = new BigDecimal(servcieFeeData);

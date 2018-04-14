@@ -564,6 +564,10 @@ public class MobileController extends BaseController {
             addModel(model, "msg", "银行卡号不能为空");
             return redirect("/mobile/realname/bindingcard");
         }
+        if (EmptyUtils.isEmpty(userInfo.getDepositBank())) {
+            addModel(model, "msg", "开户行不能为空");
+            return redirect("/mobile/realname/bindingcard");
+        }
         if (EmptyUtils.isEmpty(userInfo.getBackCardPhoto())) {
             addModel(model, "msg", "银行照片不能为空或不能为默认图片");
             return redirect("/mobile/realname/bindingcard");
@@ -774,6 +778,21 @@ public class MobileController extends BaseController {
         for (Map map : stockPlanListMap) {
             map.put("serviceFee", "");
             map.put("manageFee", "");
+            String profit;
+            try{
+                double cprice = Double.parseDouble(webService.queryDataFromSina((String) map.get("symbol"))[3]);
+                double buyMarketPrice = Double.parseDouble((String)map.get("buyMarketPrice"));
+                double curPrice = Double.parseDouble((String)map.get("curPrice"));
+
+                if(curPrice == 0){
+                    profit = "--";
+                }else{
+                    profit = Double.toString((buyMarketPrice/curPrice)*cprice);
+                }
+            }catch (Exception e){
+                profit = "--";
+            }
+            map.put("yingkui", profit);
         }
 
         JsonConfig config = new JsonConfig();

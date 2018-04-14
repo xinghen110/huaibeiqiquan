@@ -129,7 +129,7 @@ public class UserAccountFlowDao extends BaseDaoImpl<TUserAccountFlow> {
             if(user.getUserType()!=Constants.USER_TYPE_MOTHER_01){
                 sql.append(" and FIND_IN_SET("+user.getUserId()+", u.parent_code) > 0");
             }
-//			sql.append(" and u.user_type >"+Constants.USER_TYPE_MOTHER_01);
+//			sql.append(" and u.user_type >"+IPSConstants.USER_TYPE_MOTHER_01);
         }
         //查询包括下属的信息
         if(EmptyUtils.isNotEmpty(selectType)&&"child".equals(selectType)&&user.getUserType()!= Constants.USER_TYPE_MOTHER_01){

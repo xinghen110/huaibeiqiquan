@@ -64,7 +64,7 @@ public class CopyCach implements SystemCacheService{
 	 * @author L H T  2014-6-5 下午04:36:44
 	 * 
 	 * @param <T>
-	 * @param clz Constants.class
+	 * @param clz IPSConstants.class
 	 * @param parentCode 字典表父类型code
 	 */
 	@SuppressWarnings("static-access")
@@ -103,7 +103,7 @@ public class CopyCach implements SystemCacheService{
 	 * @author L H T  2014-6-5 下午04:36:44
 	 * 
 	 * @param <T>
-	 * @param clz Constants.class
+	 * @param clz IPSConstants.class
 	 * @param parentCode 字典表父类型code
 	 */
 	@SuppressWarnings("static-access")

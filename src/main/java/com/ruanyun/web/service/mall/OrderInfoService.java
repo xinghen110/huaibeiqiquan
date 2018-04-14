@@ -344,7 +344,7 @@ public class OrderInfoService extends BaseServiceImpl<TOrderInfo>{
 
 		TOrderInfo orderInfo=super.get(TOrderInfo.class,"orderNum",orderNum);
 
-		System.out.println("orderNum======="+orderNum);
+		logger.warn("orderNum======="+orderNum);
 
 		TUser _user=userService.get(TUser.class,Integer.parseInt(orderInfo.getUserNum()));
 
@@ -354,11 +354,11 @@ public class OrderInfoService extends BaseServiceImpl<TOrderInfo>{
 			orderInfo.setPayTime(new Date());
 			update(orderInfo);
 
-			System.out.println("--------getOrderStatus------------------"+orderInfo.getOrderStatus());
+			logger.warn("--------getOrderStatus------------------"+orderInfo.getOrderStatus());
 
 			//修改账户金额
 			TUserAccount userAccount=userAccountService.updateAccount(_user.getUserId(),orderInfo.getActualPrice(), orderNum);
-			System.out.println("money============"+userAccount.getMoney());
+			logger.warn("money============"+userAccount.getMoney());
 			return 1;
 		}
 		return  0;

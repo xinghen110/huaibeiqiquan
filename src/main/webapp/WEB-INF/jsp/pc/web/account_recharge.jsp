@@ -99,7 +99,7 @@
                 <th>充值金额</th>
                 <td><input id="money" class="fl" type="number" placeholder="请输入充值金额" name="money" />元</td>
             </tr>
-            <tr>
+<%--            <tr>
                 <th>选择银行</th>
                 <td>
                     <select id="bank" name="bank">
@@ -127,7 +127,7 @@
                         <option value="3041000">华夏银行</option>
                     </select>
                 </td>
-            </tr>
+            </tr>--%>
         </table>
         <button class="next_btn" type="button" onclick="checkForm();">下一步</button>
         </form>
@@ -166,13 +166,13 @@
         }else {
             isOk = true;
         }
-        if(!$("#bank").val()){
+        /*if(!$("#bank").val()){
             isOk = false;
             alert("请选择充值银行");
             return false;
         }else {
             isOk = true;
-        }
+        }*/
         if(isOk){
             $("#form").submit();
         }

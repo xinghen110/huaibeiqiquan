@@ -25,13 +25,18 @@ public class TUserInfoCheck  implements java.io.Serializable {
      private String idCardBackView;
      private String bankId;
      private String bankCardNumber;
+     private String depositBank;
      private String backCardPhoto;
      private String checkResult;
 
     public TUserInfoCheck() {
     }
 
-    public TUserInfoCheck(Integer userId, String userName, String idNumber, String idCardFrontView, String idCardBackView, String bankId, String bankCardNumber, String backCardPhoto, String checkResult) {
+    public TUserInfoCheck(Integer userId, String userName, String idNumber,
+                          String idCardFrontView, String idCardBackView,
+                          String bankId, String bankCardNumber, String backCardPhoto,
+                          String checkResult,
+                          String depositBank) {
        this.userId = userId;
        this.userName = userName;
        this.idNumber = idNumber;
@@ -39,11 +44,12 @@ public class TUserInfoCheck  implements java.io.Serializable {
        this.idCardBackView = idCardBackView;
        this.bankId = bankId;
        this.bankCardNumber = bankCardNumber;
+       this.depositBank = depositBank;
        this.backCardPhoto = backCardPhoto;
        this.checkResult = checkResult;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+    @Id @GeneratedValue(strategy=IDENTITY)
     
     @Column(name="id", unique=true, nullable=false)
     public Integer getId() {
@@ -116,7 +122,16 @@ public class TUserInfoCheck  implements java.io.Serializable {
     public void setBankCardNumber(String bankCardNumber) {
         this.bankCardNumber = bankCardNumber;
     }
-    
+
+    @Column(name="deposit_bank")
+    public String getDepositBank() {
+        return depositBank;
+    }
+
+    public void setDepositBank(String depositBank) {
+        this.depositBank = depositBank;
+    }
+
     @Column(name="back_card_photo", length=65535)
     public String getBackCardPhoto() {
         return this.backCardPhoto;
