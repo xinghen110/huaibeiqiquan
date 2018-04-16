@@ -78,7 +78,7 @@
                     <span class="fl color-white" style="font-size: 16px; ">银行卡号：</span>
                     <div><span style="font-size: 16px; ">${userInfoCheck.bankCardNumber}</span></div>
                 </div>
-                <div class="fl" style="width: 250px; height: 50px; margin-left: 20px; ">
+                <div class="fl" style="width: 250px; height: 50px; margin-left: 140px; ">
                     <span class="fl color-white" style="font-size: 16px; ">开户行：</span>
                     <div><span style="font-size: 16px; ">${userInfoCheck.depositBank}</span></div>
                 </div>

@@ -13,7 +13,7 @@
 <div>
     <h1>
         <c:if test="${result==0}">支付失败</c:if>
-        <c:if test="${result==1}">支付成功</c:if>
+        <c:if test="${result==1}">支付失败</c:if>
     </h1>
 
     <a href="#" onclick="towebStockUserinfo()">返回</a>

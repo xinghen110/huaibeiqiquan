@@ -76,6 +76,7 @@ public class UserInfoCheckDao extends BaseDaoImpl<TUserInfoCheck> {
         sql.append("  tuic.id_card_back_view  AS idCardBackView,");
         sql.append("  tuic.bank_id            AS bankId,");
         sql.append("  tuic.bank_card_number   AS bankCardNumber,");
+        sql.append("  tuic.deposit_bank       AS depositBank,");
         sql.append("  tuic.back_card_photo    AS backCardPhoto,");
         sql.append("  u.login_name            AS loginName,");
         sql.append("  parentUser.login_name   AS parentUserLoginName,");

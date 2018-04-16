@@ -319,6 +319,7 @@ public class UserDao extends BaseDaoImpl<TUser>{
 		sql.append("  ui.user_name          AS userName,");
 		sql.append("  ui.id_number          AS idNumber,");
 		sql.append("  ui.bank_card_number   AS bankCardNumber,");
+		sql.append("  ui.deposit_bank   	AS depositBank,");
 		sql.append("  ui.status          	AS status,");
 		sql.append("  parentUser.login_name AS parentLoginName,");
 		sql.append("  u.member_level       	AS memberLevel");
