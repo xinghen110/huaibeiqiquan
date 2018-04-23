@@ -43,7 +43,7 @@
             </li>
 
             <li data-icon="false" style="margin-top: .13em;">
-                <a data-ajax="false" onclick="javascript:alert('手机端目前不支持入金，入金请登录pc端:www.jdhuhang.com');" href="javascript:void();">
+                <a data-ajax="false" onclick="javascript:alert('手机端目前不支持入金，入金请登录pc端:www.topbyue.com');" href="javascript:void();">
                     <img src="img/mobile/icon_user_rules.png" class="ui-li-icon"><h4 class="color-w">扫码支付<img class="fr" width="18px" src="img/mobile/icon_arrow_right.png" /></h4>
                 </a>
             </li>

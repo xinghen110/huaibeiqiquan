@@ -15,19 +15,18 @@
 					<a data-ajax = "false" href="mobile/stock/plan/list?orderStatus=4" class="fl seleced_title">已结算</a>
 					<a data-ajax = "false" href="mobile/stock/plan/list?orderStatus=-1" class="fl">申请失败</a>
 				</h4>
-				<div style="overflow: auto;">
+				<div style="overflow: scroll;margin-bottom:20px;">
 					<table cellspacing="0" cellpadding="0">
 						<tr>
 							<th class="color-w size-9">订单号</th>
 							<th class="color-w size-9 two">股票名称</th>
 							<th class="color-w size-9">股票代码</th>
-							<th class="color-w size-9">股票价格</th>
 							<th class="color-w size-9">名义本金</th>
 							<th class="color-w size-9">买入类型</th>
-							<th class="color-w size-9">买入限价</th>
+							<th class="color-w size-9">买入价格</th>
 							<th class="color-w size-9">申买时间</th>
 							<th class="color-w size-9">卖出类型</th>
-							<th class="color-w size-9">卖出限价</th>
+							<th class="color-w size-9">卖出价格</th>
 							<th class="color-w size-9">申卖时间</th>
 							<th class="color-w size-9">管理费</th>
 							<th class="color-w size-9">收益</th>
@@ -35,16 +34,16 @@
 						<c:forEach var="item" items="${stockPlanListMap}">
 							<tr>
 								<td class="color-w size-9">${item.planId}</td>
-								<td class="color-w size-9 two">${item.symbolName}</td>
-								<td class="color-w size-9">${item.symbol}</td>
-								<td class="color-w size-9">${item.curPrice}</td>
+								<td class="color-w size-9 two">${item.symbol}</td>
+								<td class="color-w size-9">${item.symbolName}</td>
 								<td class="color-w size-9">${item.buyMarketPrice}</td>
 								<td class="color-w size-9">${item.buyPriceTypeName}</td>
-								<td class="color-w size-9">${item.buyLimitPrice}</td>
-								<td class="color-w size-9"><fmt:formatDate value="${plan.createTime}" pattern="yy/MM/dd"/></td>
+								<!--<td class="color-w size-9">${item.buyLimitPrice}</td>-->
+                                <td class="color-w size-9">${item.buyPrice}</td><!--买入价格-->
+								<td class="color-w size-9"><fmt:formatDate value="${item.createTime}" pattern="yyyy/MM/dd"/></td>
 								<td class="color-w size-9">${item.sellPriceTypeName}</td>
-								<td class="color-w size-9">${item.sellLimitPrice}</td>
-								<td class="color-w size-9"><fmt:formatDate value="${item.sellCreateTime}" pattern="yy/MM/dd"/></td>
+								<td class="color-w size-9">${item.sellPrice}</td><!--卖出价格-->
+								<td class="color-w size-9"><fmt:formatDate value="${item.sellCreateTime}" pattern="yyyy/MM/dd"/></td>
 								<td class="color-w size-9">${item.fee}</td>
 								<td class="color-w size-9">${item.profit}</td>
 							</tr>
@@ -52,7 +51,7 @@
 					</table>
 				</div>
 				<!-- 底部 -->
-				<div class="footer">
+				<div class="footer"; height="44px";>
 					<div class="fl">
 						<a href="mobile/option/labels" data-ajax = "false">
 							<img src="img/mobile/tab_select_white.png" />
@@ -84,11 +83,11 @@
 			    var thW = windowW*0.25;//每个th的宽度
 			    $('#my_scheme_settlement table th').css('width',windowW*0.25);//th宽度赋值
 			     $('#my_scheme_settlement table td').css('width',windowW*0.25);//th宽度赋值
-			   // $('#my_scheme_settlement .two').css('margin-left',windowW*0.25)//设置第二个th的margin-left
+			    $('#my_scheme_settlement .two').css('padding-left',windowW*0.25)//设置第二个th的margin-left
 				//计算总的table宽度
 				var tableW = 0;
 				if(i>4){
-					tableW = thW * i+1;
+					tableW = thW * (i-1);
 				}else{
 					tableW = thW * i;
 				}

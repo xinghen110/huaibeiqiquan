@@ -1,8 +1,5 @@
 package com.ruanyun.web.controller.web;
 
-import com.pay.ipspay.utils.IPSConstants;
-import com.pay.ipspay.utils.Verify;
-import com.pay.yspay.bean.PayOrder;
 import com.pay.yspay.bean.PayResult;
 import com.pay.yspay.utils.SignUtils;
 import com.ruanyun.common.controller.BaseController;
@@ -15,7 +12,6 @@ import com.ruanyun.web.model.mall.TOrderInfo;
 import com.ruanyun.web.model.payeasy.OrderParmentResultReturnEntity;
 import com.ruanyun.web.model.payeasy.StandardPaymentRequestEntity;
 import com.ruanyun.web.model.payeasy.StandardPaymentRetuenEntity;
-import com.ruanyun.web.model.sys.TDictionary;
 import com.ruanyun.web.model.sys.TUser;
 import com.ruanyun.web.model.web.SearchPriceContentModel;
 import com.ruanyun.web.service.mall.AdverInfoService;
@@ -25,12 +21,9 @@ import com.ruanyun.web.service.sys.UserService;
 import com.ruanyun.web.service.web.BusinessOrderService;
 import com.ruanyun.web.service.web.UserInfoService;
 import com.ruanyun.web.service.web.WebInterface;
-import com.ruanyun.web.util.Constants;
-import com.ruanyun.web.util.DateJsonValueProcessor;
-import com.ruanyun.web.util.HttpSessionUtils;
+import com.ruanyun.web.util.*;
 import net.sf.json.JSONArray;
 import net.sf.json.JsonConfig;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,13 +36,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
+@SuppressWarnings({"unused", "unchecked"})
 public class WebController extends BaseController {
 
     @Autowired
@@ -72,7 +64,6 @@ public class WebController extends BaseController {
     /**
      * 访问首页
      *
-     * @return
      */
     @RequestMapping(value = "/web/index", method = RequestMethod.GET)
     public String toWebIndex(Model model, Page page, TArticle article) {
@@ -85,7 +76,6 @@ public class WebController extends BaseController {
     /**
      * 盈亏计算器
      *
-     * @return
      */
     @RequestMapping(value = "/web/yingkui", method = RequestMethod.GET)
     public String toYingkuiCalc() {
@@ -95,7 +85,6 @@ public class WebController extends BaseController {
     /**
      * 跳转到投资保障界面
      *
-     * @return
      */
     @RequestMapping(value = "/web/protection", method = RequestMethod.GET)
     public String toInvestProtect(TAdverInfo adverInfo, Model model, String flag1) {
@@ -112,7 +101,6 @@ public class WebController extends BaseController {
     /**
      * 跳转到文章详情详情
      *
-     * @return
      */
     @RequestMapping(value = "/web/news/detail", method = RequestMethod.GET)
     public String toNewsDetail(TArticle article, Model model) {
@@ -124,7 +112,6 @@ public class WebController extends BaseController {
     /**
      * 跳转到产品信息界面
      *
-     * @return
      */
     @RequestMapping(value = "/web/product", method = RequestMethod.GET)
     public String toProductIntroduction(Model model, TArticle article, Page page) {
@@ -139,7 +126,6 @@ public class WebController extends BaseController {
     /**
      * 跳转个股计算
      *
-     * @return
      */
     @RequestMapping(value = "/web/stock/count", method = RequestMethod.GET)
     public String toStockCount() {
@@ -150,7 +136,6 @@ public class WebController extends BaseController {
     /**
      * 跳转到视频列表界面
      *
-     * @return
      */
     @RequestMapping(value = "/web/video/list", method = RequestMethod.GET)
     public String toVideoList() {
@@ -171,7 +156,6 @@ public class WebController extends BaseController {
     /**
      * 跳转到视频详情界面
      *
-     * @return
      */
     @RequestMapping(value = "/web/video/detail", method = RequestMethod.GET)
     public String toVideoDetail() {
@@ -181,7 +165,6 @@ public class WebController extends BaseController {
     /**
      * 跳转到产品介绍界面
      *
-     * @return
      */
     @RequestMapping(value = "/web/product/about", method = RequestMethod.GET)
     public String toProductAbout() {
@@ -191,7 +174,6 @@ public class WebController extends BaseController {
     /**
      * 跳转到期货案例界面
      *
-     * @return
      */
     @RequestMapping(value = "/web/product/case", method = RequestMethod.GET)
     public String toProductCase() {
@@ -201,7 +183,6 @@ public class WebController extends BaseController {
     /**
      * 产品特点
      *
-     * @return
      */
     @RequestMapping(value = "/web/product/feature", method = RequestMethod.GET)
     public String toProductFeature() {
@@ -211,7 +192,6 @@ public class WebController extends BaseController {
     /**
      * 期权期货区别
      *
-     * @return
      */
     @RequestMapping(value = "/web/product/difference", method = RequestMethod.GET)
     public String toProductDifference() {
@@ -233,7 +213,6 @@ public class WebController extends BaseController {
      * 跳转行业资讯
      * 将url做了修改，从url本身并不能看出意义，索性改成具体含义的url
      *
-     * @return
      */
     @RequestMapping(value = "/web/industry/information/list", method = RequestMethod.GET)
     public String toIndustryInfoList(TArticle article, Page page, Model model) {
@@ -264,7 +243,6 @@ public class WebController extends BaseController {
      * 实时开户
      * 跳转到实时开户
      *
-     * @return
      */
     @RequestMapping(value = "/web/realTime/open", method = RequestMethod.GET)
     public String toRealTimeOpen(HttpSession session) {
@@ -279,7 +257,7 @@ public class WebController extends BaseController {
 //        return "pc/web/realTimeOpening_personalData";
     }
 
-    /**
+    /*
      * 实名认证
      * 跳转到实时开户
      *
@@ -293,8 +271,6 @@ public class WebController extends BaseController {
 
     /**
      * 关于我们
-     *
-     * @return
      */
     @RequestMapping(value = "/web/aboutus", method = RequestMethod.GET)
     public String toAboutsUs() {
@@ -304,7 +280,6 @@ public class WebController extends BaseController {
     /**
      * 集团介绍
      *
-     * @return
      */
     @RequestMapping(value = "/web/aboutgroup", method = RequestMethod.GET)
     public String toAboutGroup() {
@@ -314,7 +289,6 @@ public class WebController extends BaseController {
     /**
      * 跳转到实时解盘列表界面
      *
-     * @return
      */
     @RequestMapping(value = "/web/latest/analysis/information/list", method = RequestMethod.GET)
     public String toWebNewsList(TArticle article, Page page, Model model) {
@@ -344,7 +318,6 @@ public class WebController extends BaseController {
     /**
      * 跳转到软件下载界面，由扫描二维码链接到资源位置进行下载
      *
-     * @return
      */
     @RequestMapping(value = "/web/download", method = RequestMethod.GET)
     public String toWebDownload() {
@@ -354,7 +327,6 @@ public class WebController extends BaseController {
     /**
      * 跳转到快速登录
      *
-     * @return
      */
     @RequestMapping(value = "/web/stock/login", method = RequestMethod.GET)
     public String toWebStockLogin() {
@@ -364,7 +336,6 @@ public class WebController extends BaseController {
     /**
      * 执行登录操作
      *
-     * @return
      */
     @RequestMapping(value = "/web/stock/login", method = RequestMethod.POST)
     public String doWebStockLogin(Model model, HttpServletRequest request, HttpSession session, TUser user) {
@@ -389,7 +360,6 @@ public class WebController extends BaseController {
     /**
      * 快速注册
      *
-     * @return
      */
     @RequestMapping(value = "/web/stock/register", method = RequestMethod.GET)
     public String toWebStockRegister(HttpSession session, String parentCode) {
@@ -400,12 +370,11 @@ public class WebController extends BaseController {
     /**
      * 执行注册操作
      *
-     * @return
      */
     @RequestMapping(value = "/web/stock/register", method = RequestMethod.POST)
     public String doWebStockRegister(Model model, String nickName, String loginName, String loginPass, String parentCode,String identityCode) {
-        String oldParentCode = null;
-        String newParentCode = null;
+        String oldParentCode;
+        String newParentCode;
         if (EmptyUtils.isEmpty(parentCode)) {
             addModel(model, "msg", "请输入推广码！");
             return redirect("/web/stock/register");
@@ -443,7 +412,6 @@ public class WebController extends BaseController {
     /**
      * 登出
      *
-     * @return
      */
     @RequestMapping(value = "/web/stock/logout", method = RequestMethod.GET)
     public String doWebStockLogout(HttpSession session) {
@@ -454,7 +422,6 @@ public class WebController extends BaseController {
     /**
      * 跳转到修改密码界面
      *
-     * @return
      */
     @RequestMapping(value = "/web/stock/password/update", method = RequestMethod.GET)
     public String toWebStockpasswordUpdate() {
@@ -464,12 +431,11 @@ public class WebController extends BaseController {
     /**
      * 执行修改密码操作
      *
-     * @return
      */
     @RequestMapping(value = "/web/stock/password/update", method = RequestMethod.POST)
     public String doWebStockpasswordUpdate(Model model,HttpSession session,String loginName,String password,String identityCode) {
         TUser user = HttpSessionUtils.getCurrentUser(session);
-        int result = 1;
+        int result;
         try {
             result = webService.passwordUpdate(user,loginName,password,identityCode);
         }catch (Exception e){
@@ -488,7 +454,6 @@ public class WebController extends BaseController {
     /**
      * 跳转到找回密码界面
      *
-     * @return
      */
     @RequestMapping(value = "/web/stock/password/forget", method = RequestMethod.GET)
     public String toWebStockPasswordForget() {
@@ -498,7 +463,6 @@ public class WebController extends BaseController {
     /**
      * 执行找回密码操作
      *
-     * @return
      */
     @RequestMapping(value = "/web/stock/password/forget", method = RequestMethod.POST)
     public String doWebStockPasswordForget(Model model,String userTel,String newPassword,String identityCode) {
@@ -513,8 +477,6 @@ public class WebController extends BaseController {
 
     /**
      * 跳转到实名认证及银行卡绑定界面
-     *
-     * @return
      */
     @RequestMapping(value = "/web/stock/authentication", method = RequestMethod.GET)
     public String toWebStockAuthentication(Model model, HttpSession session) {
@@ -527,13 +489,15 @@ public class WebController extends BaseController {
     @RequestMapping(value = "/web/stock/update/authentication", method = RequestMethod.POST)
     public void updateWebStockAuthentication(HttpServletResponse response, Model model, HttpSession session, String imgBase64Data) {
         UploadVo vo = ImageUtil.GenerateImage2(imgBase64Data);
-        super.writeText(response, vo.getFilename());
+        if (vo != null) {
+            super.writeText(response, vo.getFilename());
+        }
     }
 
     /**
      * 执行实名认证及银行卡绑定操作
      *
-     * @return // TODO: 2017/10/21 验证功能要完善,身份证绑定过后，无法修改银行卡了（怎么解决）
+     * @return //  2017/10/21 验证功能要完善,身份证绑定过后，无法修改银行卡了（怎么解决）
      */
     @RequestMapping(value = "/web/stock/authentication", method = RequestMethod.POST)
     public String doWebStockAuthentication(HttpSession session, TUserInfo userInfo, Model model) {
@@ -594,7 +558,6 @@ public class WebController extends BaseController {
     /**
      * 个人信息展示
      *
-     * @return
      */
     @RequestMapping(value = "/web/stock/userinfo", method = RequestMethod.GET)
     public String toWebStockUserinfo(Model model, HttpSession session) {
@@ -611,7 +574,6 @@ public class WebController extends BaseController {
     /**
      * 跳转到账户充值界面
      *
-     * @return
      */
     @RequestMapping(value = "/web/stock/deposit", method = RequestMethod.GET)
     public String toWebStockDeposit(Model model, HttpSession session) {
@@ -625,7 +587,6 @@ public class WebController extends BaseController {
     /**
      * 执行账户充值操作
      *
-     * @return
      */
     @RequestMapping(value = "/web/stock/deposit", method = RequestMethod.POST)
     public String doWebStockDeposit(Model model, HttpSession session, BigDecimal money, String payType) {
@@ -643,7 +604,6 @@ public class WebController extends BaseController {
     /**
      * 跳转到账户提现界面
      *
-     * @return
      */
     @RequestMapping(value = "/web/stock/withdraw", method = RequestMethod.GET)
     public String toWebStockWithdraw(Model model, HttpSession session) {
@@ -657,7 +617,6 @@ public class WebController extends BaseController {
     /**
      * 执行账户提现操作
      *
-     * @return
      */
     @RequestMapping(value = "/web/stock/withdraw", method = RequestMethod.POST)
     public String doWebStockWithdraw(Model model, HttpSession session, BigDecimal money) {
@@ -675,7 +634,6 @@ public class WebController extends BaseController {
     /**
      * 推广链接
      *
-     * @return
      */
     @RequestMapping(value = "/web/stock/promotion", method = RequestMethod.GET)
     public String toWebPromotion() {
@@ -686,7 +644,6 @@ public class WebController extends BaseController {
     /**
      * 跳转到管理方案界面
      *
-     * @return
      */
     @RequestMapping(value = "/web/stock/plan/list", method = RequestMethod.GET)
     public String toWebStockPlanList(Model model, HttpSession session) {
@@ -719,7 +676,6 @@ public class WebController extends BaseController {
     /**
      * 跳转到方案详情界面
      *
-     * @return
      */
     @RequestMapping(value = "/web/stock/plan/detail", method = RequestMethod.GET)
     public String toWebStockPlanDetail(HttpServletResponse response, TStockPlan stockPlan) {
@@ -731,7 +687,6 @@ public class WebController extends BaseController {
     /**
      * 选择股票标的
      *
-     * @return
      */
     @RequestMapping(value = "/web/stock/center", method = RequestMethod.GET)
     public String toWebStockCenter(Model model, HttpSession session, String[] symbols,TUserStock userStock) {
@@ -751,7 +706,6 @@ public class WebController extends BaseController {
     /**
      * 跳转到申请方案界面
      *
-     * @return
      * @deprecated 并没使用上这个页面
      */
     @Deprecated
@@ -770,7 +724,6 @@ public class WebController extends BaseController {
     /**
      * 执行确认申请的操作
      *
-     * @return
      */
     @RequestMapping(value = "/web/stock/plan/create", method = RequestMethod.POST)
     public String doWebStockPlanCreate(TStockPlan stockPlan, HttpSession session, Model model) {
@@ -801,9 +754,6 @@ public class WebController extends BaseController {
     /**
      * 行权
      *
-     * @param model
-     * @param stockPlan
-     * @return
      */
     @RequestMapping("web/stock/exercise")
     public String doWebStockExercise(Model model, TStockPlan stockPlan) {
@@ -820,44 +770,17 @@ public class WebController extends BaseController {
     /**
      * 查询股票列表返回json
      *
-     * @return
      */
     @RequestMapping(value = "/web/stock/list/json")
     public void toWebStockListJson(HttpServletResponse response,
                                    SearchPriceContentModel stockModel, String Page_size, String Page_no) {
-        String max = stockModel.getMax_option_price();
-        String min = stockModel.getMin_option_price();
-
-        if (StringUtils.isNotEmpty(max) || StringUtils.isNotEmpty(min)) {
-            TDictionary dictionary = dictionaryService.getDictionary("MANAGE_FEE", true);
-            BigDecimal chuShu = new BigDecimal(dictionary.getItemCode()).add(BigDecimal.ONE);
-
-            if (StringUtils.isNotEmpty(max)) {
-                BigDecimal bigDecimalMax = new BigDecimal(max).divide(chuShu, 3, BigDecimal.ROUND_HALF_UP);
-                stockModel.setMax_option_price(bigDecimalMax.toString());
-            }
-            if (StringUtils.isNotEmpty(min)) {
-                BigDecimal bigDecimalMin = new BigDecimal(min).divide(chuShu, 3, BigDecimal.ROUND_HALF_UP);
-                stockModel.setMin_option_price(bigDecimalMin.toString());
-            }
-        }
-        List stockList = webService.queryStockListByApi(
-                stockModel.getSymbols(),
-                stockModel.getCycle(),
-                stockModel.getMax_option_price(),
-                stockModel.getMin_option_price(),
-                "15",
-                "1");
-        super.writeJsonData(response, stockList);
+        ControllerUtils controllerUtils = new ControllerUtils();
+        List list = controllerUtils.toWebStockListJson(response, stockModel, Page_size, Page_no, dictionaryService, webService);
+        super.writeJsonData(response, list);
     }
 
     /**
      * 查询自选标的列表
-     * @param response
-     * @param stockModel
-     * @param Page_size
-     * @param Page_no
-     * @param session
      */
     @RequestMapping(value = "/web/stock/optional/labels/json")
     public void toMobileOptionalLabelsStockListJson(HttpServletResponse response,
@@ -900,7 +823,6 @@ public class WebController extends BaseController {
     /**
      * 投顾协议
      *
-     * @return
      */
     @RequestMapping("web/investment/agreement")
     public String touuguxieyi() {
@@ -910,7 +832,6 @@ public class WebController extends BaseController {
     /**
      * 网站服务协议
      *
-     * @return
      */
     @RequestMapping("web/network/service/protocol")
     public String networkServiceProtocol() {
@@ -928,8 +849,6 @@ public class WebController extends BaseController {
 
     /**
      * 发送验证码到手机
-     * @param response
-     * @param userTel
      */
     @RequestMapping("web/user/register/send/identity/code")
     public void sendIdentityCode(HttpServletResponse response,String userTel){
@@ -940,11 +859,6 @@ public class WebController extends BaseController {
 
     /**
      * 发送订单信息
-     * @param model
-     * @param session
-     * @param
-     * @param
-     * @return
      */
     @RequestMapping(value = "/web/stock/payeasy/deposit", method = RequestMethod.POST)
     public String doWebStockvPayeasyDeposit(Model model, HttpSession session,String payType,BigDecimal money,StandardPaymentRequestEntity requestEntity) {
@@ -956,7 +870,6 @@ public class WebController extends BaseController {
 
     /**
      * 接收首信易支付返回值
-     * @return
      */
     @RequestMapping("web/stock/payeasy/receive/data")
     public String getReturnData(StandardPaymentRetuenEntity retuenEntity, Model model) {
@@ -965,7 +878,6 @@ public class WebController extends BaseController {
     }
     /**
      * 接收银盛支付返回值（同步）
-     * @return
      */
     @RequestMapping("/yspay/returnPage")
     public String getYspayReturnData(HttpServletRequest req, HttpServletResponse resp, Model model) {
@@ -1012,23 +924,11 @@ public class WebController extends BaseController {
 
     /**
      * 接收首易信发送订单信息
-     * @param orderParmentResultReturnEntity
      */
     @RequestMapping("web/payeasy/query/order/result")
     public void getOrderPaymentResult(HttpServletResponse response, OrderParmentResultReturnEntity orderParmentResultReturnEntity) {
-        int result = webService.getOrderPaymentResult(orderParmentResultReturnEntity);
-        String message = "success";
-        if (result == 0) {
-            message = "error";
-        }
-        //TODO 需要返回message
-        response.setContentType("text/html;charset=UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        try {
-            response.getWriter().print(message);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ControllerUtils controllerUtils = new ControllerUtils();
+        controllerUtils.getOrderPaymentResult(response, orderParmentResultReturnEntity, webService);
     }
 
     /**
@@ -1079,7 +979,7 @@ public class WebController extends BaseController {
                 null,
                 null
         );
-        businessOrder = businessOrderService.save(businessOrder);
+        businessOrderService.save(businessOrder);
 
 
 
@@ -1088,85 +988,30 @@ public class WebController extends BaseController {
 
         String channel = paymentChannel();
 
+        PayChannels payChannels = new PayChannels();
+
         //银盛支付
         if(channel.equals("yspay")){
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            //创建wap手机直连对象
-            PayOrder bean = new PayOrder();
-            bean.setOut_trade_no(orderInfo.getOrderNum());
-            bean.setTimestamp(sdf.format(orderInfo.getOrderCreateTime()));
-            bean.setSubject("银盛支付"+ currentUser +"充值" + money + "元");
-            bean.setTotal_amount(orderInfo.getActualPrice().doubleValue());
-            bean.setBank_type(bank);
-            bean.setBank_account_type("personal");
-
-            model.addAttribute("payModel", bean);
-
-            //return "pc/web/pay_new";
-            return "pay/webDirectPay";
+            return payChannels.yspay(orderInfo, bank, model, currentUser);
         }
 
         //环迅支付
         if(channel.equals("ips")){
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-            IPSConstants ipsConstants = new IPSConstants();
-            // 组装请求
-            // body部分
-            String bodyXml = "<body>" +
-                    "<MerBillNo>" + orderInfo.getOrderNum() + "</MerBillNo>" +
-                    "<Lang>GB</Lang>" +
-                    "<Amount>" + orderInfo.getActualPrice().doubleValue() + "</Amount>" +
-                    "<Date>" + sdf.format(orderInfo.getOrderCreateTime()) + "</Date>" +
-                    "<CurrencyType>156</CurrencyType>" +
-                    "<GatewayType>01</GatewayType>" +
-                    "<Merchanturl><![CDATA[" + ipsConstants.getMerchanturl() + "]]></Merchanturl>" +
-                    "<FailUrl><![CDATA[" + ipsConstants.getFailUrl() + "]]></FailUrl>" +
-                    "<Attach><![CDATA[]]></Attach>" +
-                    "<OrderEncodeType>5</OrderEncodeType>" +
-                    "<RetEncodeType>17</RetEncodeType>" +
-                    "<RetType>1</RetType>" +
-                    "<ServerUrl><![CDATA[" + ipsConstants.getServerUrl() + "]]></ServerUrl>" +
-                    "<BillEXP>2</BillEXP>" +
-                    "<GoodsName>充值</GoodsName>" +
-                    "<IsCredit></IsCredit>" +
-                    "<BankCode></BankCode>" +
-                    "<ProductType></ProductType>" +
-                    "</body>";
-            String sign = DigestUtils
-                    .md5Hex(Verify.getBytes(bodyXml + ipsConstants.getMERCODE() + ipsConstants.getDIRECT_STR(),
-                            "UTF-8"));
-            logger.info("签名信息：body-"+bodyXml+"， mercode-"+ipsConstants.getMERCODE()+"，md5-"+ipsConstants.getDIRECT_STR()+" ，sign-"+sign);
-            // xml
-            String date = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-            String xml = "<Ips>" +
-                    "<GateWayReq>" +
-                    "<head>" +
-                    "<Version>v1.0.0</Version>" +
-                    "<MerCode>" + ipsConstants.getMERCODE() + "</MerCode>" +
-                    "<MerName></MerName>" +
-                    "<Account>" + ipsConstants.getACCOUNT() + "</Account>" +
-                    "<MsgId>" + "msg" + date + "</MsgId >" +
-                    "<ReqDate>" + date + "</ReqDate >" +
-                    "<Signature>" + sign + "</Signature>" +
-                    "</head>" +
-                    bodyXml +
-                    "</GateWayReq>" +
-                    "</Ips>";
-            logger.info(">>>>> 【环迅】订单支付 请求信息: " + xml);
-            model.addAttribute("xml", xml);
-            model.addAttribute("action", ipsConstants.getGATEWAY_URL());
-
-            //return "pc/web/pay_new";
-            return "pay/ipspayForm";
+            return payChannels.ipspay(orderInfo, bank, model, currentUser);
         }
 
+        //银生支付
+        if(channel.equals("yinsheng")){
+            return payChannels.yinshengPay(orderInfo, bank, model, currentUser);
+        }
 
         return redirect("/web/index");
     }
 
+    //确定支付通道
     private String paymentChannel(){
 
-        return "ips";
+        return "yinsheng";
     }
 
 }

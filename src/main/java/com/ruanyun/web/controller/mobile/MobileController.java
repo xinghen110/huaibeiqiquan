@@ -1,7 +1,6 @@
 package com.ruanyun.web.controller.mobile;
 
 
-import com.qiniu.util.Json;
 import com.ruanyun.common.controller.BaseController;
 import com.ruanyun.common.model.Page;
 import com.ruanyun.common.utils.EmptyUtils;
@@ -40,7 +39,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
@@ -51,6 +49,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
+@SuppressWarnings({"unchecked","unused"})
 public class MobileController extends BaseController {
 
     @Autowired
@@ -78,7 +77,6 @@ public class MobileController extends BaseController {
     /**
      * 访问首页
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/index", method = RequestMethod.GET)
     public String toWebIndex(Model model, Page page, TArticle article) {
@@ -92,7 +90,6 @@ public class MobileController extends BaseController {
     /**
      * 跳转到投资保障界面
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/protection", method = RequestMethod.GET)
     public String toInvestProtect(TAdverInfo adverInfo, Model model, String flag1) {
@@ -109,7 +106,6 @@ public class MobileController extends BaseController {
     /**
      * 跳转到文章详情详情
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/news/detail", method = RequestMethod.GET)
     public String toNewsDetail(TArticle article, Model model) {
@@ -121,7 +117,6 @@ public class MobileController extends BaseController {
     /**
      * 跳转到产品信息界面
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/product", method = RequestMethod.GET)
     public String toProductIntroduction(Model model, TArticle article, Page page) {
@@ -136,7 +131,6 @@ public class MobileController extends BaseController {
     /**
      * 跳转个股计算
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/stock/count", method = RequestMethod.GET)
     public String toStockCount() {
@@ -147,7 +141,6 @@ public class MobileController extends BaseController {
     /**
      * 跳转到视频列表界面
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/video/list", method = RequestMethod.GET)
     public String toVideoList() {
@@ -168,7 +161,6 @@ public class MobileController extends BaseController {
     /**
      * 跳转到视频详情界面
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/video/detail", method = RequestMethod.GET)
     public String toVideoDetail() {
@@ -178,7 +170,6 @@ public class MobileController extends BaseController {
     /**
      * 跳转到产品介绍界面
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/product/about", method = RequestMethod.GET)
     public String toProductAbout() {
@@ -188,7 +179,6 @@ public class MobileController extends BaseController {
     /**
      * 跳转到期货案例界面
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/product/case", method = RequestMethod.GET)
     public String toProductCase() {
@@ -198,7 +188,6 @@ public class MobileController extends BaseController {
     /**
      * 产品特点
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/product/feature", method = RequestMethod.GET)
     public String toProductFeature() {
@@ -207,8 +196,6 @@ public class MobileController extends BaseController {
 
     /**
      * 期权期货区别
-     *
-     * @return
      */
     @RequestMapping(value = "/mobile/product/difference", method = RequestMethod.GET)
     public String toProductDifference() {
@@ -229,8 +216,6 @@ public class MobileController extends BaseController {
     /**
      * 跳转行业资讯
      * 将url做了修改，从url本身并不能看出意义，索性改成具体含义的url
-     *
-     * @return
      */
     @RequestMapping(value = "/mobile/industry/information/list", method = RequestMethod.GET)
     public String toIndustryInfoList(TArticle article, Page page, Model model) {
@@ -261,7 +246,6 @@ public class MobileController extends BaseController {
      * 实时开户
      * 跳转到实时开户
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/realTime/open", method = RequestMethod.GET)
     public String toRealTimeOpen(HttpSession session) {
@@ -276,7 +260,7 @@ public class MobileController extends BaseController {
 //        return "pc/mobile/realTimeOpening_personalData";
     }
 
-    /**
+    /*
      * 实名认证
      * 跳转到实时开户
      *
@@ -288,7 +272,7 @@ public class MobileController extends BaseController {
 //        return "pc/mobile/realTimeOpening_realName_authentication";
 //    }
 
-    /**
+    /*
      * 关于我们
      *
      * @return
@@ -298,7 +282,7 @@ public class MobileController extends BaseController {
 //        return "pc/mobile/abouts_us";
 //    }
 
-    /**
+    /*
      * 集团介绍
      *
      * @return
@@ -311,7 +295,6 @@ public class MobileController extends BaseController {
     /**
      * 跳转到实时解盘列表界面
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/latest/analysis/information/list", method = RequestMethod.GET)
     public String toWebNewsList(TArticle article, Page page, Model model) {
@@ -341,7 +324,6 @@ public class MobileController extends BaseController {
     /**
      * 跳转到软件下载界面，由扫描二维码链接到资源位置进行下载
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/download", method = RequestMethod.GET)
     public String toWebDownload() {
@@ -351,7 +333,6 @@ public class MobileController extends BaseController {
     /**
      * 跳转到快速登录
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/stock/login", method = RequestMethod.GET)
     public String toWebStockLogin(Model model) {
@@ -362,7 +343,6 @@ public class MobileController extends BaseController {
     /**
      * 执行登录操作
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/stock/login", method = RequestMethod.POST)
     public String doWebStockLogin(Model model, HttpServletRequest request, HttpSession session, TUser user) {
@@ -387,7 +367,6 @@ public class MobileController extends BaseController {
     /**
      * 快速注册
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/stock/register", method = RequestMethod.GET)
     public String toWebStockRegister(HttpSession session, String parentCode) {
@@ -398,12 +377,11 @@ public class MobileController extends BaseController {
     /**
      * 执行注册操作
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/stock/register", method = RequestMethod.POST)
     public String doWebStockRegister(Model model, String nickName, String loginName, String loginPass, String parentCode, String identityCode) {
-        String oldParentCode = null;
-        String newParentCode = null;
+        String oldParentCode;
+        String newParentCode;
         if (EmptyUtils.isEmpty(parentCode)) {
             addModel(model, "msg", "请输入推广码！");
             return redirect("/mobile/stock/register");
@@ -444,7 +422,6 @@ public class MobileController extends BaseController {
     /**
      * 登出
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/stock/logout", method = RequestMethod.GET)
     public String doWebStockLogout(HttpSession session) {
@@ -455,7 +432,6 @@ public class MobileController extends BaseController {
     /**
      * 跳转到修改密码界面
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/stock/password/update", method = RequestMethod.GET)
     public String toWebStockpasswordUpdate() {
@@ -465,7 +441,6 @@ public class MobileController extends BaseController {
     /**
      * 执行修改密码操作
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/stock/password/update", method = RequestMethod.POST)
     public String doWebStockpasswordUpdate(Model model, HttpSession session, String loginName, String password, String identityCode) {
@@ -474,8 +449,7 @@ public class MobileController extends BaseController {
             webService.passwordUpdate(user, loginName, password, identityCode);
         } catch (Exception e) {
             model.addAttribute("msg", e.getMessage());
-            String redirect = redirect("/mobile/stock/password/update");
-            return redirect;
+            return redirect("/mobile/stock/password/update");
         }
         return redirect("/mobile/stock/logout");
     }
@@ -483,7 +457,6 @@ public class MobileController extends BaseController {
     /**
      * 跳转到找回密码界面
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/stock/password/forget", method = RequestMethod.GET)
     public String toWebStockPasswordForget() {
@@ -493,7 +466,6 @@ public class MobileController extends BaseController {
     /**
      * 执行找回密码操作
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/stock/password/forget", method = RequestMethod.POST)
     public String doWebStockPasswordForget(Model model, String userTel, String newPassword, String identityCode) {
@@ -509,7 +481,6 @@ public class MobileController extends BaseController {
     /**
      * 跳转到实名认证及银行卡绑定界面
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/realname/bindingcard", method = RequestMethod.GET)
     public String toWebStockAuthentication(Model model, HttpSession session) {
@@ -522,21 +493,19 @@ public class MobileController extends BaseController {
     /**
      * 气流图片
      *
-     * @param response
-     * @param model
-     * @param session
-     * @param imgBase64Data
      */
     @RequestMapping(value = "/mobile/stock/update/authentication", method = RequestMethod.POST)
     public void updateWebStockAuthentication(HttpServletResponse response, Model model, HttpSession session, String imgBase64Data) {
         UploadVo vo = ImageUtil.GenerateImage2(imgBase64Data);
-        super.writeText(response, vo.getFilename());
+        if(vo != null){
+            super.writeText(response, vo.getFilename());
+        }
     }
 
     /**
      * 执行实名认证及银行卡绑定操作
      *
-     * @return // TODO: 2017/10/21 验证功能要完善
+     * @return //  2017/10/21 验证功能要完善
      */
     @RequestMapping(value = "/mobile/realname/bindingcard", method = RequestMethod.POST)
     public String doWebStockAuthentication(HttpSession session, TUserInfo userInfo, Model model) {
@@ -601,9 +570,6 @@ public class MobileController extends BaseController {
     /**
      * 用户绑定的信息
      *
-     * @param model
-     * @param session
-     * @return
      */
     @RequestMapping(value = "/mobile/realname/bandingcard/success", method = RequestMethod.GET)
     public String toMobileUserinfo(Model model, HttpSession session) {
@@ -616,9 +582,6 @@ public class MobileController extends BaseController {
     /**
      * 换绑银行卡
      *
-     * @param model
-     * @param session
-     * @return
      */
     @RequestMapping(value = "/mobile/update/bandingcard", method = RequestMethod.GET)
     public String toUpdateBandingCard(Model model, HttpSession session) {
@@ -631,7 +594,7 @@ public class MobileController extends BaseController {
     /**
      * 执行换绑银行卡
      *
-     * @return // TODO: 2017/10/21 验证功能要完善
+     * @return // 2017/10/21 验证功能要完善
      */
     @RequestMapping(value = "/mobile/update/bandingcard", method = RequestMethod.POST)
     public String toUpdateBandingCard(HttpSession session, TUserInfo userInfo, Model model) {
@@ -683,7 +646,6 @@ public class MobileController extends BaseController {
     /**
      * 个人信息展示
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/stock/userinfo", method = RequestMethod.GET)
     public String toWebStockUserinfo(Model model, HttpSession session) {
@@ -699,7 +661,6 @@ public class MobileController extends BaseController {
     /**
      * 跳转到账户充值界面
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/recharge", method = RequestMethod.GET)
     public String toWebStockDeposit(Model model, HttpSession session) {
@@ -715,14 +676,8 @@ public class MobileController extends BaseController {
      */
     @RequestMapping(value = "/mobile/recharge", method = RequestMethod.POST)
     public String doWebStockDeposit(Model model, HttpSession session, BigDecimal money, String payType) {
-        TUser currentUser = HttpSessionUtils.getCurrentUser(session);
-        try {
-            webService.deposit(currentUser.getUserId(), money, payType);
-            addModel(model, "msg", "充值成功");
-        } catch (Exception e) {
-            logger.error(e);
-            addModel(model, "msg", e.getMessage());
-        }
+        ControllerUtils controllerUtils = new ControllerUtils();
+        controllerUtils.doWebStockDeposit(model, session, money, payType, webService, this);
         return redirect("/mobile/recharge");
     }
 
@@ -743,14 +698,8 @@ public class MobileController extends BaseController {
      */
     @RequestMapping(value = "/mobile/withdraw", method = RequestMethod.POST)
     public String doWebStockWithdraw(Model model, HttpSession session, BigDecimal money) {
-        TUser currentUser = HttpSessionUtils.getCurrentUser(session);
-        try {
-            webService.withdraw(currentUser.getUserId(), money);
-            addModel(model, "msg", "提现申请成功，请等待人工审核");
-        } catch (Exception e) {
-            logger.error(e);
-            addModel(model, "msg", e.getMessage());
-        }
+        ControllerUtils controllerUtils = new ControllerUtils();
+        controllerUtils.doWebStockWithdraw(model, session, money, webService, this);
         return redirect("/mobile/withdraw");
     }
 
@@ -898,20 +847,14 @@ public class MobileController extends BaseController {
      */
     @RequestMapping("mobile/stock/exercise")
     public String doWebStockExercise(Model model, TStockPlan stockPlan) {
-        try {
-            webService.exercise(stockPlan);
-            addModel(model, "msg", "行权申请成功");
-        } catch (Exception e) {
-            logger.error(e);
-            addModel(model, "msg", "行权申请失败,原因:" + e.getMessage());
-        }
+        ControllerUtils controllerUtils = new ControllerUtils();
+        controllerUtils.doWebStockExercise(model, stockPlan, webService, this);
         return redirect("/mobile/stock/plan/list?orderStatus=3");
     }
 
     /**
      * 查询股票列表返回json
      *
-     * @return
      */
     @RequestMapping(value = "/mobile/stock/list/json")
     public void toWebStockListJson(HttpServletResponse response,
@@ -919,36 +862,13 @@ public class MobileController extends BaseController {
         String msg;
         Map map = new HashMap();
         try {
-            String max = stockModel.getMax_option_price();
-            String min = stockModel.getMin_option_price();
-
-            if (StringUtils.isNotEmpty(max) || StringUtils.isNotEmpty(min)) {
-                TDictionary dictionary = dictionaryService.getDictionary("MANAGE_FEE", true);
-                BigDecimal chuShu = new BigDecimal(dictionary.getItemCode()).add(BigDecimal.ONE);
-
-                if (StringUtils.isNotEmpty(max)) {
-                    BigDecimal bigDecimalMax = new BigDecimal(max).divide(chuShu, 3, BigDecimal.ROUND_HALF_UP);
-                    stockModel.setMax_option_price(bigDecimalMax.toString());
-                }
-                if (StringUtils.isNotEmpty(min)) {
-                    BigDecimal bigDecimalMin = new BigDecimal(min).divide(chuShu, 3, BigDecimal.ROUND_HALF_UP);
-                    stockModel.setMin_option_price(bigDecimalMin.toString());
-                }
-            }
-
-            List stockList = webService.queryStockListByApi(
-                    stockModel.getSymbols(),
-                    stockModel.getCycle(),
-                    stockModel.getMax_option_price(),
-                    stockModel.getMin_option_price(),
-                    "15",
-                    "1");
-            super.writeJsonData(response, stockList);
+            ControllerUtils controllerUtils = new ControllerUtils();
+            List list = controllerUtils.toWebStockListJson(response, stockModel, Page_size, Page_no, dictionaryService, webService);
+            super.writeJsonData(response, list);
         } catch (Exception e) {
-            List stockList = new ArrayList();
             logger.error(e);
             msg = "系统繁忙请重新提交";
-            map.put("stockList", stockList);
+            map.put("stockList", new ArrayList());
             map.put("msg", msg);
             super.writeJsonData(response, JSONArray.fromObject(map));
         }
@@ -957,11 +877,6 @@ public class MobileController extends BaseController {
     /**
      * 查询自选标的列表
      *
-     * @param response
-     * @param stockModel
-     * @param Page_size
-     * @param Page_no
-     * @param session
      */
     @RequestMapping(value = "/mobile/stock/optional/labels/json")
     public void toMobileOptionalLabelsStockListJson(HttpServletResponse response,
@@ -1016,7 +931,6 @@ public class MobileController extends BaseController {
     /**
      * 投顾协议
      *
-     * @return
      */
     @RequestMapping("mobile/investment/agreement")
     public String touuguxieyi() {
@@ -1026,7 +940,6 @@ public class MobileController extends BaseController {
     /**
      * 网站服务协议
      *
-     * @return
      */
     @RequestMapping("mobile/network/service/protocol")
     public String networkServiceProtocol() {
@@ -1045,8 +958,6 @@ public class MobileController extends BaseController {
     /**
      * 发送验证码到手机
      *
-     * @param response
-     * @param userTel
      */
     @RequestMapping("mobile/user/register/send/identity/code")
     public void sendIdentityCode(HttpServletResponse response, String userTel) {
@@ -1058,11 +969,6 @@ public class MobileController extends BaseController {
     /**
      * 发送订单信息
      *
-     * @param model
-     * @param session
-     * @param
-     * @param
-     * @return
      */
     @RequestMapping(value = "/mobile/stock/payeasy/deposit", method = RequestMethod.POST)
     public String doWebStockvPayeasyDeposit(Model model, HttpSession session, String payType, BigDecimal money, StandardPaymentRequestEntity requestEntity) {
@@ -1075,7 +981,6 @@ public class MobileController extends BaseController {
     /**
      * 接收首信易支付返回值
      *
-     * @return
      */
     @RequestMapping("mobile/stock/payeasy/receive/data")
     public String getReturnData(StandardPaymentRetuenEntity retuenEntity, Model model) {
@@ -1086,29 +991,16 @@ public class MobileController extends BaseController {
     /**
      * 接收首易信发送订单信息
      *
-     * @param orderParmentResultReturnEntity
      */
     @RequestMapping("mobile/payeasy/query/order/result")
     public void getOrderPaymentResult(HttpServletResponse response, OrderParmentResultReturnEntity orderParmentResultReturnEntity) {
-        int result = webService.getOrderPaymentResult(orderParmentResultReturnEntity);
-        String message = "success";
-        if (result == 0) {
-            message = "error";
-        }
-        //TODO 需要返回message
-        response.setContentType("text/html;charset=UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        try {
-            response.getWriter().print(message);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        ControllerUtils controllerUtils = new ControllerUtils();
+        controllerUtils.getOrderPaymentResult(response, orderParmentResultReturnEntity, webService);
     }
 
     /**
      * 跳转申请方案
      *
-     * @return
      */
     @RequestMapping("mobile/application/scheme")
     public String toApplicationScheme(Model model, String symbol, String symbolName, BigDecimal manageFee, BigDecimal curPrice) {
@@ -1135,7 +1027,6 @@ public class MobileController extends BaseController {
     /**
      * mobile确认方案的跳转路径
      *
-     * @return
      */
     @RequestMapping("mobile/validation/scheme")
     public String toValidationScheme(Model model, String symbol, String symbolName, String manageFee,
@@ -1158,7 +1049,6 @@ public class MobileController extends BaseController {
     /**
      * 个人中心中的规则中心
      *
-     * @return
      */
     @RequestMapping("mobile/rule/center")
     public String toRuleCenter() {
@@ -1182,13 +1072,11 @@ public class MobileController extends BaseController {
      * 创建者: zhangwei
      * 创建时间: 2018/01/18 15:06
      *
-     * @param response
-     * @param symbol
      */
     @RequestMapping("mobile/getMarket")
     public void getMarket(HttpServletResponse response, String symbol) {
 
-        AppCommonModel model = null;
+        AppCommonModel model;
 
         try {
             model = appUserStockService.getMarket(symbol);
@@ -1206,13 +1094,11 @@ public class MobileController extends BaseController {
      * 创建者: zhangwei
      * 创建时间: 2018/01/18 14:37
      *
-     * @param response
-     * @param userStock
      */
     @RequestMapping("mobile/getUserStockList")
     public void getUserStockList(HttpServletResponse response, HttpSession session, TUserStock userStock) {
         TUser curUser = HttpSessionUtils.getCurrentUser(session);
-        AppCommonModel model = null;
+        AppCommonModel model;
 
         try {
             model = appUserStockService.getList(userStock, curUser);
@@ -1230,13 +1116,11 @@ public class MobileController extends BaseController {
      * 创建者: zhangwei
      * 创建时间: 2018/01/18 16:38
      *
-     * @param response
-     * @param stockInfo
      */
     @RequestMapping("mobile/getList2")
     public void getList(HttpServletResponse response, TStockInfo stockInfo) {
 
-        AppCommonModel model = null;
+        AppCommonModel model;
 
         try {
             model = appUserStockService.getList2(stockInfo);
@@ -1254,13 +1138,11 @@ public class MobileController extends BaseController {
      * 创建者: zhangwei
      * 创建时间: 2018/01/18 17:05
      *
-     * @param response
-     * @param userStock
      */
     @RequestMapping("mobile/createUserStock")
     public void createUserStock(HttpServletResponse response, HttpSession session, TUserStock userStock) {
         TUser curUser = HttpSessionUtils.getCurrentUser(session);
-        AppCommonModel model = null;
+        AppCommonModel model;
 
         try {
             model = appUserStockService.createUserStock(userStock, curUser);
@@ -1278,13 +1160,11 @@ public class MobileController extends BaseController {
      * 创建者: zhangwei
      * 创建时间: 2018/01/18 18:33
      *
-     * @param response
-     * @param userStock
      */
     @RequestMapping("mobile/deleteUserStock")
     public void deleteUserStock(HttpServletResponse response, HttpSession session, TUserStock userStock) {
         TUser curUser = HttpSessionUtils.getCurrentUser(session);
-        AppCommonModel model = null;
+        AppCommonModel model;
 
         try {
             model = appUserStockService.deleteUserStock(userStock, curUser);
@@ -1302,12 +1182,11 @@ public class MobileController extends BaseController {
      * 创建者: zhangwei
      * 创建时间: 2018/01/17 13:45
      *
-     * @param response
      * @param code     股票代码
      */
     @RequestMapping("mobile/getStockInfo")
     public void getStockInfo(HttpServletResponse response, String code) {
-        AppCommonModel model = null;
+        AppCommonModel model;
         try {
             model = appUserStockService.getStockInfo(code);
         } catch (Exception ex) {
@@ -1321,7 +1200,7 @@ public class MobileController extends BaseController {
     @RequestMapping("mobile/getUserRecord")
     public void getList(HttpServletResponse response, TUserAccountFlow userAccountFlow, HttpSession session) {
         TUser curUser = HttpSessionUtils.getCurrentUser(session);
-        AppCommonModel model = null;
+        AppCommonModel model;
         try {
             model = appUserRecordService.getList(userAccountFlow, curUser);
         } catch (Exception ex) {
@@ -1336,7 +1215,6 @@ public class MobileController extends BaseController {
     /**
      * 加载K线图数据
      *
-     * @param response
      */
     @RequestMapping("mobile/getKlineData")
     public void getKlineData(HttpServletResponse response, String code, String KlineType) {
@@ -1347,8 +1225,6 @@ public class MobileController extends BaseController {
     /**
      * 功能描述：获取走势图数据
      *
-     * @param productCode
-     * @param response
      * @author wangyf 2017-12-25 16:58
      */
     @RequestMapping("mobile/getZSData")
@@ -1375,12 +1251,12 @@ public class MobileController extends BaseController {
         String reqUrl = "https://api.ddbill.com/gateway/api/scanpay";
 
         // 支付请求返回结果
-        String result = null;
+        String result;
 
         // 接收表单提交参数
         request.setCharacterEncoding("UTF-8");
         String merchant_code = "1000774999";
-        String service_type = payType;
+        //String service_type = payType;
         String notify_url = CommonMethod.getVisitPath(request) + "mobile/notifyUrl";
         //String notify_url ="http://121.199.25.216:9191/huaibeiqiquan/mobile/notifyUrl";
         String interface_version = "V3.3";
@@ -1393,7 +1269,7 @@ public class MobileController extends BaseController {
 
         Map<String, String> reqMap = new HashMap<String, String>();
         reqMap.put("merchant_code", merchant_code);
-        reqMap.put("service_type", service_type);
+        reqMap.put("service_type", payType);
         reqMap.put("notify_url", notify_url);
         reqMap.put("interface_version", interface_version);
         reqMap.put("client_ip", client_ip);
@@ -1403,30 +1279,27 @@ public class MobileController extends BaseController {
         reqMap.put("order_amount", order_amount);
         reqMap.put("product_name", product_name);
 
-        /** 数据签名
+        /* 数据签名
          签名规则定义如下：
          （1）参数列表中，除去sign_type、sign两个参数外，其它所有非空的参数都要参与签名，值为空的参数不用参与签名；
          （2）签名参数排序按照参数名a到z的顺序排序，若遇到相同首字母，则看第二个字母，以此类推，组成规则如下：
          参数名1=参数值1&参数名2=参数值2&……&参数名n=参数值n		*/
 
-        StringBuffer signSrc = new StringBuffer();
-        signSrc.append("client_ip=").append(client_ip).append("&");
-        signSrc.append("interface_version=").append(interface_version).append("&");
-        signSrc.append("merchant_code=").append(merchant_code).append("&");
-        signSrc.append("notify_url=").append(notify_url).append("&");
-        signSrc.append("order_amount=").append(order_amount).append("&");
-        signSrc.append("order_no=").append(order_no).append("&");
-        signSrc.append("order_time=").append(order_time).append("&");
-        signSrc.append("product_name=").append(product_name).append("&");
-        signSrc.append("service_type=").append(service_type);
-
-        String signInfo = signSrc.toString();
-        String sign = "";
+        String signInfo = "client_ip=" + client_ip + "&" +
+                "interface_version=" + interface_version + "&" +
+                "merchant_code=" + merchant_code + "&" +
+                "notify_url=" + notify_url + "&" +
+                "order_amount=" + order_amount + "&" +
+                "order_no=" + order_no + "&" +
+                "order_time=" + order_time + "&" +
+                "product_name=" + product_name + "&" +
+                "service_type=" + payType;
+        String sign;
 
         // sign_type = "RSA-S"
-        if ("RSA-S".equals(sign_type)) {
+        //if ("RSA-S".equals(sign_type)) {
 
-            /**
+            /*
              1)merchant_private_key，商户私钥，商户按照《密钥对获取工具说明》操作并获取商户私钥；获取商户私钥的同时，也要获取商户公钥（merchant_public_key）；调试运行
              代码之前首先先将商户公钥上传到多得宝商家后台"支付管理"->"公钥管理"（如何获取和上传请查看《密钥对获取工具说明》），不上传商户公钥会导致调试运行代码时报错。
              2)demo提供的merchant_private_key是测试商户号1111110166的商户私钥，请自行获取商户私钥并且替换	*/
@@ -1452,7 +1325,7 @@ public class MobileController extends BaseController {
 
             // 向多得宝发送POST请求
             result = new HttpClientUtil().doPost(reqUrl, reqMap, "utf-8");
-        }
+        //}
 
        /* if ("RSA".equals(sign_type)) { // 数字证书加密方式 sign_type = "RSA"
 
@@ -1488,23 +1361,23 @@ public class MobileController extends BaseController {
 
         // 接收多得宝返回的参数
         request.setCharacterEncoding("UTF-8");
-        String interface_version = (String) request.getParameter("interface_version");
-        String merchant_code = (String) request.getParameter("merchant_code");
-        String notify_type = (String) request.getParameter("notify_type");
-        String notify_id = (String) request.getParameter("notify_id");
-        String sign_type = (String) request.getParameter("sign_type");
-        String dinpaySign = (String) request.getParameter("sign");
-        String order_no = (String) request.getParameter("order_no");
-        String order_time = (String) request.getParameter("order_time");
+        String interface_version = request.getParameter("interface_version");
+        String merchant_code = request.getParameter("merchant_code");
+        String notify_type = request.getParameter("notify_type");
+        String notify_id = request.getParameter("notify_id");
+        String sign_type = request.getParameter("sign_type");
+        String dinpaySign = request.getParameter("sign");
+        String order_no = request.getParameter("order_no");
+        String order_time = request.getParameter("order_time");
         //该笔订单实际支付金额，以元为单位，精确到小数点后两位
-        String order_amount = (String) request.getParameter("order_amount");
-        String extra_return_param = (String) request.getParameter("extra_return_param");
-        String trade_no = (String) request.getParameter("trade_no");
-        String trade_time = (String) request.getParameter("trade_time");
-        String trade_status = (String) request.getParameter("trade_status");
-        String bank_seq_no = (String) request.getParameter("bank_seq_no");
+        String order_amount = request.getParameter("order_amount");
+        String extra_return_param =request.getParameter("extra_return_param");
+        String trade_no = request.getParameter("trade_no");
+        String trade_time = request.getParameter("trade_time");
+        String trade_status = request.getParameter("trade_status");
+        String bank_seq_no = request.getParameter("bank_seq_no");
         //订单原金额,与币种对应
-        String orginal_money = (String) request.getParameter("orginal_money");
+        String orginal_money = request.getParameter("orginal_money");
 
         System.out.println("interface_version = " + interface_version + "\n" +
                 "merchant_code = " + merchant_code + "\n" +
@@ -1521,7 +1394,7 @@ public class MobileController extends BaseController {
                 "trade_status = " + trade_status + "\n" +
                 "bank_seq_no = " + bank_seq_no + "\n");
 
-        /** 数据签名
+        /* 数据签名
          签名规则定义如下：
          （1）参数列表中，除去sign_type、sign两个参数外，其它所有非空的参数都要参与签名，值为空的参数不用参与签名；
          （2）签名参数排序按照参数名a到z的顺序排序，若遇到相同首字母，则看第二个字母，以此类推，组成规则如下：
@@ -1556,7 +1429,7 @@ public class MobileController extends BaseController {
         // sign_type = "RSA-S"
         if ("RSA-S".equals(sign_type)) {
 
-            /**
+            /*
              1)dinpay_public_key，多得宝公钥，每个商家对应一个固定的多得宝公钥（不是使用工具生成的商户公钥merchant_public_key，不要混淆），
              即为多得宝商家后台"支付管理"->"公钥管理"->"多得宝公钥"里的绿色字符串内容
              2)demo提供的dinpay_public_key是测试商户号1111110166的多得宝公钥，请自行复制对应商户号的多得宝公钥进行调整和替换	*/
@@ -1580,7 +1453,7 @@ public class MobileController extends BaseController {
         PrintWriter pw = response.getWriter();
         if (result) {
 
-            System.out.println("验签结果result的值：" + result + " -->SUCCESS");
+            System.out.println("验签结果result的值：true -->SUCCESS");
 
             //修改订单状态,增加用户金额和增加流水
             int resultFlag = orderInfoService.updateOrderInfo(order_no);
@@ -1597,7 +1470,7 @@ public class MobileController extends BaseController {
         } else {
             // 验签失败，业务结束
             super.writeText(response, "Signature Error");
-            System.out.println("验签结果result的值：" + result + " -->Signature Error");
+            System.out.println("验签结果result的值：false -->Signature Error");
         }
 
         pw.flush();

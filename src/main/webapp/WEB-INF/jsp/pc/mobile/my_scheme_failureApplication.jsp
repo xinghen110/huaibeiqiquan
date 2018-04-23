@@ -12,10 +12,10 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
-	<link rel="stylesheet" href="http://cdn.busod.cn/css/mobile/mystyle.css" />
-	<link rel="stylesheet" href="http://cdn.busod.cn/css/mobile/jquery.mobile-1.4.2.css" />
-	<script type="text/javascript" src="http://cdn.busod.cn/js/mobile/jquery.min.js" ></script>
-	<script type="text/javascript" src="http://cdn.busod.cn/js/mobile/jquery.mobile-1.4.2.js" ></script>
+	<link rel="stylesheet" href="http://gg.spqun.com/css/mobile/mystyle.css" />
+	<link rel="stylesheet" href="http://gg.spqun.com/css/mobile/jquery.mobile-1.4.2.css" />
+	<script type="text/javascript" src="http://gg.spqun.com/js/mobile/jquery.min.js" ></script>
+	<script type="text/javascript" src="http://gg.spqun.com/js/mobile/jquery.mobile-1.4.2.js" ></script>
 	<title></title>
 </head>
 	<body>
@@ -31,29 +31,27 @@
 					<a data-ajax = "false" href="mobile/stock/plan/list?orderStatus=4" class="fl">已结算</a>
 					<a data-ajax = "false" href="mobile/stock/plan/list?orderStatus=-1" class="fl seleced_title">申请失败</a>
 				</h4>
-				<div style="overflow: auto;">
+				<div style="overflow: scroll;margin-bottom:20px;">
 					<table cellspacing="0" cellpadding="0">
 						<tr>
 							<th class="color-w size-9">订单号</th>
 							<th class="color-w size-9 two">股票名称</th>
 							<th class="color-w size-9">股票代码</th>
-							<th class="color-w size-9">股票价格</th>
 							<th class="color-w size-9">名义本金</th>
 							<th class="color-w size-9">买入类型</th>
-							<th class="color-w size-9">买入限价</th>
+							<th class="color-w size-9">买入价格</th>
 							<th class="color-w size-9" colspan="2">申买时间</th>
 							<th class="color-w size-9">管理费</th>
 						</tr>
 						<c:forEach var="item" items="${stockPlanListMap}">
 							<tr>
 								<td class="color-w size-9">${item.planId}</td>
-								<td class="color-w size-9 two">${item.symbolName}</td>
-								<td class="color-w size-9">${item.symbol}</td>
-								<td class="color-w size-9">${item.curPrice}</td>
+								<td class="color-w size-9 two">${item.symbol}</td>
+								<td class="color-w size-9">${item.symbolName}</td>
 								<td class="color-w size-9">${item.buyMarketPrice}</td>
 								<td class="color-w size-9">${item.buyPriceTypeName}</td>
-								<td class="color-w size-9">${item.buyPriceLimt}</td>
-								<td class="color-w size-9" colspan="2">${item.createTime}</td>
+								<td class="color-w size-9">${item.buyPrice}</td>
+								<td class="color-w size-9" colspan="2"><fmt:formatDate value="${item.createTime}" pattern="yyyy/MM/dd HH:mm:ss" /></td>
 								<td class="color-w size-9">${item.fee}</td>
 							</tr>
 						</c:forEach>
@@ -92,11 +90,11 @@
 			    var thW = windowW*0.25;//每个th的宽度
 			    $('#my_scheme_failureApplication table th').css('width',windowW*0.25);//th宽度赋值
 			     $('#my_scheme_failureApplication table td').css('width',windowW*0.25);//th宽度赋值
-			   // $('#my_scheme_failureApplication .two').css('margin-left',windowW*0.25)//设置第二个th的margin-left
+			    $('#my_scheme_failureApplication .two').css('padding-left',windowW*0.25)//设置第二个th的margin-left
 				//计算总的table宽度
 				var tableW = 0;
 				if(i>4){
-					tableW = thW * i+1;
+					tableW = thW *(i+1);
 				}else{
 					tableW = thW * i;
 				}

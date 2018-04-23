@@ -91,7 +91,7 @@
                 </select>
 
             </div>
-            <div style="margin-top: 1.5em;">
+   <div style="margin-top: 1.5em;">
                 <h4 class="fl">开户行</h4>
                 <input style="margin-left: 1.2em;" data-role="none" class="fl color-w size-9" type="text" placeholder="请输入开户行"
                        name="depositBank" value="${userInfo.depositBank}" required>

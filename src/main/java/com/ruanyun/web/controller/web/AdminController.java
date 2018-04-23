@@ -4,6 +4,7 @@ import com.ruanyun.common.controller.BaseController;
 import com.ruanyun.common.model.Page;
 import com.ruanyun.common.service.IBaseService;
 import com.ruanyun.common.utils.EmptyUtils;
+import com.ruanyun.common.utils.MD5Util;
 import com.ruanyun.web.model.*;
 import com.ruanyun.web.model.sys.TDictionary;
 import com.ruanyun.web.model.sys.TRole;

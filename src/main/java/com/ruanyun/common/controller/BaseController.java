@@ -27,7 +27,7 @@ import net.sf.json.JSONObject;
 import net.sf.json.JsonConfig;
 
 public abstract class BaseController {
-	protected org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(this.getClass());
+	public org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(this.getClass());
 	/**
 	 * 重定向
 	 */

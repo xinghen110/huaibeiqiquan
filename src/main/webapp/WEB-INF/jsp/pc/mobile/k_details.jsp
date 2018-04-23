@@ -112,8 +112,6 @@
         <input type="hidden" class="zx-state" value="0"/>
         <input type="hidden" id="manage_fee" value="${manageFee.itemCode}"/>
         <input type="hidden" id="symbol"/>
-		<%--by hexin 【申请方案】增加股票最新价格参数--%>
-        <input type="hidden" id="curPrice"/>
     </div>
 </div>
 <script>

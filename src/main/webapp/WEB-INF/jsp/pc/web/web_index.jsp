@@ -275,9 +275,27 @@
         var cycle = $("#cycle").val();
         var preClosePrice = $("#preClosePrice").val();//sina
 //        var endDate = getEndDate(cycle).toLocaleDateString();
+
+        //盈亏市算增加【周】计算逻辑
+        var flag=cycle.substring(cycle.length-1);
+
         cycle=cycle.substring(0,cycle.length-1);
+
         $(".daoqiri").val("");
-        $(".daoqiri").val(moment().add(cycle,'month').format('YYYY-MM-DD'));
+        $(".daoqiri").val(moment().format('YYYY-MM-DD'));
+
+        if(flag==="d"){
+            $(".daoqiri").val(moment().add(cycle,'day').format('YYYY-MM-DD'));
+
+        }else if(flag==="m"){
+            $(".daoqiri").val(moment().add(cycle,'month').format('YYYY-MM-DD'));
+
+        }else if(flag==="w"){
+            $(".daoqiri").val(moment().add(cycle,'week').format('YYYY-MM-DD'));
+
+        }
+
+
         var mingyibenjin = $("#buyMarketPrice").val();
         var quanlijinbili = ($("#manageFee").html() * 1).toFixed(2);
         var quanlijin = (mingyibenjin / 100 * quanlijinbili).toFixed(2);

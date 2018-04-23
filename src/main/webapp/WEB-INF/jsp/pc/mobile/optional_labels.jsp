@@ -358,7 +358,10 @@
         var position = $("#all_subject_matter .add_list");
 
         position.empty();
-        if(symbol.length>=3){
+        var len=0;
+        if(isNaN(symbol)) len=2; else len=3;
+       
+        if(symbol.length>=len){
          $.ajax({
             url: "mobile/getList2",
             dataType: "json",
@@ -467,8 +470,8 @@
                     //详情页，刷股票
                     $("#k_details .curPrice").attr("onclick", "getMarketForDetails('" + (symbol) + "')");
 
-                    $("#k_details .create_plan").attr("href","mobile/application/scheme?symbol="+(result.code)+"&symbolName="+(result.name)+"&manageFee="+manageFee);
 
+                    $("#k_details .create_plan").attr("href","mobile/application/scheme?symbol="+(result.code)+"&symbolName="+(result.name)+"&manageFee="+manageFee);
                    //  $("#k_details .create_plan").attr("href","http://baidu.com");
 
                     $("#k_details #symbol").val(result.code);
@@ -509,35 +512,33 @@
 
                     //涨跌比例
                     var priceRate = calaMarket(currentPrice, yesterdayClosingPrice);
-                    var priceRate_details = $("#k_details .priceRate_details");
-                    var curPrice = $("#k_details .curPrice");
-
-                    <%--by hexin 【申请方案】增加股票最新价格参数--%>
-                    curPrice.html(Number(currentPrice).toFixed(2));
 
                     if (priceRate >= 0) {
 
-                        curPrice.removeClass("color-green")
-                            .addClass("color-red");
+                        $("#k_details .curPrice").html(Number(currentPrice).toFixed(2));
+                        $("#k_details .priceRate_details").html(priceRate + "%");
 
-                        priceRate_details.html(priceRate + "%")
-                            .removeClass("color-green")
-                            .addClass("color-red");
+                        $("#k_details .curPrice").removeClass("color-green");
+                        $("#k_details .priceRate_details").removeClass("color-green");
+
+                        $("#k_details .curPrice").addClass("color-red");
+                        $("#k_details .priceRate_details").addClass("color-red");
 
                     } else {
-                        curPrice.removeClass("color-red")
-                            .addClass("color-green");
+                        $("#k_details .curPrice").html(Number(currentPrice).toFixed(2));
+                        $("#k_details .priceRate_details").html(priceRate + "%");
 
-                        priceRate_details.removeClass("color-red")
-                            .addClass("color-green");
+
+                        $("#k_details .curPrice").addClass("color-green");
+                        $("#k_details .priceRate_details").addClass("color-green");
+
+                        $("#k_details .curPrice").removeClass("color-red");
+                        $("#k_details .priceRate_details").removeClass("color-red");
+
+
 
                     }
 
-                    <%--by hexin 【申请方案】增加股票最新价格参数--%>
-                    var apply_url = $("#k_details .create_plan").attr("href")
-                        .replace(/&curPrice=...../,'')
-                        .replace(/&curPrice=/,'');
-                    $("#k_details .create_plan").attr("href",apply_url+"&curPrice="+Number(currentPrice).toFixed(2));
                 }
             }
         });

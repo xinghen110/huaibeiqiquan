@@ -52,7 +52,7 @@
             <h4 class="agreement color-w size-9">
                 <img class="btn_select" src="img/mobile/btn_select.png" onclick="btn_select()" />
                 <img style="display: none;" onclick="btn_selected()" class="btn_selected" src="img/mobile/btn_selected.png" />
-                我已阅读并同意<a data-ajax="false" <%--href="mobile/network/service/protocol"--%> class="color-red">《金点护航用户服务协议》</a>
+                我已阅读并同意<a data-ajax="false" href="mobile/network/service/protocol" class="color-red">《鼎越护航用户服务协议》</a>
             </h4>
             </div>
         <div class="input-div" style="margin-top: 2em;">

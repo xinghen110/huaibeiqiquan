@@ -17,10 +17,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="http://cdn.busod.cn/css/mobile/mystyle.css" />
-    <link rel="stylesheet" href="http://cdn.busod.cn/css/mobile/jquery.mobile-1.4.2.css" />
-    <script type="text/javascript" src="http://cdn.busod.cn/js/mobile/jquery.min.js" ></script>
-    <script type="text/javascript" src="http://cdn.busod.cn/js/mobile/jquery.mobile-1.4.2.js" ></script>
+    <link rel="stylesheet" href="http://gg.spqun.com/css/mobile/mystyle.css" />
+    <link rel="stylesheet" href="http://gg.spqun.com/css/mobile/jquery.mobile-1.4.2.css" />
+    <script type="text/javascript" src="http://gg.spqun.com/js/mobile/jquery.min.js" ></script>
+    <script type="text/javascript" src="http://gg.spqun.com/js/mobile/jquery.mobile-1.4.2.js" ></script>
     <title></title>
 </head>
 <body>
@@ -65,12 +65,6 @@
                     <span class="fl color-hs">股票标的</span>
                     <span class="color-red fr">${symbol}${symbolName}</span>
                     <%--<input type="hidden" value="${symbol}" id="symbol"/>--%>
-                </h4>
-            </li>
-            <li class="clear" data-icon = "false">
-                <h4>
-                    <span class="fl color-hs">股票现价</span>
-                    <span id="curPrice" class="color-red fr">${curPrice}</span>
                 </h4>
             </li>
             <li class="clear" data-icon = "false">
@@ -135,7 +129,6 @@
         <div style="height: 200px"></div>
         <form data-ajax="false" style="display: none;" id="form" action="mobile/validation/scheme" method="get">
             <input name="symbol" type="text" value="${symbol}" id="symbol"/>
-			<input name="curPrice" type="text" value="${curPrice}"/>
             <input id="symbolName" name="symbolName" type="text" value="${symbolName}">
             <input id="lastManageFee" name="manageFee" type="text" value=""/>
             <input id="hidden_market_value" name="hiddenMarketValue" type="text" value="" />
@@ -193,7 +186,7 @@
         </div>
 
         <!-- 建议买入价格  -->
-        <div class="buying_price">
+        <div style="display: ;" class="buying_price">
             <h4 class="title">
 						<span class="color-w size-9 title-first-span">
 							<span class="fl cancel">取消</span>
@@ -364,10 +357,6 @@
         if($("#symbol").val().length==0){
             isOk = false;
             alert("选择股票信息");
-        }
-		if($("#curPrice")[0].textContent.length==0){
-            isOk = false;
-            alert("股票现价异常");
         }
         if($("#symbolName").val().length==0){
             isOk = false;

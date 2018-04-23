@@ -18,7 +18,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
     <%--<title>金点</title>--%>
-    <link rel="stylesheet" href="css/mobile/mystyle.css" />
+    <link rel="stylesheet" href="http://gg.spqun.com/css/mobile/mystyle.css" />
     <link rel="stylesheet" href="http://cdn.bootcss.com/jquery-mobile/1.4.2/jquery.mobile.css" />
     <script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js" ></script>
     <script type="text/javascript" src="http://cdn.bootcss.com/jquery-mobile/1.4.2/jquery.mobile.min.js" ></script>

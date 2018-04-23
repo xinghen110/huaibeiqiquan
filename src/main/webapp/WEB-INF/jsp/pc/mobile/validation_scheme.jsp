@@ -13,10 +13,10 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
-		<link rel="stylesheet" href="http://cdn.busod.cn/css/mobile/mystyle.css" />
-		<link rel="stylesheet" href="http://cdn.busod.cn/css/mobile/jquery.mobile-1.4.2.css" />
-		<script type="text/javascript" src="http://cdn.busod.cn/js/mobile/jquery.min.js" ></script>
-		<script type="text/javascript" src="http://cdn.busod.cn/js/mobile/jquery.mobile-1.4.2.js" ></script>
+		<link rel="stylesheet" href="http://gg.spqun.com/css/mobile/mystyle.css" />
+		<link rel="stylesheet" href="http://gg.spqun.com/css/mobile/jquery.mobile-1.4.2.css" />
+		<script type="text/javascript" src="http://gg.spqun.com/js/mobile/jquery.min.js" ></script>
+		<script type="text/javascript" src="http://gg.spqun.com/js/mobile/jquery.mobile-1.4.2.js" ></script>
 		<title></title>
 	</head>
 	<body>
