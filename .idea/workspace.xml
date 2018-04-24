@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="web:war exploded" />
+    </artifacts-to-build>
+  </component>
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/src/main/java/com/pay/yspay/controller/YSPayController.java" line="25" />
   </component>
@@ -7,17 +12,8 @@
     <list default="true" readonly="true" id="18c46ba6-5898-42b1-ae93-d8f495895293" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ruanyun/web/controller/mobile/MobileController.java" afterPath="$PROJECT_DIR$/src/main/java/com/ruanyun/web/controller/mobile/MobileController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/application_scheme.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/application_scheme.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/k_details.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/k_details.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/my_scheme_apply.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/my_scheme_apply.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/my_scheme_exercise.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/my_scheme_exercise.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/my_scheme_failureApplication.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/my_scheme_failureApplication.jsp" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/ruanyun/web/controller/web/WebController.java" afterPath="$PROJECT_DIR$/src/main/java/com/ruanyun/web/controller/web/WebController.java" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/my_scheme_position.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/my_scheme_position.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/my_scheme_settlement.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/my_scheme_settlement.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/optional_labels.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/optional_labels.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/validation_scheme.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/validation_scheme.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/web/my_plan.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/web/my_plan.jsp" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/web/trading_center.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/web/trading_center.jsp" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,18 +48,28 @@
       <file leaf-file-name="WebController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/ruanyun/web/controller/web/WebController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="647" column="49" lean-forward="false" selection-start-line="647" selection-start-column="30" selection-end-line="647" selection-end-column="49" />
+            <state relative-caret-position="653">
+              <caret line="1013" column="21" lean-forward="false" selection-start-line="1013" selection-start-column="21" selection-end-line="1013" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MobileController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MobileController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/ruanyun/web/controller/mobile/MobileController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="727" column="65" lean-forward="true" selection-start-line="727" selection-start-column="65" selection-end-line="727" selection-end-column="65" />
+            <state relative-caret-position="428">
+              <caret line="749" column="75" lean-forward="false" selection-start-line="749" selection-start-column="75" selection-end-line="749" selection-end-column="75" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="my_scheme_position.jsp" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/my_scheme_position.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="64" column="29" lean-forward="true" selection-start-line="64" selection-start-column="29" selection-end-line="64" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -72,8 +78,18 @@
       <file leaf-file-name="UserStockService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/ruanyun/web/service/web/UserStockService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="70" column="46" lean-forward="false" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
+            <state relative-caret-position="170">
+              <caret line="71" column="47" lean-forward="false" selection-start-line="71" selection-start-column="22" selection-end-line="71" selection-end-column="47" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WebServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/ruanyun/web/service/web/impl/WebServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="447" column="47" lean-forward="false" selection-start-line="447" selection-start-column="47" selection-end-line="447" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -191,12 +207,12 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/optional_labels.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/validation_scheme.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/application_scheme.jsp" />
-        <option value="$PROJECT_DIR$/src/main/java/com/ruanyun/web/controller/web/WebController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/web/trading_center.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/web/my_plan.jsp" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/my_scheme_position.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/ruanyun/web/controller/web/WebController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/ruanyun/web/controller/mobile/MobileController.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/my_scheme_position.jsp" />
       </list>
     </option>
   </component>
@@ -205,6 +221,13 @@
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
   </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
@@ -555,7 +578,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.IPSConstants">
+  <component name="RunManager" selected="Tomcat Server.Unnamed">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
@@ -707,6 +730,63 @@
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
     </configuration>
+    <configuration name="Unnamed" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.5" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="web:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_web" />
+      </server-settings>
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
+      <predefined_log_file id="Tomcat Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="61972" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method>
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="web:war exploded" />
+        </option>
+      </method>
+    </configuration>
     <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" ALTERNATIVE_JRE_ENABLED="false">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment />
@@ -801,13 +881,14 @@
       <properties />
       <listeners />
     </configuration>
-    <list size="6">
+    <list size="7">
       <item index="0" class="java.lang.String" itemvalue="Maven.Run HBQQ" />
-      <item index="1" class="java.lang.String" itemvalue="Application.GetGuPiao" />
-      <item index="2" class="java.lang.String" itemvalue="Application.UserAccountService" />
-      <item index="3" class="java.lang.String" itemvalue="Application.Constants" />
-      <item index="4" class="java.lang.String" itemvalue="Application.SendMessage" />
-      <item index="5" class="java.lang.String" itemvalue="Application.IPSConstants" />
+      <item index="1" class="java.lang.String" itemvalue="Tomcat Server.Unnamed" />
+      <item index="2" class="java.lang.String" itemvalue="Application.GetGuPiao" />
+      <item index="3" class="java.lang.String" itemvalue="Application.UserAccountService" />
+      <item index="4" class="java.lang.String" itemvalue="Application.Constants" />
+      <item index="5" class="java.lang.String" itemvalue="Application.SendMessage" />
+      <item index="6" class="java.lang.String" itemvalue="Application.IPSConstants" />
     </list>
     <recent_temporary>
       <list size="5">
@@ -934,7 +1015,7 @@
       <workItem from="1524453859570" duration="31000" />
       <workItem from="1524464057550" duration="22687000" />
       <workItem from="1524506450644" duration="731000" />
-      <workItem from="1524537956105" duration="4477000" />
+      <workItem from="1524537956105" duration="8935000" />
     </task>
     <task id="LOCAL-00001">
       <created>1518083817220</created>
@@ -1034,11 +1115,18 @@
       <option name="project" value="LOCAL" />
       <updated>1524474745821</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="1、上一次修改增加银生支付（补记录）&#10;2、申请方案页面管理费率的默认值更改&#10;3、申请方案页面建议买入价格更改成默认市价，不需要选择（pc、mobile）&#10;4、增加用户股票下单价格（pc、mobile）&#10;5、盈亏市算有bug，下一版修正。">
+      <created>1524544000097</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1524544000097</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="458434000" />
+    <option name="totallyTimeSpent" value="462892000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1053,17 +1141,18 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32513967" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26927373" sideWeight="0.50852877" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18456884" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.66927373" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36988544" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3698324" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.66927373" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27063236" sideWeight="0.4960981" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26956055" sideWeight="0.4960981" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14477612" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.063432835" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -1080,7 +1169,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14179105" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Dynamic Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32513967" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1165,7 +1253,8 @@
     <MESSAGE value="daily commit" />
     <MESSAGE value="修改开户行bug" />
     <MESSAGE value="1、盈亏市算增加1周计算逻辑&#10;2、替换mobile页面文件" />
-    <option name="LAST_COMMIT_MESSAGE" value="1、盈亏市算增加1周计算逻辑&#10;2、替换mobile页面文件" />
+    <MESSAGE value="1、上一次修改增加银生支付（补记录）&#10;2、申请方案页面管理费率的默认值更改&#10;3、申请方案页面建议买入价格更改成默认市价，不需要选择（pc、mobile）&#10;4、增加用户股票下单价格（pc、mobile）&#10;5、盈亏市算有bug，下一版修正。" />
+    <option name="LAST_COMMIT_MESSAGE" value="1、上一次修改增加银生支付（补记录）&#10;2、申请方案页面管理费率的默认值更改&#10;3、申请方案页面建议买入价格更改成默认市价，不需要选择（pc、mobile）&#10;4、增加用户股票下单价格（pc、mobile）&#10;5、盈亏市算有bug，下一版修正。" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1203,13 +1292,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_162/src.zip!/java/math/BigDecimal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="2136" column="29" lean-forward="true" selection-start-line="2136" selection-start-column="29" selection-end-line="2136" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/admin/admin_stock_plan_list.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -1509,22 +1591,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ruanyun/web/controller/web/WebController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="647" column="49" lean-forward="false" selection-start-line="647" selection-start-column="30" selection-end-line="647" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ruanyun/web/service/web/UserStockService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="70" column="46" lean-forward="false" selection-start-line="70" selection-start-column="46" selection-end-line="70" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ruanyun/web/dao/web/StockPlanDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -1541,10 +1607,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/web/my_plan.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="174" column="43" lean-forward="false" selection-start-line="174" selection-start-column="43" selection-end-line="174" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ruanyun/web/service/web/impl/WebServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="448" column="49" lean-forward="true" selection-start-line="448" selection-start-column="49" selection-end-line="448" selection-end-column="49" />
+        <state relative-caret-position="289">
+          <caret line="447" column="47" lean-forward="false" selection-start-line="447" selection-start-column="47" selection-end-line="447" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ruanyun/web/model/TStockPlan.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="26" column="33" lean-forward="true" selection-start-line="26" selection-start-column="33" selection-end-line="26" selection-end-column="33" />
           <folding />
         </state>
       </provider>
@@ -1557,34 +1639,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/ruanyun/web/model/TStockPlan.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ruanyun/web/service/web/UserStockService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state relative-caret-position="170">
+          <caret line="71" column="47" lean-forward="false" selection-start-line="71" selection-start-column="22" selection-end-line="71" selection-end-column="47" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/web/my_plan.jsp">
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_162/src.zip!/java/math/BigDecimal.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="174" column="43" lean-forward="false" selection-start-line="174" selection-start-column="43" selection-end-line="174" selection-end-column="43" />
+        <state relative-caret-position="289">
+          <caret line="2300" column="28" lean-forward="false" selection-start-line="2300" selection-start-column="28" selection-end-line="2300" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/my_scheme_position.jsp">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/ruanyun/web/controller/web/WebController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="86" column="73" lean-forward="false" selection-start-line="86" selection-start-column="73" selection-end-line="86" selection-end-column="73" />
+        <state relative-caret-position="653">
+          <caret line="1013" column="21" lean-forward="false" selection-start-line="1013" selection-start-column="21" selection-end-line="1013" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ruanyun/web/controller/mobile/MobileController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="727" column="65" lean-forward="true" selection-start-line="727" selection-start-column="65" selection-end-line="727" selection-end-column="65" />
+        <state relative-caret-position="428">
+          <caret line="749" column="75" lean-forward="false" selection-start-line="749" selection-start-column="75" selection-end-line="749" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/pc/mobile/my_scheme_position.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="64" column="29" lean-forward="true" selection-start-line="64" selection-start-column="29" selection-end-line="64" selection-end-column="29" />
           <folding />
         </state>
       </provider>

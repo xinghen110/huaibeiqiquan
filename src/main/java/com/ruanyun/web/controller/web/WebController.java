@@ -1011,7 +1011,7 @@ public class WebController extends BaseController {
     //确定支付通道
     private String paymentChannel(){
 
-        return "yinsheng";
+        return "ips";
     }
 
 }

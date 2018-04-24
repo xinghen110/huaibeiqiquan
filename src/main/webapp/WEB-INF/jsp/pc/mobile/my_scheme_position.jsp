@@ -51,6 +51,7 @@
 						<tr>
 							<th class="color-w size-9">订单号</th>
 							<th class="color-w size-9">盈亏市算</th>
+							<th class="color-w size-9">盈亏市算</th>
 							<th class="color-w size-9 two">建议日期</th>
 							<th class="color-w size-9">股票名称</th>
 							<th class="color-w size-9">股票代码</th>
@@ -65,6 +66,7 @@
 						<c:forEach var="item" items="${stockPlanListMap}">
 							<tr>
 								<td class="color-w size-9">${item.planId}</td><!--订单号-->
+								<td class="color-w size-9">${item.yingkui}</td><!--盈亏市算-->
 								<td class="color-w size-9">${item.yingkui}</td><!--盈亏市算-->
 								<td class="color-w size-9 two"><fmt:formatDate value="${item.buyRecommendDate}" pattern="yyyy/MM/dd" /></td><!--建议日期-->
 								<td class="color-w size-9">${item.symbolName}</td><!--股票-->

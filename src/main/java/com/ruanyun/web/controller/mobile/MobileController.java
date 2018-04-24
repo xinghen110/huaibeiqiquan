@@ -732,19 +732,22 @@ public class MobileController extends BaseController {
             map.put("manageFee", "");
             String profit;
             try{
-                String[] symbols = userStockService.getMarketForSina((String) map.get("symbol"));
-                for(String s : symbols){
-                    System.out.println("symbols:" + s);
-                }
+                String symbol = (String) map.get("symbol");
+                symbol = symbol.substring(0,2).equals("60") ? "sh"+symbol : "sz"+symbol;
+                String[] symbols = userStockService.getMarketForSina(symbol);
 
-                double cprice = Double.parseDouble(userStockService.getMarketForSina((String) map.get("symbol"))[3]);
-                double buyMarketPrice = Double.parseDouble((String)map.get("buyMarketPrice"));
-                double curPrice = Double.parseDouble((String)map.get("curPrice"));
+                double cprice = Double.parseDouble(symbols[3]);
+                BigDecimal buyMarketPrice = (BigDecimal)map.get("buyMarketPrice");
+                BigDecimal buyPrice = (BigDecimal)map.get("buyPrice");
 
-                if(curPrice == 0){
+                if(buyPrice == null || buyPrice.equals(BigDecimal.ZERO) || buyPrice.doubleValue() == 0){
                     profit = "--";
                 }else{
-                    profit = Double.toString((buyMarketPrice/curPrice)*cprice);
+                    System.out.println("curPrice:"+buyPrice.toString());
+                    profit = buyMarketPrice
+                            .divide(buyPrice, 2, BigDecimal.ROUND_HALF_UP)
+                            .multiply(new BigDecimal(cprice).subtract(buyPrice))
+                            .setScale(2, BigDecimal.ROUND_HALF_UP).toString();
                 }
             }catch (Exception e){
                 e.printStackTrace();
