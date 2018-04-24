@@ -132,6 +132,7 @@
                 <th>订单号</th>
                 <th>股票</th>
                 <th>股票代码</th>
+                <th>股票现价</th>
                 <th>名义本金</th>
                 <th>买入限价</th>
                 <th>管理费</th>
@@ -144,6 +145,7 @@
                         <td>${item.planId}</td>
                         <td>${item.symbolName}</td>
                         <td>${item.symbol}</td>
+                        <td>${item.curPrice}</td>
                         <td>${item.buyMarketPrice}</td>
                         <td>${item.buyLimitPrice}</td>
                         <td>${item.fee}</td>
@@ -160,6 +162,7 @@
                 <th>建议日期</th>
                 <th>股票</th>
                 <th>股票代码</th>
+                <th>股票现价</th>
                 <th>生效日期</th>
                 <th>结束日期</th>
                 <th>买入限价</th>
@@ -176,6 +179,7 @@
                     <td><fmt:formatDate value="${item.buyRecommendDate}" pattern="yyyy/MM/dd" /></td><!--建议日期-->
                     <td>${item.symbolName}</td><!--股票-->
                     <td>${item.symbol}</td><!--股票代码-->
+                    <td>${item.curPrice}</td><!--股票现价-->
                     <td><fmt:formatDate value="${item.buyConfirmDate}" pattern="yyyy/MM/dd" /></td><!--生效日期-->
                     <td><fmt:formatDate value="${item.buyEndDate}" pattern="yyyy/MM/dd" /></td><!--结束日期-->
                     <td>${item.buyLimitPrice}</td><!--买入限价-->
@@ -195,6 +199,7 @@
                 <th>建议日期</th>
                 <th>股票</th>
                 <th>股票代码</th>
+                <th>股票现价</th>
                 <th>生效日期</th>
                 <th>结束日期</th>
                 <th>卖出限价</th>
@@ -210,6 +215,7 @@
                         <td><fmt:formatDate value="${item.buyRecommendDate}" pattern="yyyy/MM/dd" /></td><!--建议日期-->
                         <td>${item.symbolName}</td><!--股票-->
                         <td>${item.symbol}</td><!--股票代码-->
+                        <td>${item.curPrice}</td><!--股票现价-->
                         <td><fmt:formatDate value="${item.buyConfirmDate}" pattern="yyyy/MM/dd"/></td>
                         <td><fmt:formatDate value="${item.buyEndDate}" pattern="yyyy/MM/dd"/></td>
                         <td>${item.sellLimitPrice}</td>
@@ -227,6 +233,7 @@
                 <th>订单号</th>
                 <th>股票名称</th>
                 <th>股票代码</th>
+                <th>股票现价</th>
                 <th>名义本金</th>
                 <th>买入类型</th>
                 <th>买入限价</th>
@@ -245,6 +252,7 @@
                     <td>${item.planId}</td>
                     <td>${item.symbol}</td>
                     <td>${item.symbolName}</td>
+                    <td>${item.curPrice}</td><!--股票现价-->
                     <td>${item.buyMarketPrice}</td>
                     <td>${item.buyPriceTypeName}</td>
                     <td>${item.buyLimitPrice}</td>
@@ -265,6 +273,7 @@
                 <th>订单号</th>
                 <th>股票名称</th>
                 <th>股票代码</th>
+                <th>股票现价</th>
                 <th>名义本金</th>
                 <th>买入类型</th>
                 <th>买入限价</th>
@@ -278,6 +287,7 @@
                     <td>${item.planId}</td>
                     <td>${item.symbol}</td>
                     <td>${item.symbolName}</td>
+                    <td>${item.curPrice}</td><!--股票现价-->
                     <td>${item.buyMarketPrice}</td>
                     <td>${item.buyPriceTypeName}</td>
                     <td>${item.buyPriceLimt}</td>
@@ -347,8 +357,8 @@
         <tr>
             <td>方案创建时间</td>
             <td class="createTime"></td>
-            <td>&nbsp;</td>
-            <td class="">&nbsp;</td>
+            <td>股票现价</td>
+            <td class="curPrice">&nbsp;</td>
         </tr>
         <tr>
             <td>收益</td>
@@ -458,6 +468,7 @@
                 var sellCreateTime = data[i].sellCreateTime ? moment(data[i].sellCreateTime).format(dateFormat) : "";
                 var sellConfirmTime = data[i].sellConfirmTime ? moment(data[i].sellConfirmTime).format(dateFormat) : "";
                 var symbolName = data[i].symbolName ? data[i].symbolName : "";
+                var curPrice = data[i].curPrice ? data[i].curPrice : "";
                 var symbol = data[i].symbol ? data[i].symbol : "";
                 var buyMarketPrice = data[i].buyMarketPrice ? data[i].buyMarketPrice : "";
                 var cycleName = data[i].cycle ? data[i].cycleName : "";
@@ -473,6 +484,7 @@
                 var netProfit = data[i].netProfit ? data[i].netProfit : "";
                 var orderStatus = data[i].orderStatus;
                 $(".createTime").html(createTime);
+                $(".curPrice").html(curPrice);
                 $(".buyRecommendDate").html(buyRecommendDate);
                 $(".buyConfirmDate").html(buyConfirmDate);
                 $(".buyEndDate").html(buyEndDate);

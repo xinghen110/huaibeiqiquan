@@ -50,9 +50,11 @@
 					<table cellspacing="0" cellpadding="0">
 						<tr>
 							<th class="color-w size-9">订单号</th>
+							<th class="color-w size-9">盈亏市算</th>
 							<th class="color-w size-9 two">建议日期</th>
 							<th class="color-w size-9">股票名称</th>
 							<th class="color-w size-9">股票代码</th>
+							<th class="color-w size-9">股票价格</th>
 							<th class="color-w size-9">生效日期</th>
 							<th class="color-w size-9">结束日期</th>
 							<!--<th class="color-w size-9">买入限价</th>-->
@@ -63,9 +65,11 @@
 						<c:forEach var="item" items="${stockPlanListMap}">
 							<tr>
 								<td class="color-w size-9">${item.planId}</td><!--订单号-->
+								<td class="color-w size-9">${item.yingkui}</td><!--盈亏市算-->
 								<td class="color-w size-9 two"><fmt:formatDate value="${item.buyRecommendDate}" pattern="yyyy/MM/dd" /></td><!--建议日期-->
 								<td class="color-w size-9">${item.symbolName}</td><!--股票-->
 								<td class="color-w size-9">${item.symbol}</td><!--股票代码-->
+								<td class="color-w size-9">${item.curPrice}</td><!--股票价格-->
 								<td class="color-w size-9"><fmt:formatDate value="${item.buyConfirmDate}" pattern="yyyy/MM/dd" /></td><!--生效日期-->
 								<td class="color-w size-9"><fmt:formatDate value="${item.buyEndDate}" pattern="yyyy/MM/dd" /></td><!--结束日期-->
 								<!--<td class="color-w size-9">${item.buyLimitPrice}</td><!--买入限价-->

@@ -39,6 +39,7 @@
 					<th class="color-w size-9">订单号</th>
 					<th class="color-w size-9 two">股票名称</th>
 					<th class="color-w size-9">股票代码</th>
+					<th class="color-w size-9">股票价格</th>
 					<th class="color-w size-9">名义本金</th>
 					<!--<th class="color-w size-9">买入限价</th>-->
 					<th class="color-w size-9">管理费</th>
@@ -51,6 +52,7 @@
 					<td class="color-w size-9">${item.planId}</td>
 					<td class="color-w size-9 two">${item.symbolName}</td>
 					<td class="color-w size-9">${item.symbol}</td>
+					<td class="color-w size-9">${item.curPrice}</td>
 					<td class="color-w size-9">${item.buyMarketPrice}</td>
 					<!--<td class="color-w size-9">${item.buyLimitPrice}</td>-->
 					<td class="color-w size-9">${item.fee}</td>

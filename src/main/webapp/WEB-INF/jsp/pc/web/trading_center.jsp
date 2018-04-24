@@ -202,7 +202,7 @@
                             <li>
                                 <h4><span class="fl size-8" style="width: 100px;">市值规模：</span>
                                     <span class="fl szgm-price color-y" style="margin-right: 11px;" id="shizhiguimo"></span>
-                                    <span class="fr">元</span>
+                                    <span class="fr">股票现价：<span id="curPrice" class="old-price color-y"></span></span>
                                 </h4>
                             </li>
                             <li>
@@ -217,7 +217,7 @@
                             <li>
                                 <h4 style="width: 100px;" class="fl size-8">建议买入价格：</h4>
                                 <select id="jy-type" class="fl jy-type" onchange="jy_type(this.options[this.options.selectedIndex].value)" style="margin-left: -15px;;margin-top: 12px; margin-right: 15px;border: none;background: #ebebeb; width: 75px; height: 25px; border-radius: 5px;" name="buyPriceType">
-                                    <option value="">请选择建议买入价格</option>
+                                    <%--<option value="">请选择建议买入价格</option>--%>
                                     <c:forEach items="${STOCK_PRICE_TYPE}" var="d">
                                         <option value="${d.itemCode}">${d.itemName}</option>
                                     </c:forEach>
@@ -252,6 +252,7 @@
                             <input type="hidden" name="managePrice" value="">
                             <input type="hidden" name="symbol" value="">
                             <input type="hidden" name="symbolName" value="">
+                            <input type="hidden" name="curPrice" id="currentPrice" value="">
                         </form>
                     </div>
 
@@ -273,7 +274,7 @@
                             <li>
                                 <h4><span class="fl size-8" style="width: 100px;">市值规模：</span>
                                     <span class="fl szgm-price color-y" style="margin-right: 11px;">30万</span>
-                                    <span class="fr">元</span>
+                                    <span class="fr">股票现价： <span id="confimecurPrice" class="old-price color-y"></span></span>
                                 </h4>
                             </li>
                             <li>
@@ -721,8 +722,8 @@
         $("[name='manageFee']").val(manageFee);
         calculation();
         queryStockPreClosePrice(symbol);
-
     }
+
 
     function calculation(){
         var buyMarketPrice = $("[name='buyMarketPrice']").val();
@@ -757,6 +758,8 @@
     $(document).ready(function () {
         queryStock();
         queryOptionalStock();
+        //初始化【建议买入价格】为【市价】
+        $("#jy-type").val("0");
     });
 </script>
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
@@ -816,8 +819,13 @@
 //                var manageFee = stockData.manageFee;
 //                $("#manageFee").html(manageFee);
                 $("#preClosePrice").html(stockData);
+                //增加股票现价
+                $("#curPrice").html(data[3]);
                 //写入确认后的界面
                 $("#confimepreClosePrice").html(stockData);
+                $("#confimecurPrice").html(data[3]);
+                $("#currentPrice").val(data[3]);
+
 //                preClosePriceIsDone = true;
 //                kaishijisuan();
             },

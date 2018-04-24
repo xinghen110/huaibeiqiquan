@@ -38,6 +38,7 @@
 							<th class="color-w size-9 two">建议日期</th>
 							<th class="color-w size-9">股票名称</th>
 							<th class="color-w size-9">股票代码</th>
+							<th class="color-w size-9">股票价格</th>
 							<th class="color-w size-9 three" colspan="2">生效日期</th>
 							<th class="color-w size-9 four" colspan="2">结束日期</th>
 							<!--<th class="color-w size-9">卖出限价</th>-->
@@ -51,6 +52,7 @@
 								<td class="color-w size-9 two"><fmt:formatDate value="${item.buyRecommendDate}" pattern="yyyy/MM/dd" /></td><!--建议日期-->
 								<td class="color-w size-9">${item.symbolName}</td><!--股票-->
 								<td class="color-w size-9">${item.symbol}</td><!--股票代码-->
+								<td class="color-w size-9">${item.curPrice}</td><!--股票价格-->
 								<td class="color-w size-9 three" colspan="2"><fmt:formatDate value="${item.buyConfirmDate}" pattern="yyyy/MM/dd HH:mm:ss" /></td>
 								<td class="color-w size-9 four" colspan="2"><fmt:formatDate value="${item.buyEndDate}" pattern="yyyy/MM/dd HH:mm:ss" /></td>
 								<!--<td class="color-w size-9">${item.sellLimitPrice}</td><!--卖出限价-->

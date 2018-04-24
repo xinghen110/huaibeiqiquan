@@ -69,8 +69,14 @@
             </li>
             <li class="clear" data-icon = "false">
                 <h4>
+                    <span class="fl color-hs">股票现价</span>
+                    <span id="curPrice" class="color-red fr">${curPrice}</span>
+                </h4>
+                </li>
+            <li class="clear" data-icon = "false">
+                <h4>
                     <span class="fl color-hs">管理费率</span>
-                    <span id="manageFee" class="color-w fr">${manageFee}%</span>
+                    <span id="manageFee" class="color-w fr"></span>
                 </h4>
             </li>
             <h4 class="color-w size-9 fl" style="margin: .6em;margin-left: 1em;">选择信息</h4>
@@ -98,7 +104,7 @@
                     <span class="fl color-hs">建议买入价格</span>
                     <span class="color-w fr">
                         <select dir="rtl" style="background:#424242" id="type" name="bankId" data-role="none">
-                            <option>选择价格类型</option>
+                            <%--<option>选择价格类型</option>--%>
                             <c:forEach items="${STOCK_PRICE_TYPE}" var="d">
                                 <option class="color-w" style="color: #FFFFFF;float: right" value="${d.itemCode}">${d.itemName}</option>
                             </c:forEach>
@@ -130,6 +136,7 @@
         <form data-ajax="false" style="display: none;" id="form" action="mobile/validation/scheme" method="get">
             <input name="symbol" type="text" value="${symbol}" id="symbol"/>
             <input id="symbolName" name="symbolName" type="text" value="${symbolName}">
+            <input name="curPrice" type="text" value="${curPrice}"/>
             <input id="lastManageFee" name="manageFee" type="text" value=""/>
             <input id="hidden_market_value" name="hiddenMarketValue" type="text" value="" />
             <input name="stockPlanCycleValue" id="stockPlanCycleValue" onchange="queryPlanManageFee()" type="text"  value=""/>
@@ -358,6 +365,10 @@
             isOk = false;
             alert("选择股票信息");
         }
+        if($("#curPrice")[0].textContent.length==0) {
+            isOk = false;
+            alert("股票现价异常");
+        }
         if($("#symbolName").val().length==0){
             isOk = false;
             alert("选择股票信息");
@@ -434,6 +445,9 @@
             return false;
         }
     }
+    $(function(){
+        $("#stockPriceType").val(0);
+    });
 </script>
 </body>
 </html>

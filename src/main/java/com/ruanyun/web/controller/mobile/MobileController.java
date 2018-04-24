@@ -21,6 +21,7 @@ import com.ruanyun.web.service.mall.AdverInfoService;
 import com.ruanyun.web.service.mall.OrderInfoService;
 import com.ruanyun.web.service.sys.DictionaryService;
 import com.ruanyun.web.service.sys.UserService;
+import com.ruanyun.web.service.web.UserStockService;
 import com.ruanyun.web.service.web.WebInterface;
 import com.ruanyun.web.util.*;
 import com.ruanyun.zf.HttpClientUtil;
@@ -62,6 +63,8 @@ public class MobileController extends BaseController {
     private AdverInfoService adverInfoService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserStockService userStockService;
 
     @Autowired
     private AppUserStockService appUserStockService;
@@ -729,7 +732,12 @@ public class MobileController extends BaseController {
             map.put("manageFee", "");
             String profit;
             try{
-                double cprice = Double.parseDouble(webService.queryDataFromSina((String) map.get("symbol"))[3]);
+                String[] symbols = userStockService.getMarketForSina((String) map.get("symbol"));
+                for(String s : symbols){
+                    System.out.println("symbols:" + s);
+                }
+
+                double cprice = Double.parseDouble(userStockService.getMarketForSina((String) map.get("symbol"))[3]);
                 double buyMarketPrice = Double.parseDouble((String)map.get("buyMarketPrice"));
                 double curPrice = Double.parseDouble((String)map.get("curPrice"));
 
@@ -739,6 +747,8 @@ public class MobileController extends BaseController {
                     profit = Double.toString((buyMarketPrice/curPrice)*cprice);
                 }
             }catch (Exception e){
+                e.printStackTrace();
+                logger.error(e.getMessage());
                 profit = "--";
             }
             map.put("yingkui", profit);
@@ -1020,7 +1030,9 @@ public class MobileController extends BaseController {
         } else {
             addModel(model, "userStockList", "[]");
         }
-        addModel(model, "manageFee", dictionaryService.get(TDictionary.class, "parentCode", "MANAGE_FEE"));
+        TDictionary tDictionary = dictionaryService.get(TDictionary.class, "parentCode", "MANAGE_FEE");
+
+        addModel(model, "manageFee", tDictionary);
         return "pc/mobile/optional_labels";
     }
 

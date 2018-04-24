@@ -29,7 +29,8 @@
 				<div class="content-div">
 					<h4 class="color-w size-9 title">
 						<span class="fl color-red">${planInfo.symbol}<span id="newSymbolName">${planInfo.symbolName}</span></span>
-						<span class="fr">管理费率:${planInfo.manageFee}%</span>
+						<span class="fr" id="manageFee_show"></span>
+						<span class="fr" id="manageFee">${planInfo.manageFee}%</span>
 					</h4>
 					<h5 class="color-w size-8 content-h5">市值规模:<span>${planInfo.hiddenMarketValue}元</span></h5>
 					<h5 class="color-w size-8 content-h5">股票现价:<span>${planInfo.curPrice}元</span></h5>
@@ -54,8 +55,8 @@
 				</div>
 				<form data-ajax="false" style="display: none" id="form" action="mobile/stock/plan/create" method="post">
 					<input name="symbol" type="text" value="${planInfo.symbol}" id="symbol"/>
-					<input name="curPrice" type="text" value="${planInfo.curPrice}" id="curPrice"/>
 					<input name="symbolName" type="text" value="${planInfo.symbolName}">
+					<input name="curPrice" type="text" value="${planInfo.curPrice}" id="curPrice"/>
 					<%--<input name="manageFee" type="text" value="${planInfo.manageFee}"/>--%>
 					<input name="buyMarketPrice" type="text" value="${planInfo.hiddenMarketValue}" id="hidden_market_value"/>
 					<input name="cycle" id="stockPlanCycleValue" type="text"  value="${planInfo.stockPlanCycleValue}"/>
@@ -73,28 +74,29 @@
 	<script src="https://cdn.bootcss.com/moment.js/2.19.0/moment.min.js"></script>
 
 	<script>
-	$("#toAddStockPlan").click(function () {
-		$("#form").submit();
-    });
-	var cycle = '${planInfo.stockPlanCycleValue}';
-	var tempCycle=cycle;
-	var flag=tempCycle.substring(tempCycle.length-1);
+		$("#toAddStockPlan").click(function () {
+			$("#form").submit();
+		});
+		var cycle = '${planInfo.stockPlanCycleValue}';
+		var tempCycle=cycle;
+		var flag=tempCycle.substring(tempCycle.length-1);
 
-    cycle=cycle.substring(0,cycle.length-1);
+		cycle=cycle.substring(0,cycle.length-1);
 
-    $("#nowDate").html("");
-    $("#nowDate").html(moment().format('YYYY-MM-DD'));
-    $("#deadLine").html("");
+		$("#nowDate").html("");
+		$("#nowDate").html(moment().format('YYYY-MM-DD'));
+		$("#deadLine").html("");
 
-    if(flag==="d"){
-        $("#deadLine").html(moment().add(cycle,'day').format('YYYY-MM-DD'));
+		if(flag==="d"){
+			$("#deadLine").html(moment().add(cycle,'day').format('YYYY-MM-DD'));
 
-    }else if(flag==="m"){
-        $("#deadLine").html(moment().add(cycle,'month').format('YYYY-MM-DD'));
+		}else if(flag==="m"){
+			$("#deadLine").html(moment().add(cycle,'month').format('YYYY-MM-DD'));
 
-    }else if(flag==="w"){
-        $("#deadLine").html(moment().add(cycle,'week').format('YYYY-MM-DD'));
+		}else if(flag==="w"){
+			$("#deadLine").html(moment().add(cycle,'week').format('YYYY-MM-DD'));
 
-    }
-</script>
+		}
+
+	</script>
 </html>
