@@ -114,8 +114,8 @@ public class AdminController extends BaseController {
         Integer parentCodeIndex=-1;
         if(EmptyUtils.isNotEmpty(belongValue)) {
             belongInfo = belongValue.split("-");
-            belongUserId = Integer.parseInt(belongInfo[0].toString());
-            parentCodeIndex = Integer.parseInt(belongInfo[1].toString());
+            belongUserId = Integer.parseInt(belongInfo[0]);
+            parentCodeIndex = Integer.parseInt(belongInfo[1]);
         }
         List<HashMap> allFeeList = adminService.groupQueryStockPlanListServerFee(stockPlan, loginName,startTime,
                 endTime,yunYingUserId,huiYuanUserId,daiLiUserId,userName,belongUserId,parentCodeIndex,
@@ -169,8 +169,8 @@ public class AdminController extends BaseController {
         Integer parentCodeIndex=-1;
         if(EmptyUtils.isNotEmpty(belongValue)) {
             belongInfo = belongValue.split("-");
-            belongUserId = Integer.parseInt(belongInfo[0].toString());
-            parentCodeIndex = Integer.parseInt(belongInfo[1].toString());
+            belongUserId = Integer.parseInt(belongInfo[0]);
+            parentCodeIndex = Integer.parseInt(belongInfo[1]);
         }
         try {
             adminService.exportBuyStockPlanList(response, stockPlan, loginName,startTime,endTime,yunYingUserId,huiYuanUserId,daiLiUserId,userName,belongUserId,parentCodeIndex,buyConfirmDatetartTime,buyConfirmDateEndTime,sellConfirmTimeDatetartTime,sellConfirmTimeDateEndTime,isProfit);
@@ -195,8 +195,8 @@ public class AdminController extends BaseController {
         Integer parentCodeIndex=-1;
         if(EmptyUtils.isNotEmpty(belongValue)) {
             belongInfo = belongValue.split("-");
-            belongUserId = Integer.parseInt(belongInfo[0].toString());
-            parentCodeIndex = Integer.parseInt(belongInfo[1].toString());
+            belongUserId = Integer.parseInt(belongInfo[0]);
+            parentCodeIndex = Integer.parseInt(belongInfo[1]);
         }
         try {
             adminService.exportSellStockPlanList(response, stockPlan, loginName,startTime,endTime,yunYingUserId,huiYuanUserId,daiLiUserId,userName,belongUserId,parentCodeIndex,buyConfirmDatetartTime,buyConfirmDateEndTime,sellConfirmTimeDatetartTime,sellConfirmTimeDateEndTime,isProfit);
@@ -214,11 +214,6 @@ public class AdminController extends BaseController {
 
     /**
      * 查询用户账户信息列表
-     * @param page
-     * @param userAccount
-     * @param model
-     * @param user
-     * @return
      */
     @RequestMapping("admin/user/account/list")
     public String queryUserAccountList(Page page, TUserAccount userAccount,Model model,TUser user,HttpSession session, String startTime, String endTime, TUserInfo userInfo,String belongValue){
@@ -228,8 +223,8 @@ public class AdminController extends BaseController {
         Integer parentCodeIndex=-1;
         if(EmptyUtils.isNotEmpty(belongValue)) {
             belongInfo = belongValue.split("-");
-            belongUserId = Integer.parseInt(belongInfo[0].toString());
-            parentCodeIndex = Integer.parseInt(belongInfo[1].toString());
+            belongUserId = Integer.parseInt(belongInfo[0]);
+            parentCodeIndex = Integer.parseInt(belongInfo[1]);
         }
         model.addAttribute("userList", JSONArray.fromObject(userService.list(currentUser)));
         user.setUserType(5);
@@ -248,11 +243,6 @@ public class AdminController extends BaseController {
 
     /**
      * 查询账户信息流水列表
-     * @param page
-     * @param userAccountFlow
-     * @param model
-     * @param user
-     * @return
      */
     @RequestMapping("admin/user/account/flow/list")
     public String queryUserAccountFlowList(Page page,HttpSession session,TUserAccountFlow userAccountFlow,Model model,TUser user, String startTime, String endTime, TUserInfo userInfo,String belongValue){
@@ -262,8 +252,8 @@ public class AdminController extends BaseController {
         Integer parentCodeIndex=-1;
         if(EmptyUtils.isNotEmpty(belongValue)) {
             belongInfo = belongValue.split("-");
-            belongUserId = Integer.parseInt(belongInfo[0].toString());
-            parentCodeIndex = Integer.parseInt(belongInfo[1].toString());
+            belongUserId = Integer.parseInt(belongInfo[0]);
+            parentCodeIndex = Integer.parseInt(belongInfo[1]);
         }
         List<HashMap> allFeeList = adminService.groupQueryUserAccountFlowList(userAccountFlow,user,currentUser,startTime, endTime, userInfo, belongUserId, parentCodeIndex);
         model.addAttribute("allFee",EmptyUtils.isEmpty(allFeeList.get(0).get("money"))?"":allFeeList.get(0));
@@ -282,10 +272,6 @@ public class AdminController extends BaseController {
 
     /**
      * 查询视频信息的列表
-     * @param video
-     * @param page
-     * @param model
-     * @return
      */
     @RequestMapping("admin/video/list")
     public String queryVideoList(TArticle video,Page page,Model model){
@@ -296,8 +282,6 @@ public class AdminController extends BaseController {
 
     /**
      * 跳转到添加视频的界面
-     * @param model
-     * @return
      */
     @RequestMapping(value = "admin/video/add",method = RequestMethod.GET)
     public String toAdd(Model model){
@@ -307,9 +291,6 @@ public class AdminController extends BaseController {
 
     /**
      * 执行添加视频信息的操作
-     * @param response
-     * @param session
-     * @param video
      */
     @RequestMapping(value = "admin/video/add",method = RequestMethod.POST)
     public void doAdd(HttpServletResponse response,HttpSession session, TArticle video){
@@ -319,9 +300,6 @@ public class AdminController extends BaseController {
 
     /**
      * 跳转到修改视频信息的界面
-     * @param article
-     * @param model
-     * @return
      */
     @RequestMapping(value = "admin/video/update",method = RequestMethod.GET)
     public String toUpdate(TArticle article,Model model){
@@ -332,9 +310,6 @@ public class AdminController extends BaseController {
 
     /**
      * 执行修改视频信息的操作
-     * @param response
-     * @param video
-     * @param model
      */
     @RequestMapping(value = "admin/video/update",method = RequestMethod.POST)
     public void doUpdate(HttpServletResponse response,TArticle video,Model model){
@@ -344,10 +319,6 @@ public class AdminController extends BaseController {
 
     /**
      * 当前登录者查询自己邀请的用户列表
-     * @param session
-     * @param page
-     * @param model
-     * @return
      */
     @RequestMapping("admin/query/by/invite")
     public String queryUserByInvite(HttpSession session,Page page,Model model,TUser selectInviteUser, TUserInfo userInfo, String startTime, String endTime,String belongValue,String parentLoginName){
@@ -356,8 +327,8 @@ public class AdminController extends BaseController {
         Integer parentCodeIndex=-1;
         if(EmptyUtils.isNotEmpty(belongValue)) {
             belongInfo = belongValue.split("-");
-            belongUserId = Integer.parseInt(belongInfo[0].toString());
-            parentCodeIndex = Integer.parseInt(belongInfo[1].toString());
+            belongUserId = Integer.parseInt(belongInfo[0]);
+            parentCodeIndex = Integer.parseInt(belongInfo[1]);
         }
         //运营中心列表
         model.addAttribute("childUserList",userService.getAllByCondition(TUser.class,"userType",Constants.USER_TYPE_CHILD_02));
@@ -376,10 +347,6 @@ public class AdminController extends BaseController {
 
     /**
      * 查询用户列表(账户管理)
-     * @param session
-     * @param user
-     * @param model
-     * @return
      */
     @RequestMapping("admin/user/list")
     public String getUserList(HttpSession session,TUser user,Model model,Page page, TUserInfo userInfo, String startTime, String endTime,String belongValue){
@@ -388,8 +355,8 @@ public class AdminController extends BaseController {
         Integer parentCodeIndex=-1;
         if(EmptyUtils.isNotEmpty(belongValue)) {
             belongInfo = belongValue.split("-");
-            belongUserId = Integer.parseInt(belongInfo[0].toString());
-            parentCodeIndex = Integer.parseInt(belongInfo[1].toString());
+            belongUserId = Integer.parseInt(belongInfo[0]);
+            parentCodeIndex = Integer.parseInt(belongInfo[1]);
         }
         model.addAttribute("userList", JSONArray.fromObject(userService.list(HttpSessionUtils.getCurrentUser(session))));
         model.addAttribute("pageList",adminService.queryUserByInvite(page,session,user, userInfo, startTime, endTime,belongUserId, parentCodeIndex,null));
@@ -406,9 +373,6 @@ public class AdminController extends BaseController {
 
     /**
      * 跳往添加用户的界面
-     * @param model
-     * @param user
-     * @return
      */
     @RequestMapping(value = "admin/user/add",method = RequestMethod.GET)
     public String toAddUser(Model model,TUser user,Page page,HttpSession session,String belongValue){
@@ -416,7 +380,7 @@ public class AdminController extends BaseController {
         TUser currentUser = HttpSessionUtils.getCurrentUser(session);
 
         //当创建userType=4的代理商用户时,用户名需要使用当前用户名为前缀
-        if (user.getUserType() != null && user.getUserType().intValue() == 4) {
+        if (user.getUserType() != null && user.getUserType() == 4) {
             model.addAttribute("user", HttpSessionUtils.getCurrentUser(session));
         }
 
@@ -425,8 +389,8 @@ public class AdminController extends BaseController {
         Integer parentCodeIndex=-1;
         if(EmptyUtils.isNotEmpty(belongValue)) {
             belongInfo = belongValue.split("-");
-            belongUserId = Integer.parseInt(belongInfo[0].toString());
-            parentCodeIndex = Integer.parseInt(belongInfo[1].toString());
+            belongUserId = Integer.parseInt(belongInfo[0]);
+            parentCodeIndex = Integer.parseInt(belongInfo[1]);
         }
         model.addAttribute("userList",adminService.queryUserByInvite(page,session,user, null, null, null,belongUserId,parentCodeIndex,null));
         model.addAttribute("roleList",adminService.queryRoleList(new TRole()));
@@ -443,9 +407,6 @@ public class AdminController extends BaseController {
 
     /**
      * 执行添加用户的操作
-     * @param response
-     * @param session
-     * @param user
      */
     @RequestMapping(value = "admin/user/add",method = RequestMethod.POST)
     public void doAddUser(HttpServletResponse response,HttpSession session,TUser user,TRole role,Integer parentUserId){
@@ -511,13 +472,6 @@ public class AdminController extends BaseController {
 
     /**
      * 查询
-     * @param session
-     * @param model
-     * @param page
-     * @param stockPlan
-     * @param loginName
-     * @param belong
-     * @return
      */
     @RequestMapping("/admin/stock/plan/list/bysth")
     public String queryAdminStockPlanList(HttpSession session,Model model, Page page, TStockPlan stockPlan, String loginName,String belong,String startTime,String endTime,Integer yunYingUserId,Integer huiYuanUserId,Integer daiLiUserId,String userName,String belongValue,String buyConfirmDatetartTime,String buyConfirmDateEndTime,String sellConfirmTimeDatetartTime,String sellConfirmTimeDateEndTime,TUser user) {
@@ -527,8 +481,8 @@ public class AdminController extends BaseController {
         Integer parentCodeIndex=-1;
         if(EmptyUtils.isNotEmpty(belongValue)) {
             belongInfo = belongValue.split("-");
-            belongUserId = Integer.parseInt(belongInfo[0].toString());
-            parentCodeIndex = Integer.parseInt(belongInfo[1].toString());
+            belongUserId = Integer.parseInt(belongInfo[0]);
+            parentCodeIndex = Integer.parseInt(belongInfo[1]);
         }
 
         List<HashMap> allFeeList = adminService.groupQueryStockPlanListBySth(session,stockPlan, loginName,belong,startTime,endTime,yunYingUserId,huiYuanUserId,daiLiUserId,userName,belongUserId,parentCodeIndex,buyConfirmDatetartTime,buyConfirmDateEndTime,sellConfirmTimeDatetartTime,sellConfirmTimeDateEndTime);
@@ -567,9 +521,6 @@ public class AdminController extends BaseController {
 
     /**
      * 查询股票信息列表
-     * @param model
-     * @param stock
-     * @return
      */
     @RequestMapping("admin/stock/list")
     public String toQueryStockList(Model model,TStock stock,Page page){
@@ -580,7 +531,6 @@ public class AdminController extends BaseController {
 
     /**
      * 跳转编辑股票信息的界面
-     * @return
      */
     @RequestMapping(value = "admin/stock/update",method = RequestMethod.GET)
     public String toUpdateStock(Model model,TStock stock){
@@ -591,8 +541,6 @@ public class AdminController extends BaseController {
 
     /**
      * 执行修改股票信息操作
-     * @param response
-     * @param stock
      */
     @RequestMapping(value = "admin/stock/update",method = RequestMethod.POST)
     public void doUpdateStock(HttpServletResponse response,TStock stock){
@@ -602,8 +550,6 @@ public class AdminController extends BaseController {
 
     /**
      * 批量处理股票代码所属交易所
-     * @param response
-     * @param stock
      */
     @RequestMapping(value = "admin/batch/stock/prefix/update")
     public void updateBatchStockPrefix(HttpServletResponse response,TStock stock){
@@ -614,8 +560,6 @@ public class AdminController extends BaseController {
     /**
      * 功能描述:跳转到报价模式管理list页面
      * @author zhujingbo
-     * @param model
-     * @return
      */
     @RequestMapping("market/quotemode/list")
     public String getQuoteModeList(Model model){
@@ -626,9 +570,6 @@ public class AdminController extends BaseController {
 
     /**
      * 进入字典表查询
-     * @param model
-     * @param dictionary
-     * @return
      */
     @RequestMapping("market/quotemode/toList")
     public String toList(Model model,TDictionary dictionary){
@@ -640,8 +581,6 @@ public class AdminController extends BaseController {
     /**
      * 功能描述:跳转到字典list页面
      *
-     * @param model
-     * @return
      */
     @RequestMapping("admin/dictionary/list")
     public String getAdminDictionaryList(Model model) {
@@ -684,8 +623,6 @@ public class AdminController extends BaseController {
     /**
      * 功能描述:跳转到服务费设置页面
      * @author zhujingbo
-     * @param model
-     * @return
      */
     @RequestMapping("market/servicecharge/list")
     public String getServiceChargeList(Model model){
@@ -696,9 +633,6 @@ public class AdminController extends BaseController {
 
     /**
      * 进入服务费查询-字典表查询
-     * @param model
-     * @param dictionary
-     * @return
      */
     @RequestMapping("market/servicecharge/toList")
     public String toServiceChargeList(Model model,TDictionary dictionary){

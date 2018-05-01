@@ -525,6 +525,10 @@ public class WebController extends BaseController {
             addModel(model, "msg", "银行卡号不能为空");
             return redirect("/web/stock/userinfo");
         }
+        if (EmptyUtils.isEmpty(userInfo.getDepositBank())) {
+            addModel(model, "msg", "开户行不能为空");
+            return redirect("/web/stock/userinfo");
+        }
         if (EmptyUtils.isEmpty(userInfo.getBackCardPhoto())) {
             addModel(model, "msg", "银行照片不能为空或不能为默认图片");
             return redirect("/web/stock/userinfo");

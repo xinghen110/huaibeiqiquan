@@ -157,6 +157,10 @@
             <input id="bankCardNumber" maxlength="19" class="fl" name="bankCardNumber" type="text" value="${userInfo.bankCardNumber}" placeholder="请输入您的银行卡号" />
         </div>
         <div>
+            <h4 class="fl ">开户行：</h4>
+            <input id="depositBank" maxlength="20" class="fl" name="depositBank" type="text" value="${userInfo.depositBank}" placeholder="请输入您的开户行" />
+        </div>
+        <div>
             <h4 class="fl ">所属银行：</h4>
             <select id="bankId" name="bankId">
                 <option value="">请选择银行</option>
