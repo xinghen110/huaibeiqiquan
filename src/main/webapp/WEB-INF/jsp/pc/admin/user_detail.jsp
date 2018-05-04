@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"  language="java" %>
 <%@include file="/WEB-INF/jsp/inc/pression.jsp" %>
 <ry:binding type="1" bingdingName="HTTP" parentCode="HTTP"></ry:binding>
 <head>
@@ -60,7 +60,11 @@
 <c:if test="${systemUser.userType==4}">
     <script type="text/javascript" src="app/js/qrcode.js"></script>
     <script>
-        var url = "${HTTP[0].itemCode}/mobile/stock/register?parentCode="+$("#erweima").html();
+        <%
+            String path = request.getContextPath();
+            String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+        %>
+        var url = "<%=basePath%>mobile/stock/register?parentCode="+$("#erweima").html();
         new QRCode(document.getElementById("qrcode"),url)
     </script>
 </c:if>
