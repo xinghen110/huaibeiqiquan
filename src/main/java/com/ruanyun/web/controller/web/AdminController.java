@@ -72,7 +72,7 @@ public class AdminController extends BaseController {
     @RequestMapping("/admin/withdraw/list")
     public String toWithdrawList(Model model, Page page, TUserAccountOrder userAccountOrder, String loginName) {
         List<HashMap> userAccountOrderList = adminService.queryWithdrawList(page, userAccountOrder, loginName);
-        addModel(model, "page", page);
+        addModel(model, "pageList", page);
         return "pc/web/withdraw_list";
     }
 

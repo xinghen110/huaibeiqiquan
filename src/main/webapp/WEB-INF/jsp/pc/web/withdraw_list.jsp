@@ -2,24 +2,18 @@
 <%@include file="/WEB-INF/jsp/inc/pression.jsp" %>
 <ry:binding parentCode="USER_ACCOUNT_ORDER_STATUS" bingdingName="orderStatus"></ry:binding>
 <ry:binding type="3"></ry:binding>
-<%--<form  method="post" action="admin/withdraw/list">--%>
-    <%--<input type="hidden" name="pageNum" value="${pageList.pageNum }"/>--%>
-    <%--<input type="hidden" name="numPerPage" value="${pageList.numPerPage}"/>--%>
-    <%--<input type="hidden" name="orderField" value="${param.orderField}"/>--%>
-    <%--<!-- 分页时 带模糊查询的值 -->--%>
-    <%--&lt;%&ndash;<input type="hidden" name="accountNumber" value="${bean.accountNumber}"/>&ndash;%&gt;--%>
-    <%--&lt;%&ndash;<input type="hidden" name="userName" value="${bean.userName}"/>&ndash;%&gt;--%>
-    <%--<input type="hidden" name="startTime" value='<fmt:formatDate value="${bean.startTime}" pattern="yyyy-MM-dd"/>'/>--%>
-    <%--<input type="hidden" name="createTime" value='<fmt:formatDate value="${bean.createTime}" pattern="yyyy-MM-dd"/>'/>--%>
-    <%--<input type="hidden" name="handleTime" value='<fmt:formatDate value="${bean.handleTime}" pattern="yyyy-MM-dd"/>'/>--%>
-    <%--<input type="hidden" name="handlestartTime" value='<fmt:formatDate value="${bean.handlestartTime}" pattern="yyyy-MM-dd"/>'/>--%>
-    <%--&lt;%&ndash;<input type="hidden" name="status" value="${bean.status}"/>&ndash;%&gt;--%>
-
-<%--</form>--%>
+<form id="pagerForm" method="post" action="admin/withdraw/list">
+    <input type="hidden" name="pageNum" value="${pageList.pageNum }"/>
+    <input type="hidden" name="numPerPage" value="${pageList.numPerPage}"/>
+    <input type="hidden" name="orderField" value="${param.orderField}"/>
+    <!-- 分页时 带模糊查询的值 -->
+    <input type="hidden" name="loginName" value="${param.loginName}"/>
+    <input type="hidden" name="orderStatus" value="${param.orderStatus}"/>
+</form>
 
 
 <div class="pageHeader">
-    <form id="pagerForm" onsubmit="return navTabSearch(this);" action="admin/withdraw/list" method="post">
+    <form rel="pagerForm" onsubmit="return navTabSearch(this);" action="admin/withdraw/list" method="post">
         <div class="searchBar">
             <ul class="searchContent">
 
