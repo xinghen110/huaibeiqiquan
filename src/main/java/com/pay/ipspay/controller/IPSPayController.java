@@ -91,16 +91,12 @@ public class IPSPayController extends BaseController {
             }
 
             //4、通过返回商户订单编号获取商户系统该笔订单金额和订单日期 与报文返回订单金额和订单日期进行比较
-            logger.warn("1111111");
             String MerBillNo = Verify.getValueByTag(resultXml, "MerBillNo");
-            logger.warn("2222222");
             String Amount = Verify.getValueByTag(resultXml, "Amount");
-            logger.warn("3333333");
             TOrderInfo orderInfo = orderInfoService.get(
                     TOrderInfo.class,
                     "orderNum",
                     MerBillNo);
-            logger.warn("4444444");
             //要求对金额做比对
             if (orderInfo.getActualPrice().compareTo(new BigDecimal(Amount)) != 0) {
                 String msg = "订单金额不符，订单号：" + MerBillNo

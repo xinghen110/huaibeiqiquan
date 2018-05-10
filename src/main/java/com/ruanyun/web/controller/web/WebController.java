@@ -985,8 +985,6 @@ public class WebController extends BaseController {
         );
         businessOrderService.save(businessOrder);
 
-
-
         TOrderInfo orderInfo = orderInfoService.createOrderInfo(money, currentUser);
         orderInfo.setTotalPrice(money);
 
@@ -1009,13 +1007,18 @@ public class WebController extends BaseController {
             return payChannels.yinshengPay(orderInfo, bank, model, currentUser);
         }
 
+        //银联支付
+        if(channel.equals("acp")){
+            return payChannels.acpPay(orderInfo, bank, model, currentUser);
+        }
+
         return redirect("/web/index");
     }
 
     //确定支付通道
     private String paymentChannel(){
 
-        return "ips";
+        return "acp";
     }
 
 }
