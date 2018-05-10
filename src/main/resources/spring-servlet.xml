@@ -77,6 +77,7 @@
 					/layer/**
 					/yspay/**
 					/ipspay/**
+					/acppay/**
 				</value>
 			</property>
 			<!--  权限验证的黑名单 -->
@@ -163,6 +164,10 @@
 	</context:component-scan>
 	<!-- 扫描controller类 -->
 	<context:component-scan base-package="com.pay.ipspay.controller">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+	<!-- 扫描controller类 -->
+	<context:component-scan base-package="com.pay.acppay.controller">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	

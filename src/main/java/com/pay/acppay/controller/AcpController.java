@@ -26,9 +26,9 @@ public class AcpController extends BaseController{
     /**
      * 接收银联支付返回值（同步）
      */
-    @RequestMapping(value = "/acppay/merchanturl")
+    @RequestMapping(value = "/acppay/fronturl")
     public String merchanturl( Model model) {
-        int m = 0;
+        int m = 1;
         model.addAttribute("result", m);
         return "pc/web/payment_result";
     }
@@ -36,7 +36,7 @@ public class AcpController extends BaseController{
     /**
      * 接收银联支付返回值（异步）
      */
-    @RequestMapping(value = "/acppay/serverurl")
+    @RequestMapping(value = "/acppay/merchanturl")
     public String serverurl(HttpServletRequest req) {
         getParameter(req);
         return "succes";
