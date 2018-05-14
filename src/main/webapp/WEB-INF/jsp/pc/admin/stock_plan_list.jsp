@@ -32,7 +32,8 @@
     <input type="hidden" name="sellConfirmTimeDateEndTime" value="${param.sellConfirmTimeDateEndTime}">
     <input name="belongName"  type="hidden" value="${param.belongName}" />
     <input name="cycle"  type="hidden" value="${param.cycle}" />
-
+    <input type="hidden" name="direction" value="${param.direction}">
+    <input type="hidden" name="belong" value="${param.belong}">
 
 </form>
 <style>
@@ -247,8 +248,6 @@
                 </ul>
             </div>
         </div>
-        <input type="hidden" name="direction" value="${param.direction}">
-        <input type="hidden" name="belong" value="${belong}">
     </form>
 </div>
 </div>
