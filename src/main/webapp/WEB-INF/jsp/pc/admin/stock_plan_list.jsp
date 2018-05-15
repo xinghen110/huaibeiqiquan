@@ -248,6 +248,8 @@
                 </ul>
             </div>
         </div>
+        <input type="hidden" name="direction" value="${param.direction}">
+        <input type="hidden" name="belong" value="${param.belong}">
     </form>
 </div>
 </div>
