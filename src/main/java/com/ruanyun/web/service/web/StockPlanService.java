@@ -257,7 +257,7 @@ public class StockPlanService extends BaseServiceImpl<TStockPlan> {
         update(plan);
     }
 
-    public void sellHandle(boolean isDone, Integer planId, BigDecimal sellPrice, String buyRecommendDate) {
+    public void sellHandle(boolean isDone, Integer planId, BigDecimal sellPrice, String buyRecommendDate, BigDecimal profit, BigDecimal netProfit) {
         //将导入的数据更新到表中
         TStockPlan plan = get(TStockPlan.class, planId);
         if (plan == null) {
@@ -278,14 +278,17 @@ public class StockPlanService extends BaseServiceImpl<TStockPlan> {
             //((卖出价/买入价)-1) * 期初金额 = 收益
             //((卖出价/买入价)-1) * 期初金额 - 管理费(两个相加的管理费) = 净收益
 
-            BigDecimal profit = plan.getSellPrice()
+            /*BigDecimal profit = plan.getSellPrice()
                     .divide(plan.getBuyPrice(), 3, BigDecimal.ROUND_HALF_DOWN)
                     .subtract(BigDecimal.ONE)
-                    .multiply(plan.getBuyMarketPrice());
+                    .multiply(plan.getBuyMarketPrice());  by hexin 2018-6-7 原有计算公式由excel导入数据替换
             BigDecimal netProfit = profit.subtract(plan.getServiceFee().add(plan.getManageFee()));
+            by hexin 2018-6-7 原有计算公式由excel导入数据替换
+            */
 
             plan.setProfit(profit);
             plan.setNetProfit(netProfit);
+
 
             //如果收益大于0,则进行转账
             if (profit.compareTo(BigDecimal.ZERO) > 0) {

@@ -445,17 +445,21 @@ public class AdminServiceImpl extends BaseServiceImpl implements AdminService {
             map.put("pingcangzhiling", kaicangzhiling);
             map.put("shifouchengjiao", "");
             map.put("sellCreateTime", nowDate);
+            map.put("profit", "");
+            map.put("netProfit", "");
             planMapList.add(map);
         }
 
         String date = new SimpleDateFormat("yyyyMMdd").format(Calendar.getInstance().getTime());
-        String fileName = "行权方案" + date;
+        String fileName = "行权方案123" + date;
 //        客户经理	客户名称	股票名称	股票代码	期限（月）	方向	报价	期权类型	行权价	名义本金	开仓指令	平仓指令
         String[] headers = {
-                "订单号", "建议日期", "股票编码", "股票名称", "股票价格", "周期", "期初市值", "期权类型", "卖出限价", "卖出价格", "方向", "平仓指令", "是否成交"
+                "订单号", "建议日期", "股票编码", "股票名称", "股票价格", "周期", "期初市值",
+                "期权类型", "卖出限价", "卖出价格", "方向", "平仓指令", "是否成交", "收益", "净收益"
         };
         String[] columns = {
-                "planId", "sellCreateTime", "symbol", "symbolName", "curPrice", "cycle", "sellMarketPrice", "qiquanleixing", "sellLimitPrice", "sellPrice", "direction", "pingcangzhiling", "shifouchengjiao"
+                "planId", "sellCreateTime", "symbol", "symbolName", "curPrice", "cycle", "sellMarketPrice",
+                "qiquanleixing", "sellLimitPrice", "sellPrice", "direction", "pingcangzhiling", "shifouchengjiao", "profit", "netProfit"
         };
         try {
             ExcelUtils.exportExcel(response, fileName, planMapList, columns, headers, SysCode.DATE_FORMAT_STR_S);
@@ -521,8 +525,10 @@ public class AdminServiceImpl extends BaseServiceImpl implements AdminService {
                 boolean isDone = shifouchengjiao.equals("1");
                 Integer planId = Integer.parseInt(map.get("planId").toString());
                 BigDecimal sellPrice = isDone ? new BigDecimal(map.get("sellPrice").toString()) : BigDecimal.ZERO;
+                BigDecimal profit = isDone ? new BigDecimal(map.get("profit").toString()) : BigDecimal.ZERO;
+                BigDecimal netprofit = isDone ? new BigDecimal(map.get("netprofit").toString()) : BigDecimal.ZERO;
                 String buyRecommendDate=map.get("buyRecommendDate").toString();
-                stockPlanService.sellHandle(isDone, planId, sellPrice,buyRecommendDate);
+                stockPlanService.sellHandle(isDone, planId, sellPrice,buyRecommendDate, profit,netprofit);
             }
             return list;
         } catch (IOException e) {

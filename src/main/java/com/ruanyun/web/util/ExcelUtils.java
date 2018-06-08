@@ -91,7 +91,7 @@ public class ExcelUtils {
         try {
             Workbook workBook = new HSSFWorkbook(inputStream);
             String[] columns = {
-                    "planId", "buyRecommendDate", "symbol", "symbolName", "curPrice", "cycle", "sellMarketPrice", "qiquanleixing", "sellLimitPrice", "sellPrice", "direction", "pingcangzhiling", "shifouchengjiao"
+                    "planId", "buyRecommendDate", "symbol", "symbolName", "curPrice", "cycle", "sellMarketPrice", "qiquanleixing", "sellLimitPrice", "sellPrice", "direction", "pingcangzhiling", "shifouchengjiao", "profit", "netprofit"
             };
             list = createListMapByWorkBook(workBook, columns);
         } catch (Exception e) {
